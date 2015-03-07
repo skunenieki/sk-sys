@@ -139,9 +139,9 @@ return [
         /*
          * Application Service Providers...
          */
-        'App\Providers\AppServiceProvider',
-        'App\Providers\EventServiceProvider',
-        'App\Providers\RouteServiceProvider',
+        'Skunenieki\System\Providers\AppServiceProvider',
+        'Skunenieki\System\Providers\EventServiceProvider',
+        'Skunenieki\System\Providers\RouteServiceProvider',
 
     ],
 

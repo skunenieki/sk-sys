@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Skunenieki\System
+        psr4_prefix: Skunenieki\System
         src_path: app

@@ -1,3 +1,8 @@
 /vendor
 /node_modules
 .env
+resources/assets/js/partials.js
+/public/css
+/public/js
+/public/build
+.DS_Store

@@ -1,9 +1,10 @@
-<?php namespace App\Providers;
+<?php namespace Skunenieki\System\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap any application services.
      *
