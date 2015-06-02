@@ -1,5 +1,7 @@
 <?php
 
+$url = parse_url(env('CLEARDB_DATABASE_URL'));
+
 return [
 
     /*
@@ -26,7 +28,7 @@ return [
     |
     */
 
-    'default' => 'mysql',
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,21 +48,27 @@ return [
 
     'connections' => [
 
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+        ],
+
         'sqlite' => [
             'driver'   => 'sqlite',
-            'database' => storage_path().'/database.sqlite',
-            'prefix'   => '',
+            'database' => env('DB_DATABASE', storage_path('database.sqlite')),
+            'prefix'   => env('DB_PREFIX', ''),
         ],
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
+            'host'      => env('DB_HOST', $url['host']),
+            'database'  => env('DB_DATABASE', substr($url['path'], 1)),
+            'username'  => env('DB_USERNAME', $url['user']),
+            'password'  => env('DB_PASSWORD', $url['pass']),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+            'prefix'    => env('DB_PREFIX', ''),
+            'timezone'  => env('DB_TIMEZONE','+00:00'),
             'strict'    => false,
         ],
 
@@ -71,7 +79,7 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset'  => 'utf8',
-            'prefix'   => '',
+            'prefix'   => env('DB_PREFIX', ''),
             'schema'   => 'public',
         ],
 
@@ -81,7 +89,7 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'prefix'   => '',
+            'prefix'   => env('DB_PREFIX', ''),
         ],
 
     ],
@@ -112,11 +120,11 @@ return [
 
     'redis' => [
 
-        'cluster' => false,
+        'cluster' => env('REDIS_CLUSTER', false),
 
         'default' => [
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
+            'host'     => env('REDIS_HOST', '127.0.0.1'),
+            'port'     => env('REDIS_PORT', 6379),
             'database' => 0,
         ],
 
