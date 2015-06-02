@@ -1,11 +1,9 @@
 {
   "private": true,
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.8.8",
     "laravel-elixir": "~2.2",
-    "laravel-elixir-ng-html2js": "~0.2.1"
-  },
-  "dependencies": {
+    "laravel-elixir-ng-html2js": "~0.2.1",
     "angular": "~1.3",
     "angular-resource": "~1.3",
     "angular-route": "~1.3",
