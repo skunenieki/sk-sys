@@ -47,8 +47,8 @@ return [
             'driver'  => 'memcached',
             'persistent_id' => 'laravel',
             'sasl'       => [
-                env('MEMCACHIER_USERNAME'),
-                env('MEMCACHIER_PASSWORD')
+                env('MEMCACHEDCLOUD_USERNAME'),
+                env('MEMCACHEDCLOUD_PASSWORD')
             ],
             'options'    => [
                 'OPT_NO_BLOCK'         => true,
