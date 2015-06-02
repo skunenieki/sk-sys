@@ -45,17 +45,13 @@ return [
 
         'memcached' => [
             'driver'  => 'memcached',
-            'persistent_id' => 'laravel',
+            'persistent_id' => 'laravel_pool',
             'sasl'       => [
                 env('MEMCACHEDCLOUD_USERNAME'),
                 env('MEMCACHEDCLOUD_PASSWORD')
             ],
             'options'    => [
-                'OPT_NO_BLOCK'         => true,
-                'OPT_AUTO_EJECT_HOSTS' => true,
-                'OPT_CONNECT_TIMEOUT'  => 2000,
-                'OPT_POLL_TIMEOUT'     => 2000,
-                'OPT_RETRY_TIMEOUT'    => 2,
+                'OPT_BINARY_PROTOCOL'  => true,
             ],
             'servers' => [
                 [
