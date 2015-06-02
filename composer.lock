@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "69a2e0d4ae5edb624e1effb86eb23915",
+    "hash": "9a6c777007b018e5452cd169614e1c9d",
     "packages": [
+        {
+            "name": "b3it/laravel-memcached-plus",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/b3it/laravel-memcached-plus.git",
+                "reference": "ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/b3it/laravel-memcached-plus/zipball/ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8",
+                "reference": "ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-memcached": "*",
+                "illuminate/cache": "5.*",
+                "illuminate/session": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "B3IT\\MemcachedPlus\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Castleman",
+                    "email": "tom.castleman@b3-it.com"
+                }
+            ],
+            "description": "Extends the built-in Laravel 5 Cache Memcached driver adding support for persistent connections, SASL and Memcached options.",
+            "keywords": [
+                "cache",
+                "heroku",
+                "laravel",
+                "memcached",
+                "memcachedcloud",
+                "memcachier",
+                "options",
+                "persistent",
+                "sasl"
+            ],
+            "time": "2015-03-06 19:17:17"
+        },
         {
             "name": "danielstjules/stringy",
             "version": "1.9.0",
@@ -928,12 +978,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/queue.git",
-                "reference": "6d557ffa5837e26813c7f3dfc4734b0283583c78"
+                "reference": "228401c1a5ecfa49bdb4e618d258952499dea395"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/queue/zipball/6d557ffa5837e26813c7f3dfc4734b0283583c78",
-                "reference": "6d557ffa5837e26813c7f3dfc4734b0283583c78",
+                "url": "https://api.github.com/repos/illuminate/queue/zipball/228401c1a5ecfa49bdb4e618d258952499dea395",
+                "reference": "228401c1a5ecfa49bdb4e618d258952499dea395",
                 "shasum": ""
             },
             "require": {
@@ -978,7 +1028,7 @@
             ],
             "description": "The Illuminate Queue package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-01 16:40:06"
+            "time": "2015-06-02 13:16:16"
         },
         {
             "name": "illuminate/session",
@@ -1036,12 +1086,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "ffb7c7126052b9a7520b3f08c900b7487bb5c01e"
+                "reference": "7faaa4437b92522194feb7514bd60da714e9cd93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/ffb7c7126052b9a7520b3f08c900b7487bb5c01e",
-                "reference": "ffb7c7126052b9a7520b3f08c900b7487bb5c01e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/7faaa4437b92522194feb7514bd60da714e9cd93",
+                "reference": "7faaa4437b92522194feb7514bd60da714e9cd93",
                 "shasum": ""
             },
             "require": {
@@ -1081,7 +1131,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-01 15:39:11"
+            "time": "2015-06-01 18:08:57"
         },
         {
             "name": "illuminate/translation",

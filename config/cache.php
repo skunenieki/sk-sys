@@ -1,7 +1,5 @@
 <?php
 
-$memcachedURL = parse_url(env('MEMCACHEDCLOUD_SERVERS', 'localhost:11211'));
-
 return [
 
     /*
@@ -47,13 +45,21 @@ return [
 
         'memcached' => [
             'driver'  => 'memcached',
+            'persistent_id' => 'laravel',
+            'sasl'       => [
+                env('MEMCACHIER_USERNAME'),
+                env('MEMCACHIER_PASSWORD')
+            ],
+            'options'    => [
+                'OPT_NO_BLOCK'         => true,
+                'OPT_AUTO_EJECT_HOSTS' => true,
+                'OPT_CONNECT_TIMEOUT'  => 2000,
+                'OPT_POLL_TIMEOUT'     => 2000,
+                'OPT_RETRY_TIMEOUT'    => 2,
+            ],
             'servers' => [
                 [
-                    'host'     => env('MEMCACHED_HOST', $memcachedURL['host']),
-                    'port'     => env('MEMCACHED_PORT', $memcachedURL['port']),
-                    'weight'   => 100,
-                    'username' => env('MEMCACHEDCLOUD_USERNAME'),
-                    'password' => env('MEMCACHEDCLOUD_PASSWORD'),
+                    'host' => '127.0.0.1', 'port' => 11211, 'weight' => 100
                 ],
             ],
         ],
