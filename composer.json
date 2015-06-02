@@ -10,6 +10,8 @@
         "firebase/php-jwt": "~2.0"
     },
     "require-dev": {
+        "php": "~5.6",
+        "ext-memcached": "*",
         "heroku/heroku-buildpack-php": "*",
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
