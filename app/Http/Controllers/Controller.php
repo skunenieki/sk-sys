@@ -1,10 +1,10 @@
-<?php namespace Skunenieki\System\Http\Controllers;
+<?php
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+namespace Skunenieki\System\Http\Controllers;
 
-abstract class Controller extends BaseController
+use Laravel\Lumen\Routing\Controller as BaseController;
+
+class Controller extends BaseController
 {
-    use DispatchesCommands, ValidatesRequests;
+    //
 }
