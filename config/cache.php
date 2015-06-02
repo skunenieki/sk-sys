@@ -59,7 +59,9 @@ return [
             ],
             'servers' => [
                 [
-                    'host' => '127.0.0.1', 'port' => 11211, 'weight' => 100
+                    'host'   => parse_url(env('MEMCACHEDCLOUD_SERVERS'), PHP_URL_HOST),
+                    'port'   => parse_url(env('MEMCACHEDCLOUD_SERVERS'), PHP_URL_PORT),
+                    'weight' => 100,
                 ],
             ],
         ],
