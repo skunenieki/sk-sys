@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Manager</title>
+    <title>Šķūnenieku Kauss</title>
     <link href="<?php echo elixir('css/app.css'); ?>" rel="stylesheet">
 </head>
 <body ng-controller="MainController as mainCtrl">

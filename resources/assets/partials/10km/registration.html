@@ -1,0 +1,63 @@
+<form class="form-horizontal"
+      ng-controller="RegistrationController as registrationCtrl"
+      ng-submit="registrationCtrl.registerparticipant()">
+    <div class="form-group">
+        <label for="inputNumber" class="col-sm-2 control-label">Numurs</label>
+        <div class="col-xs-2">
+            <input type="number"
+                   class="form-control"
+                   id="inputNumber"
+                   placeholder="#"
+                   ng-model="registrationCtrl.participation.number"
+                   min="1"
+                   max="999"
+                   maxlength="3">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Dalībnieks</label>
+        <div class="col-sm-8">
+            <input type="text" class="ng-typeahead form-control" id="inputName" placeholder="Vārds Uzvārds" ng-model="registrationCtrl.participation.name" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputBirthYear" class="col-sm-2 control-label">Dz. gads</label>
+        <div class="col-xs-2">
+            <input type="number" class="form-control" id="inputBirthYear" placeholder="2014" ng-model="registrationCtrl.participation.birthYear" min="1915" max="2015" maxlength="4">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Dzimums</label>
+        <div class="col-sm-10">
+            <label class="radio-inline">
+                <input type="radio" name="inputGender" id="inputGenderMale" value="male" ng-model="registrationCtrl.participation.gender"> Vīrietis
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="inputGender" id="inputGenderFemale" value="female" ng-model="registrationCtrl.participation.gender"> Sieviete
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputNotes" class="col-sm-2 control-label">Komentārs</label>
+        <div class="col-sm-10">
+            <textarea id="inputNotes" class="form-control" rows="2" ng-model="registrationCtrl.participation.notes"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Kolektīvs</label>
+        <div class="col-sm-10">
+            <tags-input ng-model="registrationCtrl.participation.teams">
+                <auto-complete source="registrationCtrl.loadTags($query)"></auto-complete>
+            </tags-input>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Reģistrēt</button>
+            <button type="reset" class="btn btn-default">Atcelt</button>
+        </div>
+    </div>
+</form>
