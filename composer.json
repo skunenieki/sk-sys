@@ -8,6 +8,7 @@
 		"laravel/framework": "5.1.*"
 	},
 	"require-dev": {
+                "heroku/heroku-buildpack-php": "*",
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
 		"squizlabs/php_codesniffer": "~2.0"
@@ -34,9 +35,8 @@
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
-		"post-create-project-cmd": [
-			"php -r \"copy('.env.example', '.env');\"",
-			"php artisan key:generate"
+                "compile": [
+			"./node_modules/.bin/gulp"
 		]
 	},
 	"config": {
