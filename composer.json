@@ -37,6 +37,7 @@
         "post-update-cmd": [
         ],
         "compile": [
+            "php artisan migrate --force",
             "./node_modules/.bin/gulp"
         ]
     },
