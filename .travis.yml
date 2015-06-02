@@ -10,11 +10,11 @@ git:
   depth: 10
 
 before_script:
-  - npm install
+#  - npm install
   - travis_retry composer self-update
   - travis_retry composer install --optimize-autoloader --prefer-source --no-interaction
 
 script:
-  - ./node_modules/.bin/gulp --production
+#  - ./node_modules/.bin/gulp --production
   - ./vendor/bin/phpunit --coverage-text
-  - ./vendor/bin/phpcs --standard=PSR2 app/
+#  - ./vendor/bin/phpcs --standard=PSR2 app/
