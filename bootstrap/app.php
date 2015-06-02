@@ -24,8 +24,11 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
 $app->withEloquent();
+
+$logger = $app->make(\Psr\Log\LoggerInterface::class);
+$logger->popHandler();
+$logger->pushHandler(new \Monolog\Handler\ErrorLogHandler());
 
 /*
 |--------------------------------------------------------------------------
