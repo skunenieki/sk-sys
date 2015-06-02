@@ -1,6 +1,6 @@
 <?php
 
-$memcachedURL = parse_url(env('MEMCACHEDCLOUD_SERVERS'));
+$memcachedURL = parse_url(env('MEMCACHEDCLOUD_SERVERS', 'localhost:11211'));
 
 return [
 
@@ -49,8 +49,8 @@ return [
             'driver'  => 'memcached',
             'servers' => [
                 [
-                    'host'     => env('MEMCACHED_HOST', $memcachedURL['host'] ?: '127.0.0.1'),
-                    'port'     => env('MEMCACHED_PORT', $memcachedURL['port'] ?: 11211),
+                    'host'     => env('MEMCACHED_HOST', $memcachedURL['host']),
+                    'port'     => env('MEMCACHED_PORT', $memcachedURL['port']),
                     'weight'   => 100,
                     'username' => env('MEMCACHEDCLOUD_USERNAME'),
                     'password' => env('MEMCACHEDCLOUD_PASSWORD'),
