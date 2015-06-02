@@ -790,6 +790,11 @@
         }
       }
     },
+    "jquery": {
+      "version": "2.1.4",
+      "from": "jquery@*",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.1.4.tgz"
+    },
     "laravel-elixir": {
       "version": "2.2.1",
       "from": "laravel-elixir@>=2.2.0 <2.3.0",

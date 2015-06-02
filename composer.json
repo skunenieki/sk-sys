@@ -16,12 +16,15 @@
         "squizlabs/php_codesniffer": "~2.0"
     },
     "autoload": {
+        "psr-4": {
+            "Skunenieki\\System\\": "app/"
+        },
         "classmap": [
             "database"
         ],
-        "psr-4": {
-            "Skunenieki\\System\\": "app/"
-        }
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

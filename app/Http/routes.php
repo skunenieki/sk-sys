@@ -1,5 +1,9 @@
 <?php
 
-$app->get('/', function() use ($app) {
-    return view('index', ['name' => 'SK']);
+$app->get('/', function() {
+    return view('index', [
+        'x' => 'zzz',
+    ]);
 });
+
+$app->get('authenticate', 'Skunenieki\System\Http\Controllers\AuthenticationController@authenticate');
