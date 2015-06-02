@@ -5,14 +5,14 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "php": "~5.6.0",
+        "ext-mbstring": "*",
+        "ext-memcached": "*",
         "laravel/lumen-framework": "~5.1",
         "vlucas/phpdotenv": "~1.0",
         "firebase/php-jwt": "~2.0"
     },
     "require-dev": {
-        "php": "~5.6.0",
-        "ext-mbstring": "*",
-        "ext-memcached": "*",
         "heroku/heroku-buildpack-php": "*",
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",

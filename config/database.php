@@ -61,10 +61,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', $url['host']),
-            'database'  => env('DB_DATABASE', substr($url['path'], 1)),
-            'username'  => env('DB_USERNAME', $url['user']),
-            'password'  => env('DB_PASSWORD', $url['pass']),
+            'host'      => env('DB_HOST', $url['host'] ?: ''),
+            'database'  => env('DB_DATABASE', substr($url['path'], 1) ?: ''),
+            'username'  => env('DB_USERNAME', $url['user'] ?: ''),
+            'password'  => env('DB_PASSWORD', $url['pass'] ?: ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => env('DB_PREFIX', ''),

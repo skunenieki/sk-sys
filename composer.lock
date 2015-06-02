@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a1e8f3b7377ffb87bf16d2bc3745f950",
+    "hash": "69a2e0d4ae5edb624e1effb86eb23915",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -369,12 +369,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/console.git",
-                "reference": "ab477fedeafddfe947e3dc919295825870baffd3"
+                "reference": "d432eb2b6a7edbaf5d24e0e545215c741971208b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/console/zipball/ab477fedeafddfe947e3dc919295825870baffd3",
-                "reference": "ab477fedeafddfe947e3dc919295825870baffd3",
+                "url": "https://api.github.com/repos/illuminate/console/zipball/d432eb2b6a7edbaf5d24e0e545215c741971208b",
+                "reference": "d432eb2b6a7edbaf5d24e0e545215c741971208b",
                 "shasum": ""
             },
             "require": {
@@ -411,7 +411,7 @@
             ],
             "description": "The Illuminate Console package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-01 16:21:41"
+            "time": "2015-06-02 08:53:07"
         },
         {
             "name": "illuminate/container",
@@ -550,12 +550,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "c10d055e771ccdf6ab242285a204bb08c288b208"
+                "reference": "d66bce45bae6caec0ce27f0357eaa6fa68a53cf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/c10d055e771ccdf6ab242285a204bb08c288b208",
-                "reference": "c10d055e771ccdf6ab242285a204bb08c288b208",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/d66bce45bae6caec0ce27f0357eaa6fa68a53cf3",
+                "reference": "d66bce45bae6caec0ce27f0357eaa6fa68a53cf3",
                 "shasum": ""
             },
             "require": {
@@ -601,7 +601,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2015-06-01 15:39:11"
+            "time": "2015-06-01 21:06:07"
         },
         {
             "name": "illuminate/encryption",
@@ -3386,10 +3386,10 @@
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": {
+    "platform": {
         "php": "~5.6.0",
         "ext-mbstring": "*",
         "ext-memcached": "*"
-    }
+    },
+    "platform-dev": []
 }
