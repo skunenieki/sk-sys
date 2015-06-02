@@ -15,6 +15,7 @@ require('./partials');
 // require('./services/SomeService');
 
 require('./controllers/MainController');
+require('./controllers/RegistrationController');
 
 var AppConfig = angular.module('AppConfig', [])
     .provider('AppConfig', function () {
@@ -41,6 +42,7 @@ var skApp = angular.module('skApp', [
         'view-segment',
 
         'skApp.MainController',
+        'skApp.RegistrationController',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider

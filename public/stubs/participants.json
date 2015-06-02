@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Martins",
+        "birthYear": 1989,
+        "gender": "M"
+    },
+    {
+        "name": "Gatis",
+        "birthYear": 1979,
+        "gender": "M"
+    },
+    {
+        "name": "Linda",
+        "birthYear": 1991,
+        "gender": "F"
+    }
+]

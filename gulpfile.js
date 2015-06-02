@@ -16,5 +16,7 @@ elixir(function(mix) {
     mix.less('app.less')
        .ngHtml2Js('resources/assets/partials/**/*.{htm,html}', 'resources/assets/js')
        .browserify('index.js')
-       .version(['css/app.css', 'js/bundle.js'], 'public');
+       .version(['css/app.css', 'js/bundle.js'], 'public')
+       .copy('node_modules/angular-bootstrap/template', 'public/template')
+       .copy('node_modules/angular-bootstrap/template', 'public/build/template');
 });
