@@ -86,7 +86,6 @@ $app->middleware([
 |
 */
 
-$app->register('B3IT\MemcachedPlus\CacheServiceProvider');
 // $app->register('Skunenieki\System\Providers\AppServiceProvider');
 
 /*

@@ -10,8 +10,7 @@
         "ext-memcached": "*",
         "laravel/lumen-framework": "~5.1",
         "vlucas/phpdotenv": "~1.0",
-        "firebase/php-jwt": "~2.0",
-        "b3it/laravel-memcached-plus": "~2.1"
+        "firebase/php-jwt": "~2.0"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*",

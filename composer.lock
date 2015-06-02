@@ -4,58 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9a6c777007b018e5452cd169614e1c9d",
+    "hash": "69a2e0d4ae5edb624e1effb86eb23915",
     "packages": [
-        {
-            "name": "b3it/laravel-memcached-plus",
-            "version": "2.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/b3it/laravel-memcached-plus.git",
-                "reference": "ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/b3it/laravel-memcached-plus/zipball/ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8",
-                "reference": "ecfb443f2c0287a5ef4ecb1700be4b8a3c099ad8",
-                "shasum": ""
-            },
-            "require": {
-                "ext-memcached": "*",
-                "illuminate/cache": "5.*",
-                "illuminate/session": "5.*",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "B3IT\\MemcachedPlus\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tom Castleman",
-                    "email": "tom.castleman@b3-it.com"
-                }
-            ],
-            "description": "Extends the built-in Laravel 5 Cache Memcached driver adding support for persistent connections, SASL and Memcached options.",
-            "keywords": [
-                "cache",
-                "heroku",
-                "laravel",
-                "memcached",
-                "memcachedcloud",
-                "memcachier",
-                "options",
-                "persistent",
-                "sasl"
-            ],
-            "time": "2015-03-06 19:17:17"
-        },
         {
             "name": "danielstjules/stringy",
             "version": "1.9.0",
@@ -512,12 +462,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "1d10bc966e513154e2483d6ac56a39e4febb8421"
+                "reference": "bd9ebf0a0f251efbd0bc7364f9858a20e7bff472"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/1d10bc966e513154e2483d6ac56a39e4febb8421",
-                "reference": "1d10bc966e513154e2483d6ac56a39e4febb8421",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/bd9ebf0a0f251efbd0bc7364f9858a20e7bff472",
+                "reference": "bd9ebf0a0f251efbd0bc7364f9858a20e7bff472",
                 "shasum": ""
             },
             "require": {
@@ -546,7 +496,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-01 15:39:11"
+            "time": "2015-06-02 15:09:03"
         },
         {
             "name": "illuminate/cookie",
@@ -705,12 +655,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "b07db875b709343103e20774228e549edc6a0fff"
+                "reference": "c2dbfd86dc1082f07dc420053826fa692b32477b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/b07db875b709343103e20774228e549edc6a0fff",
-                "reference": "b07db875b709343103e20774228e549edc6a0fff",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/c2dbfd86dc1082f07dc420053826fa692b32477b",
+                "reference": "c2dbfd86dc1082f07dc420053826fa692b32477b",
                 "shasum": ""
             },
             "require": {
@@ -742,7 +692,7 @@
             ],
             "description": "The Illuminate Events package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-01 15:39:11"
+            "time": "2015-06-02 15:09:03"
         },
         {
             "name": "illuminate/filesystem",
