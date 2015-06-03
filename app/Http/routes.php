@@ -7,3 +7,5 @@ $app->get('/', function() {
 });
 
 $app->get('authenticate', 'Skunenieki\System\Http\Controllers\AuthenticationController@authenticate');
+
+$app->get('participants', 'Skunenieki\System\Http\Controllers\ParticipantController@index');
