@@ -131,8 +131,18 @@ var skApp = angular.module('skApp', [
                 .segment('registration', {
                     templateUrl: 'football/registration.html'
                 })
-                .up();
+                .up()
 
+            .when('/archive', 'archive')
+            .when('/archive/10km', 'archive.10km')
+            .segment('archive', {
+                templateUrl: 'archive/main.html',
+            })
+            .within()
+                .segment('10km', {
+                    templateUrl: 'archive/10km.html'
+                })
+                .up()
 
         $routeProvider.otherwise({ redirectTo: '/' });
     }]);

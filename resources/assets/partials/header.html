@@ -14,41 +14,42 @@
                 <li ng-class="{active: ('10km' | routeSegmentStartsWith)}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">10KM</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a ng-href="#{{ '10km.registration' | routeSegmentUrl }}">Registracija</a>
-                            <a ng-href="#{{ '10km.start' | routeSegmentUrl }}">Starts</a>
-                            <a ng-href="#{{ '10km.turn' | routeSegmentUrl }}">Apgrieziens</a>
-                            <a ng-href="#{{ '10km.finish' | routeSegmentUrl }}">Finiss</a>
-                            <a ng-href="#{{ '10km.chronometer' | routeSegmentUrl }}">Hronometrs</a>
-                        </li>
+                        <li><a ng-href="#{{ '10km.registration' | routeSegmentUrl }}">Registracija</a></li>
+                        <li><a ng-href="#{{ '10km.start' | routeSegmentUrl }}">Starts</a></li>
+                        <li><a ng-href="#{{ '10km.turn' | routeSegmentUrl }}">Apgrieziens</a></li>
+                        <li><a ng-href="#{{ '10km.finish' | routeSegmentUrl }}">Finiss</a></li>
+                        <li><a ng-href="#{{ '10km.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-href="#{{ 'archive.10km' | routeSegmentUrl }}">Arhivs</a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('mtb' | routeSegmentStartsWith)}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">MTB</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a ng-href="#{{ 'mtb.registration' | routeSegmentUrl }}">Registracija</a>
-                            <a ng-href="#{{ 'mtb.chronometer' | routeSegmentUrl }}">Hronometrs</a>
-                        </li>
+                        <li><a ng-href="#{{ 'mtb.registration' | routeSegmentUrl }}">Registracija</a></li>
+                        <li><a ng-href="#{{ 'mtb.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('triathlon' | routeSegmentStartsWith)}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Triatlons</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a ng-href="#{{ 'triathlon.registration' | routeSegmentUrl }}">Registracija</a>
-                            <a ng-href="#{{ 'triathlon.turn' | routeSegmentUrl }}">Apgrieziens</a>
-                            <a ng-href="#{{ 'triathlon.finish' | routeSegmentUrl }}">Finiss</a>
-                            <a ng-href="#{{ 'triathlon.chronometer' | routeSegmentUrl }}">Hronometrs</a>
+                        <li><a ng-href="#{{ 'triathlon.registration' | routeSegmentUrl }}">Registracija</a></li>
+                        <li><a ng-href="#{{ 'triathlon.turn' | routeSegmentUrl }}">Apgrieziens</a></li>
+                        <li><a ng-href="#{{ 'triathlon.finish' | routeSegmentUrl }}">Finiss</a></li>
+                        <li><a ng-href="#{{ 'triathlon.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
                         </li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('football' | routeSegmentStartsWith)}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Futbols</a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a ng-href="#{{ 'football.registration' | routeSegmentUrl }}">Registracija</a>
-                        </li>
+                        <li><a ng-href="#{{ 'football.registration' | routeSegmentUrl }}">Registracija</a></li>
+                    </ul>
+                </li>
+                <li ng-class="{active: ('archive' | routeSegmentStartsWith)}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Arhivs</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-href="#{{ 'archive.10km' | routeSegmentUrl }}">10KM</a></li>
                     </ul>
                 </li>
             </ul>
