@@ -4,7 +4,7 @@ angular.module('skApp.RegistrationController', [])
 
     self.participation = {};
 
-    self.getLocation = function(val) {
+    self.getExistingParticipants = function(val) {
         return $http.get('/stubs/participants.json', {
             params: {
                 name: val,
@@ -16,12 +16,28 @@ angular.module('skApp.RegistrationController', [])
         });
     }
 
+    self.loadItems = function(teamName) {
+        return $http.get('/stubs/teams.json', {
+            params: {
+                team: teamName,
+            }
+        }).then(function(response) {
+            return response.data;
+        });
+    }
+
     self.onSelect = function ($item) {
+        self.participation.name      = $item.name;
+        self.participation.gender    = $item.gender;
         self.participation.birthYear = $item.birthYear;
-        self.participation.gender = $item.gender;
     };
 
-    self.registerparticipant = function() {
+    self.registerParticipant = function() {
         console.log(self.participation);
+    };
+
+    self.reset = function() {
+        self.participation = {};
+        self.regForm.$setPristine();
     };
 }]);

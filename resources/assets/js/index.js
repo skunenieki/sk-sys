@@ -10,9 +10,12 @@ require('angular-bootstrap/dist/ui-bootstrap');
 require('./vendor/angular-route-segment');
 require('bootstrap/js/dropdown');
 require('bootstrap/js/collapse');
+require('ng-tags-input');
 require('./partials');
 
 // require('./services/SomeService');
+
+require('./directives/ngRemoteValidate');
 
 require('./controllers/MainController');
 require('./controllers/RegistrationController');
@@ -40,6 +43,9 @@ var skApp = angular.module('skApp', [
         'ui.bootstrap',
         'route-segment',
         'view-segment',
+        'ngTagsInput',
+
+        'skApp.ngRemoteValidate',
 
         'skApp.MainController',
         'skApp.RegistrationController',

@@ -9,6 +9,7 @@
     "gulp": "^3.8.8",
     "jquery": "^2.1.4",
     "laravel-elixir": "~2.2",
-    "laravel-elixir-ng-html2js": "~0.2.1"
+    "laravel-elixir-ng-html2js": "~0.2.1",
+    "ng-tags-input": "^2.3.0"
   }
 }
