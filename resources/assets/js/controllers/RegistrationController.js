@@ -5,7 +5,7 @@ angular.module('skApp.RegistrationController', [])
     self.participation = {};
 
     self.getExistingParticipants = function(val) {
-        return $http.get('/stubs/participants.json', {
+        return $http.get('/participants', {
             params: {
                 name: val,
             }
