@@ -2,16 +2,16 @@
     {
         "name": "Martins",
         "birthYear": 1989,
-        "gender": "M"
+        "gender": "V"
     },
     {
         "name": "Gatis",
         "birthYear": 1979,
-        "gender": "M"
+        "gender": "V"
     },
     {
         "name": "Linda",
         "birthYear": 1991,
-        "gender": "F"
+        "gender": "S"
     }
 ]
