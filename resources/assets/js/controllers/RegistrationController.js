@@ -1,8 +1,18 @@
 angular.module('skApp.RegistrationController', [])
+.filter('dateYear', function () {
+    return function (input) {
+        return new Date(input).getFullYear();
+    }
+})
 .controller('RegistrationController', ['$http', function($http) {
     var self = this;
 
-    self.participation = {};
+    var defaultModelValues = {
+        eventYear: new Date().getFullYear(),
+        gender: 'V',
+    };
+
+    self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
         return $http.get('/participants', {
@@ -29,7 +39,7 @@ angular.module('skApp.RegistrationController', [])
     self.onSelect = function ($item) {
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
-        self.participation.birthYear = $item.birthYear;
+        self.participation.birthYear = new Date($item.birthYear).getFullYear();
     };
 
     self.registerParticipant = function() {
@@ -37,7 +47,7 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.reset = function() {
-        self.participation = {};
+        self.participation = angular.copy(defaultModelValues);
         self.regForm.$setPristine();
     };
 }]);

@@ -9,6 +9,7 @@ require('angular-route/angular-route.min');
 require('angular-bootstrap/dist/ui-bootstrap');
 require('./vendor/angular-route-segment');
 require('bootstrap/js/dropdown');
+require('bootstrap/js/transition');
 require('bootstrap/js/collapse');
 require('ng-tags-input');
 require('./partials');

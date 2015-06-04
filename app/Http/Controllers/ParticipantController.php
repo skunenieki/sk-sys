@@ -9,15 +9,14 @@ class ParticipantController extends Controller
 {
     public function index(Request $request)
     {
-        return Participant::all();
-        // $name = $request->get('name', false);
+        $name = $request->get('name', false);
 
-        // $result = Individual::where('id', '>', 0);
+        $result = Participant::where('id', '>', 0);
 
-        // if (false !== $name) {
-        //     $result->where('name', 'like', "%{$name}%");
-        // }
+        if (false !== $name) {
+            $result->where('name', 'like', "%{$name}%");
+        }
 
-        // return $result->select('name', 'birthYear', 'gender')->distinct()->get();
+        return $result->get();
     }
 }

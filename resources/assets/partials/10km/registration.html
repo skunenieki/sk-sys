@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="customTemplate.html">
   <a>
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{match.model.birthYear}})
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{ match.model.birthYear | dateYear }})
   </a>
 </script>
 
@@ -75,6 +75,9 @@
             <label class="radio-inline">
                 <input type="radio" name="inputGender" id="inputGenderFemale" value="S" ng-model="regCtrl.participation.gender" required> Sieviete
             </label>
+            <label class="radio-inline">
+                <input type="radio" name="inputGender" id="inputGenderFemale" value="AK" ng-model="regCtrl.participation.gender" required> AK
+            </label>
         </div>
     </div>
     <div class="form-group">
@@ -93,6 +96,31 @@
     </div>
 
     <div class="form-group">
+      <label class="col-sm-2 control-label"></label>
+      <div class="col-sm-10">
+        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#advanced">Izverst</button>
+      </div>
+    </div>
+
+    <div class="collapse" id="advanced">
+      <div class="form-group">
+        <label for="eventYear" class="col-sm-2 control-label">Sacensibu gads</label>
+        <div class="col-xs-3">
+            <input type="number"
+                   class="form-control"
+                   id="eventYear"
+                   placeholder="2015"
+                   min="1996"
+                   max="2015"
+                   ng-maxlength="4"
+                   ng-model="regCtrl.participation.eventYear"
+                   required>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary" ng-disabled="regCtrl.regForm.$invalid">Reģistrēt</button>
             <button type="button" class="btn btn-default" ng-disabled="!regCtrl.regForm.$dirty" ng-click="regCtrl.reset()">Atcelt</button>
@@ -101,7 +129,7 @@
 </form>
 
 <table class="table table-hover">
-<caption>Nesen registretie dalibnieki.</caption>
+    <caption>Nesen registretie dalibnieki.</caption>
     <thead>
         <tr>
             <th>#</th>
