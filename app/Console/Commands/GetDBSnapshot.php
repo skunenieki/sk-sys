@@ -41,7 +41,7 @@ class GetDBSnapshot extends Command
         $login    = $this->ask('What is your login?');
         $password = $this->secret('What is the password?');
 
-        $dumpUrl = env('APP_PRODUCTION_URL').'/mysqldump';
+        $dumpUrl = env('APP_PRODUCTION_URL').'/dbdump';
 
         $this->info("Getting DB dump from {$dumpUrl}");
 
