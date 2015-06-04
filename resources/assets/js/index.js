@@ -14,12 +14,14 @@ require('bootstrap/js/collapse');
 require('ng-tags-input');
 require('./partials');
 
-// require('./services/SomeService');
+require('./services/IndividualService');
+require('./services/ParticipantService');
 
 require('./directives/ngRemoteValidate');
 
 require('./controllers/MainController');
 require('./controllers/RegistrationController');
+require('./controllers/RecentlyRegisteredConrtoller');
 
 var AppConfig = angular.module('AppConfig', [])
     .provider('AppConfig', function () {
@@ -48,8 +50,12 @@ var skApp = angular.module('skApp', [
 
         'skApp.ngRemoteValidate',
 
+        'skApp.IndividualService',
+        'skApp.ParticipantService',
+
         'skApp.MainController',
         'skApp.RegistrationController',
+        'skApp.RecentlyRegisteredConrtoller',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider

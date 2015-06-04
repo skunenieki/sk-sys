@@ -13,6 +13,7 @@ angular.module('skApp.ngRemoteValidate', [])
                         url: attrs.ngRemoteValidate,
                         params: params
                     }).then(function(response) {
+                        // In case where element is found mark it as not unique
                         if (typeof response.data[0] !== 'undefined') {
                             ctrl.$setValidity('unique', false);
                         } else {

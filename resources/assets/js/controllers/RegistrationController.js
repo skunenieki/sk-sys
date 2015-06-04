@@ -4,12 +4,28 @@ angular.module('skApp.RegistrationController', [])
         return new Date(input).getFullYear();
     }
 })
-.controller('RegistrationController', ['$http', function($http) {
+.directive('ngReallyClick', [function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('click', function() {
+                var message = attrs.ngReallyMessage;
+                if (message && confirm(message)) {
+                    scope.$apply(attrs.ngReallyClick);
+                }
+            });
+        }
+    }
+}])
+.controller('RegistrationController', ['$http', 'ParticipantService', 'IndividualService', function($http, ParticipantService, IndividualService) {
     var self = this;
+
+    self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
 
     var defaultModelValues = {
         eventYear: new Date().getFullYear(),
         gender: 'V',
+        comment: '',
     };
 
     self.participation = angular.copy(defaultModelValues);
@@ -43,11 +59,34 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.registerParticipant = function() {
-        console.log(self.participation);
+        var res = new IndividualService(self.participation);
+
+        res.$save()
+           .then(function(response) {
+                self.recentlyRegistered.unshift(response);
+                if (self.recentlyRegistered.length > 10) {
+                    self.recentlyRegistered.splice(10, 9999);
+                }
+            });
+        self.reset();
     };
 
     self.reset = function() {
         self.participation = angular.copy(defaultModelValues);
         self.regForm.$setPristine();
+    };
+
+    self.loadMore = function() {
+        self.recentlyRegistered = IndividualService.query({
+            eventYear: 2015,
+            sort: '-created_at',
+            limit: self.recentlyRegistered.length+10
+        });
+    };
+
+    self.delete = function(idx) {
+        IndividualService.delete({id: self.recentlyRegistered[idx].id}, function() {
+            self.recentlyRegistered.splice(idx, 1);
+        });
     };
 }]);

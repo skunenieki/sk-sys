@@ -15,18 +15,17 @@ class Individual extends Model
     protected $table = '10km';
 
     /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_admin' => 'boolean',
-    ];
-
-    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at'];
+    protected $dates = ['created_at', 'updated_at', 'birthYear', 'eventYear'];
+
+    /**
+     * The teams that belong to the 10km participant.
+     */
+    public function teams()
+    {
+        return $this->belongsToMany('Skunenieki\System\Models\Team');
+    }
 }
