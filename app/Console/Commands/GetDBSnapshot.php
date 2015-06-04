@@ -38,8 +38,8 @@ class GetDBSnapshot extends Command
      */
     public function fire()
     {
-        $login    = $this->ask('What is your login?');
-        $password = $this->secret('What is the password?');
+        $login    = $this->ask('Login');
+        $password = $this->secret('Password');
 
         $dumpUrl = env('APP_PRODUCTION_URL').'/dbdump';
 
