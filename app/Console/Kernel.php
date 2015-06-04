@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'Skunenieki\System\Console\Commands\GetDBSnapshot',
     ];
 
     /**
