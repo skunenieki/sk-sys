@@ -10,6 +10,7 @@
     "jquery": "^2.1.4",
     "laravel-elixir": "~2.2",
     "laravel-elixir-ng-html2js": "~0.2.1",
+    "moment": "^2.10.3",
     "ng-tags-input": "^2.3.0"
   }
 }

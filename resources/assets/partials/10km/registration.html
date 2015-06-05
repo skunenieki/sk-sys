@@ -7,7 +7,7 @@
 <br>
 <div ng-controller="RegistrationController as regCtrl">
   <form class="form-horizontal"
-        name="regCtrl.regForm"
+          name="regCtrl.regForm"
         ng-submit="regCtrl.registerParticipant()"
         novalidate>
       <div class="form-group has-feedback" ng-class="{'has-error': regCtrl.regForm.number.$invalid && !regCtrl.regForm.number.$pristine, 'has-success': !regCtrl.regForm.number.$invalid && regCtrl.regForm.number.$touched}">
@@ -51,10 +51,11 @@
               <span ng-show="!regCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
           </div>
       </div>
-      <div class="form-group has-feedback" ng-class="{'has-error': !regCtrl.participation.acceptExisting}">
+      <div class="form-group has-feedback" ng-class="{'has-error': !regCtrl.participation.acceptExisting || (!regCtrl.regForm.birthYear.$pristine && regCtrl.regForm.birthYear.$invalid)}">
           <label for="inputBirthYear" class="col-sm-2 control-label">Dz. gads</label>
           <div class="col-xs-3">
               <input type="number"
+                     name="birthYear"
                      class="form-control"
                      id="inputBirthYear"
                      placeholder="2014"
@@ -65,11 +66,12 @@
                      ng-blur="regCtrl.checkExistingParticipant()"
                      required>
               <span ng-show="!regCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
+              <span ng-show="!regCtrl.regForm.birthYear.$pristine && regCtrl.regForm.birthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
       </div>
 
       <div class="form-group" ng-show="!regCtrl.participation.acceptExisting || (regCtrl.participation.acceptExisting && !regCtrl.regForm.acceptExisting.$pristine)">
-        <label for="inputBirthYear" class="col-sm-2 control-label"></label>
+        <label class="col-sm-2 control-label"></label>
         <div class="col-xs-7">
           <p>Dalibieks ar sadu vardu un dzimsanas gadu jau registrets</p>
           <label><input type="checkbox" name="acceptExisting" ng-model="regCtrl.participation.acceptExisting"> Atlaut atkartotu registraciju</label>

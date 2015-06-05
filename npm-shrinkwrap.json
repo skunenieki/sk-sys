@@ -11499,6 +11499,11 @@
         }
       }
     },
+    "moment": {
+      "version": "2.10.3",
+      "from": "moment@*",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.10.3.tgz"
+    },
     "ng-tags-input": {
       "version": "2.3.0",
       "from": "ng-tags-input@2.3.0",

@@ -1,7 +1,11 @@
 angular.module('skApp.RegistrationController', [])
 .filter('dateYear', function () {
+    var moment = require('moment');
     return function (input) {
-        return new Date(input).getFullYear();
+        // console.log(input);
+        // console.log(moment(input));
+        // var d = new Date(input);
+        return moment(input).year();
     }
 })
 .directive('ngReallyClick', [function() {
