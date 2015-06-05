@@ -24,6 +24,10 @@ angular.module('skApp.RegistrationController', [])
 .controller('RegistrationController', ['$http', 'ParticipantService', 'IndividualService', function($http, ParticipantService, IndividualService) {
     var self = this;
 
+    self.capitalizeWords = function() {
+        self.participation.name = self.participation.name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    };
+
     var defaultModelValues = {
         eventYear: new Date().getFullYear(),
         gender: 'V',

@@ -46,6 +46,7 @@
                      typeahead-focus-first="false"
                      placeholder="Vārds Uzvārds"
                      ng-blur="regCtrl.checkExistingParticipant()"
+                     ng-change="regCtrl.capitalizeWords()"
                      required>
               <span ng-show="loadingLocations" class="glyphicon glyphicon-refresh form-control-feedback" aria-hidden="true"></span>
               <span ng-show="!regCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
