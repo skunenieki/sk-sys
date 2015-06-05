@@ -38,9 +38,9 @@
               <input type="text"
                      id="inputName"
                      name="name"
+                     class="form-control"
                      ng-model="regCtrl.participation.name"
                      typeahead="participant as participant.name for participant in regCtrl.getExistingParticipants($viewValue)"
-                     class="form-control"
                      typeahead-loading="loadingLocations"
                      typeahead-on-select="regCtrl.onSelect($item)"
                      typeahead-template-url="customTemplate.html"
@@ -117,7 +117,7 @@
         <div class="form-group">
             <label for="inputNotes" class="col-sm-2 control-label">Komentārs</label>
             <div class="col-sm-10">
-                <textarea id="inputNotes" class="form-control" rows="2" ng-model="regCtrl.participation.notes"></textarea>
+                <textarea id="inputNotes" class="form-control" rows="2" ng-model="regCtrl.participation.comment"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -163,8 +163,12 @@
               <td>{{ recReg.birthYear | dateYear }}</td>
               <td>{{ recReg.gender }}</td>
               <td>
-                  <button type="button" class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}/{{recReg.id}}"><span class="glyphicon glyphicon-pencil"></span></button>
-                  <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="regCtrl.delete($index)"><span class="glyphicon glyphicon-trash"></span></button>
+                  <a class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}{{recReg.id}}/edit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </a>
+                  <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="regCtrl.delete($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
               </td>
           </tr>
       </tbody>

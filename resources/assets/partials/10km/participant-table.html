@@ -17,11 +17,11 @@
             <tr ng-repeat="participant in indCtrl.participants">
                 <td>{{ participant.number }}</td>
                 <td>{{ participant.name }}</td>
-                <td>TV 1</td>
+                <td>{{ participant.group }}</td>
                 <td>{{ participant.start }}</td>
                 <td>{{ participant.finish }}</td>
                 <td>{{ participant.turn }}</td>
-                <th>0:17:11</th>
+                <th>{{ participant.result }}</th>
                 <td>{{ participant.comment }}</td>
                 <td>
                     <a class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}{{participant.id}}/edit">

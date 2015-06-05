@@ -6,7 +6,9 @@ angular.module('skApp.ParticipantService', [])
             id:'@id',
         },
         {
-            update: {method: 'PUT'},
+            update: {
+                method: 'PUT'
+            },
         },
         {
             stripTrailingSlashes: true,

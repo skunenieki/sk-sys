@@ -23,6 +23,7 @@ require('./directives/ngRemoteValidate');
 require('./controllers/MainController');
 require('./controllers/EventYearController');
 require('./controllers/IndividualController');
+require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
 require('./controllers/RecentlyRegisteredConrtoller');
 
@@ -60,6 +61,7 @@ var skApp = angular.module('skApp', [
         'skApp.MainController',
         'skApp.EventYearController',
         'skApp.IndividualController',
+        'skApp.ParticipantController',
         'skApp.RegistrationController',
         'skApp.RecentlyRegisteredConrtoller',
     ])
