@@ -2,9 +2,6 @@ angular.module('skApp.RegistrationController', [])
 .filter('dateYear', function () {
     var moment = require('moment');
     return function (input) {
-        // console.log(input);
-        // console.log(moment(input));
-        // var d = new Date(input);
         return moment(input).year();
     }
 })
@@ -66,11 +63,15 @@ angular.module('skApp.RegistrationController', [])
     self.onSelect = function ($item) {
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
-        self.participation.birthYear = new Date($item.birthYear).getFullYear();
+        var moment = require('moment');
+        self.participation.birthYear = moment($item.birthYear).year();
     };
 
     self.registerParticipant = function() {
         var res = new IndividualService(self.participation);
+
+        var currentNumber = self.participation.number;
+        console.log(currentNumber);
 
         res.$save()
            .then(function(response) {
@@ -78,8 +79,13 @@ angular.module('skApp.RegistrationController', [])
                 if (self.recentlyRegistered.length > 10) {
                     self.recentlyRegistered.splice(10, 9999);
                 }
+            }, function(response) {
+                console.log(response.data.error);
+                self.regForm[response.data.error.field].$setValidity('unique', false);
             });
+
         self.reset();
+        self.participation.number = currentNumber+1;
     };
 
     self.reset = function() {

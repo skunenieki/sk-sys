@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Skunenieki\System\Models\Team;
 use Skunenieki\System\Models\Individual;
+use Skunenieki\System\Models\Participant;
 
 class IdividualController extends Controller
 {
@@ -68,14 +69,36 @@ class IdividualController extends Controller
             }
         }
 
-        $ind = new Individual;
+        $ind = Individual::where('number', $request->number)
+                         ->whereBetween('eventYear', [new Carbon($request->eventYear.'-01-01'), new Carbon(($request->eventYear+1).'-01-01')])
+                         ->first();
 
-        $ind->number    = $request->number;
-        $ind->name      = $request->name;
-        $ind->birthYear = new Carbon($request->birthYear.'-01-01');
-        $ind->gender    = $request->gender;
-        $ind->eventYear = new Carbon('august '.$request->eventYear.' second sunday 9:00 AM');
-        $ind->comment   = $request->comment;
+        if (null !== $ind) {
+            return response(['error' => ['field' => 'number', 'msg' => 'Number already registered']], 400);
+        }
+
+        $ind = Individual::where('name', $request->name)
+                         ->whereBetween('birthYear', [new Carbon($request->birthYear.'-01-01'), new Carbon(($request->birthYear+1).'-01-01')])
+                         ->whereBetween('eventYear', [new Carbon($request->eventYear.'-01-01'), new Carbon(($request->eventYear+1).'-01-01')])
+                         ->first();
+
+        if (null !== $ind && false === $request->acceptExisting) {
+            return response(['error' => 'Participant with such name and birth year exists, need approval to proceed'], 400);
+        }
+
+
+        $participant = Participant::where('name', $request->name)
+                                  ->whereBetween('birthYear', [new Carbon($request->birthYear.'-01-01'), new Carbon(($request->birthYear+1).'-01-01')])
+                                  ->first();
+
+        $ind = new Individual;
+        $ind->number        = $request->number;
+        $ind->name          = $request->name;
+        $ind->birthYear     = new Carbon($request->birthYear.'-01-01');
+        $ind->gender        = $request->gender;
+        $ind->eventYear     = new Carbon('august '.$request->eventYear.' second sunday 9:00 AM');
+        $ind->comment       = $request->comment;
+        $ind->participantId = $participant->id;
         $ind->save();
         $ind->teams()->sync($teams);
         $ind->save();

@@ -28,4 +28,12 @@ class Individual extends Model
     {
         return $this->belongsToMany('Skunenieki\System\Models\Team');
     }
+
+    /**
+     * Get the participant record associated with 10km record.
+     */
+    public function participant()
+    {
+        return $this->hasOne('Skunenieki\System\Models\Participant', 'participantId');
+    }
 }

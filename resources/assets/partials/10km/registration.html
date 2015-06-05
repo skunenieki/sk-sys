@@ -24,7 +24,7 @@
                      ng-model="regCtrl.participation.number"
                      ng-remote-validate="/10km?eventYear={{regCtrl.participation.eventYear}}"
                      required>
-              <span ng-show="!regCtrl.regForm.number.$invalid && regCtrl.regForm.number.$touched" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-show="!regCtrl.regForm.number.$invalid && regCtrl.regForm.number.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span>
               <span ng-show="regCtrl.regForm.number.$invalid && !regCtrl.regForm.number.$pristine && regCtrl.regForm.number.$touched" class="glyphicon glyphicon-remove form-control-feedback"></span>
               <span ng-show="!regCtrl.regForm.number.$pristine && regCtrl.regForm.number.$invalid && !regCtrl.regForm.number.unique">
                   Numurs jau registrets
@@ -46,9 +46,11 @@
                      typeahead-focus-first="false"
                      placeholder="Vārds Uzvārds"
                      ng-blur="regCtrl.checkExistingParticipant()"
-                     ng-change="regCtrl.capitalizeWords()"
+                     ng-change="regCtrl.capitalizeWords()"3
+                     autofocus
+                     tabindex="1"
                      required>
-              <span ng-show="loadingLocations" class="glyphicon glyphicon-refresh form-control-feedback" aria-hidden="true"></span>
+              <span ng-show="loadingLocations" class="glyphicon glyphicon-refresh form-control-feedback"></span>
               <span ng-show="!regCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
           </div>
       </div>
@@ -65,6 +67,7 @@
                      ng-maxlength="4"
                      ng-model="regCtrl.participation.birthYear"
                      ng-blur="regCtrl.checkExistingParticipant()"
+                     tabindex="2"
                      required>
               <span ng-show="!regCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
               <span ng-show="!regCtrl.regForm.birthYear.$pristine && regCtrl.regForm.birthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
