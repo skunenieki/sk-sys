@@ -20,14 +20,20 @@ angular.module('skApp.RegistrationController', [])
 .controller('RegistrationController', ['$http', 'ParticipantService', 'IndividualService', function($http, ParticipantService, IndividualService) {
     var self = this;
 
-    self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
-
     var defaultModelValues = {
         eventYear: new Date().getFullYear(),
         gender: 'V',
         comment: '',
+        acceptExisting: true,
     };
 
+    self.checkExistingParticipantCache = {
+        name: '',
+        birthYear: '',
+        eventYear: '',
+    };
+
+    self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -59,16 +65,17 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.registerParticipant = function() {
-        var res = new IndividualService(self.participation);
+        console.log(self.participation);
+        // var res = new IndividualService(self.participation);
 
-        res.$save()
-           .then(function(response) {
-                self.recentlyRegistered.unshift(response);
-                if (self.recentlyRegistered.length > 10) {
-                    self.recentlyRegistered.splice(10, 9999);
-                }
-            });
-        self.reset();
+        // res.$save()
+        //    .then(function(response) {
+        //         self.recentlyRegistered.unshift(response);
+        //         if (self.recentlyRegistered.length > 10) {
+        //             self.recentlyRegistered.splice(10, 9999);
+        //         }
+        //     });
+        // self.reset();
     };
 
     self.reset = function() {
@@ -88,5 +95,37 @@ angular.module('skApp.RegistrationController', [])
         IndividualService.delete({id: self.recentlyRegistered[idx].id}, function() {
             self.recentlyRegistered.splice(idx, 1);
         });
+    };
+
+    self.checkExistingParticipant = function() {
+        console.log(self.participation.name, self.participation.birthYear, self.participation.eventYear);
+        if (
+            self.checkExistingParticipantCache.name !== self.participation.name
+            || self.checkExistingParticipantCache.birthYear !== self.participation.birthYear
+            || self.checkExistingParticipantCache.eventYear !== self.participation.eventYear
+        ) {
+            console.log('check');
+            self.checkExistingParticipantCache.name      = self.participation.name;
+            self.checkExistingParticipantCache.birthYear = self.participation.birthYear;
+            self.checkExistingParticipantCache.eventYear = self.participation.eventYear;
+
+            $http({
+                method: 'GET',
+                url: '/10km',
+                params: {
+                    name: self.participation.name,
+                    birthYear: self.participation.birthYear,
+                    eventYear: self.participation.eventYear,
+                },
+            }).then(function(response) {
+                // In case where element is found mark it as not unique
+                if (typeof response.data[0] !== 'undefined') {
+                    self.participation.acceptExisting = false;
+                } else {
+                    self.participation.acceptExisting = true;
+                    self.regForm.acceptExisting.$setPristine();
+                }
+            });
+        }
     };
 }]);
