@@ -28,9 +28,6 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.checkExistingParticipantCache = {
-        name: '',
-        birthYear: '',
-        eventYear: '',
     };
 
     self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
@@ -65,17 +62,16 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.registerParticipant = function() {
-        console.log(self.participation);
-        // var res = new IndividualService(self.participation);
+        var res = new IndividualService(self.participation);
 
-        // res.$save()
-        //    .then(function(response) {
-        //         self.recentlyRegistered.unshift(response);
-        //         if (self.recentlyRegistered.length > 10) {
-        //             self.recentlyRegistered.splice(10, 9999);
-        //         }
-        //     });
-        // self.reset();
+        res.$save()
+           .then(function(response) {
+                self.recentlyRegistered.unshift(response);
+                if (self.recentlyRegistered.length > 10) {
+                    self.recentlyRegistered.splice(10, 9999);
+                }
+            });
+        self.reset();
     };
 
     self.reset = function() {
@@ -98,13 +94,14 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.checkExistingParticipant = function() {
-        console.log(self.participation.name, self.participation.birthYear, self.participation.eventYear);
         if (
-            self.checkExistingParticipantCache.name !== self.participation.name
+            (typeof self.participation.name !== 'undefined'
+            && typeof self.participation.birthYear !== 'undefined'
+            && typeof self.participation.eventYear !== 'undefined')
+            && (self.checkExistingParticipantCache.name !== self.participation.name
             || self.checkExistingParticipantCache.birthYear !== self.participation.birthYear
-            || self.checkExistingParticipantCache.eventYear !== self.participation.eventYear
+            || self.checkExistingParticipantCache.eventYear !== self.participation.eventYear)
         ) {
-            console.log('check');
             self.checkExistingParticipantCache.name      = self.participation.name;
             self.checkExistingParticipantCache.birthYear = self.participation.birthYear;
             self.checkExistingParticipantCache.eventYear = self.participation.eventYear;
