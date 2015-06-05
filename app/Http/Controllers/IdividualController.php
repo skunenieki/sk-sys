@@ -91,6 +91,14 @@ class IdividualController extends Controller
                                   ->whereBetween('birthYear', [new Carbon($request->birthYear.'-01-01'), new Carbon(($request->birthYear+1).'-01-01')])
                                   ->first();
 
+        if (null === $participant) {
+            $participant = new Participant;
+            $participant->name      = $request->name;
+            $participant->gender    = $request->gender;
+            $participant->birthYear = new Carbon($request->birthYear.'-01-01');
+            $participant->save();
+        }
+
         $ind = new Individual;
         $ind->number        = $request->number;
         $ind->name          = $request->name;
