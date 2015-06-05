@@ -51,9 +51,9 @@ angular.module('skApp.RegistrationController', [])
     }
 
     self.loadItems = function(teamName) {
-        return $http.get('/stubs/teams.json', {
+        return $http.get('/teams', {
             params: {
-                team: teamName,
+                name: teamName,
             }
         }).then(function(response) {
             return response.data;
@@ -71,7 +71,6 @@ angular.module('skApp.RegistrationController', [])
         var res = new IndividualService(self.participation);
 
         var currentNumber = self.participation.number;
-        console.log(currentNumber);
 
         res.$save()
            .then(function(response) {
@@ -80,7 +79,6 @@ angular.module('skApp.RegistrationController', [])
                     self.recentlyRegistered.splice(10, 9999);
                 }
             }, function(response) {
-                console.log(response.data.error);
                 self.regForm[response.data.error.field].$setValidity('unique', false);
             });
 
