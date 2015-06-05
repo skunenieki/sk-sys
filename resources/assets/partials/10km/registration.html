@@ -163,7 +163,7 @@
               <td>{{ recReg.birthYear | dateYear }}</td>
               <td>{{ recReg.gender }}</td>
               <td>
-                  <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+                  <button type="button" class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}/{{recReg.id}}"><span class="glyphicon glyphicon-pencil"></span></button>
                   <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="regCtrl.delete($index)"><span class="glyphicon glyphicon-trash"></span></button>
               </td>
           </tr>

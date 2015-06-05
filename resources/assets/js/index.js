@@ -16,10 +16,13 @@ require('./partials');
 
 require('./services/IndividualService');
 require('./services/ParticipantService');
+require('./services/IndividualYearsService');
 
 require('./directives/ngRemoteValidate');
 
 require('./controllers/MainController');
+require('./controllers/EventYearController');
+require('./controllers/IndividualController');
 require('./controllers/RegistrationController');
 require('./controllers/RecentlyRegisteredConrtoller');
 
@@ -52,8 +55,11 @@ var skApp = angular.module('skApp', [
 
         'skApp.IndividualService',
         'skApp.ParticipantService',
+        'skApp.IndividualYearsService',
 
         'skApp.MainController',
+        'skApp.EventYearController',
+        'skApp.IndividualController',
         'skApp.RegistrationController',
         'skApp.RecentlyRegisteredConrtoller',
     ])
@@ -65,6 +71,9 @@ var skApp = angular.module('skApp', [
             })
 
             .when('/10km', '10km')
+            .when('/10km/participants/', '10km.participants')
+            .when('/10km/participants/:eventYear', '10km.participants.year')
+            .when('/10km/participants/:participantId/edit', '10km.participants.edit')
             .when('/10km/registration', '10km.registration')
             .when('/10km/start', '10km.start')
             .when('/10km/turn', '10km.turn')
@@ -74,6 +83,19 @@ var skApp = angular.module('skApp', [
                 templateUrl: '10km/main.html',
             })
             .within()
+                .segment('participants', {
+                    templateUrl: '10km/participants.html',
+                })
+                .within()
+                    .segment('year', {
+                        templateUrl: '10km/participant-table.html',
+                        dependencies: ['eventYear']
+                    })
+                    .segment('edit', {
+                        templateUrl: '10km/participant-edit.html',
+                        dependencies: ['participantId']
+                    })
+                    .up()
                 .segment('registration', {
                     templateUrl: '10km/registration.html'
                 })

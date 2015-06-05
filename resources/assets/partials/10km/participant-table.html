@@ -1,0 +1,34 @@
+<div ng-controller="IndividualController as indCtrl">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Vards, Uzvards</th>
+                <th>Grupa</th>
+                <th>Starts</th>
+                <th>Finiss</th>
+                <th>Sods</th>
+                <th>Rezultats</th>
+                <th>Komentars</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="participant in indCtrl.participants">
+                <td>{{ participant.number }}</td>
+                <td>{{ participant.name }}</td>
+                <td>TV 1</td>
+                <td>{{ participant.start }}</td>
+                <td>{{ participant.finish }}</td>
+                <td>{{ participant.turn }}</td>
+                <th>0:17:11</th>
+                <td>{{ participant.comment }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}{{participant.id}}/edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
