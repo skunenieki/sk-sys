@@ -21,7 +21,7 @@ angular.module('skApp.ParticipantController', [])
     }
 
     self.updateParticipant = function() {
-        IndividualService.update(self.participant);
+        self.participant = IndividualService.update(self.participant);
     }
 
 }]);
