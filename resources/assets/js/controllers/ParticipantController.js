@@ -24,4 +24,10 @@ angular.module('skApp.ParticipantController', [])
         self.participant = IndividualService.update(self.participant);
     }
 
+    self.delete = function() {
+        IndividualService.delete({id: self.participant.id}, function() {
+            $window.location = '#/10km/participants/';
+        });
+    };
+
 }]);

@@ -25,6 +25,7 @@ require('./controllers/EventYearController');
 require('./controllers/IndividualController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
+require('./controllers/IndividualStartController');
 require('./controllers/RecentlyRegisteredConrtoller');
 
 var AppConfig = angular.module('AppConfig', [])
@@ -63,6 +64,7 @@ var skApp = angular.module('skApp', [
         'skApp.IndividualController',
         'skApp.ParticipantController',
         'skApp.RegistrationController',
+        'skApp.IndividualStartController',
         'skApp.RecentlyRegisteredConrtoller',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {

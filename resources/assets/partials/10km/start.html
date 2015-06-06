@@ -1,1 +1,26 @@
-10km start
+<div class="col-md-8" ng-controller="IndividualStartController as startCtrl">
+    <table class="table table-hover table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>Starts</th>
+                <th>#</th>
+                <th>Velosipeds</th>
+                <th>Dalibnieks</th>
+                <th>Grupa</th>
+                <th>Komentars</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="start in startCtrl.startTimes" ng-class="{'success': $index == 4}">
+                <td>{{start.strTime}}</td>
+                <td class="col-xs-2">
+                    <input type="number" class="form-control input-sm" ng-model="start.number">
+                </td>
+                <td>{{start.time}}</td>
+                <td>Dalibnieks</td>
+                <td>Grupa</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
