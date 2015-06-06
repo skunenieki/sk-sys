@@ -10,6 +10,8 @@ use Skunenieki\System\Models\Participant;
 
 class IdividualController extends Controller
 {
+    private $groups = false;
+
     public function index(Request $request)
     {
         $skip      = $request->get('offset', 0);
@@ -50,13 +52,38 @@ class IdividualController extends Controller
             }
         }
 
+        $result = $result->get();
 
-        return $result->get();
+        $result->map(function($item) {
+            if (null !== $item->start && null !== $item->finish) {
+                $item->result = $this->calculateResult($item->start, $item->finish, $item->penalty);
+            } else {
+                $item->result = null;
+            }
+
+            if (null != $item->gender) {
+                $item->group = $this->calculateGroup($item);
+            } else {
+                $item->group = null;
+            }
+        });
+
+        return $result;
     }
 
     public function show($id)
     {
-        return Individual::find($id);
+        $individual = Individual::with('teams')->findOrFail($id);
+
+        if (null !== $individual->start && null !== $individual->finish) {
+            $individual->result = $this->calculateResult($individual->start, $individual->finish, $individual->penalty);
+        } else {
+            $individual->result = null;
+        }
+
+        $individual->group = $this->calculateGroup($individual);
+
+        return $individual;
     }
 
     public function store(Request $request)
@@ -120,6 +147,43 @@ class IdividualController extends Controller
         return;
     }
 
+    public function update(Request $request, $id)
+    {
+        if (false !== empty($request->teams)) {
+            $teams = [];
+            foreach ($request->teams as $team) {
+                $team = Team::firstOrCreate(['name' => $team['name']]);
+                $teams[] = $team->id;
+            }
+        }
+
+        $individual            = Individual::find($id);
+        $individual->number    = $request->number;
+        $individual->name      = $request->name;
+        $individual->birthYear = new Carbon($request->birthYear.'-01-01');
+        $individual->gender    = $request->gender;
+        $individual->bikeType  = $request->bikeType;
+
+        $individual->start     = $request->start;
+        $individual->turn      = $request->turn;
+        $individual->finish    = $request->finish;
+        $individual->penalty   = $request->penalty;
+
+        $individual->comment   = $request->comment;
+        $individual->teams()->sync($teams);
+        $individual->save();
+
+        if (null !== $individual->start && null !== $individual->finish) {
+            $individual->result = $this->calculateResult($individual->start, $individual->finish, $individual->penalty);
+        } else {
+            $individual->result = null;
+        }
+
+        $individual->group = $this->calculateGroup($individual);
+
+        return $individual;
+    }
+
     public function statistics()
     {
         return [
@@ -127,5 +191,56 @@ class IdividualController extends Controller
             'V'     => 1,
             'S'     => 4,
         ];
+    }
+
+    protected function calculateResult($start, $finish, $penalty) {
+        return (new Carbon($start))->diff(
+                (new Carbon($finish))->addSeconds(
+                    (new Carbon($penalty))->diffInSeconds(new Carbon('0:00:00')))
+            )->format('%H:%I:%S');
+    }
+
+    protected function calculateGroup($item) {
+        $yearRanges = [
+            '1996-1996' => [
+                '0-100' => ['SV' => 'S1'],
+            ],
+            '1997-2015' => [
+                '0-8'    => ['CV' => 'BV', 'TV' => 'BV', 'SV' => 'BV', 'CS' => 'BS', 'TS' => 'BS', 'SS' => 'BS'],
+                '9-12'   => ['CV' => 'TV 1', 'TV' => 'TV 1', 'SV' => 'SV 1', 'CS' => 'TS 1', 'TS' => 'TS 1', 'SS' => 'SS 1'],
+                '13-16'  => ['CV' => 'CV 3', 'TV' => 'TV 2', 'SV' => 'SV 2', 'CS' => 'CS 3', 'TS' => 'TS 2', 'SS' => 'SS 3'],
+                '17-23'  => ['CV' => 'CV 3', 'TV' => 'TV 3', 'SV' => 'SV 3', 'CS' => 'CS 3', 'TS' => 'TS 3', 'SS' => 'SS 3'],
+                '24-39'  => ['CV' => 'CV 3', 'TV' => 'TV 4', 'SV' => 'SV 3', 'CS' => 'CS 3', 'TS' => 'TS 4', 'SS' => 'SS 3'],
+                '40-49'  => ['CV' => 'CV 5', 'TV' => 'TV 5', 'SV' => 'SV 5', 'CS' => 'CS 5', 'TS' => 'TS 5', 'SS' => 'SS 5'],
+                '50-100' => ['CV' => 'CV 5', 'TV' => 'TV 6', 'SV' => 'SV 5', 'CS' => 'CS 5', 'TS' => 'TS 6', 'SS' => 'SS 5'],
+            ],
+        ];
+
+        if (false === $this->groups) {
+            $this->groups = [];
+            foreach ($yearRanges as $yearRange => $ageRanges) {
+                if (false !== strpos($yearRange, '-')) {
+                    $yearRange = explode('-', $yearRange);
+                    for ($year = intval($yearRange[0]); $year <= intval($yearRange[1]); $year++) {
+                        foreach ($ageRanges as $ageRange => $groupRanges) {
+                            $ageRange = explode('-', $ageRange);
+                            for ($age = intval($ageRange[0]); $age <= intval($ageRange[1]); $age++) {
+                                $this->groups[$year][$age] = $groupRanges;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (false !== strpos($item->bikeType, 'AK') || false !== strpos($item->gender, 'AK')) {
+            return 'AK';
+        }
+
+        try {
+            return $this->groups[(new Carbon($item->eventYear))->format('Y')][(new Carbon($item->eventYear))->diff((new Carbon($item->birthYear)))->format('%y')][$item->bikeType.$item->gender];
+        } catch (\Exception $e) {
+            return 'NaN';
+        }
     }
 }

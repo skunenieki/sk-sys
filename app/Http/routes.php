@@ -27,6 +27,7 @@ $app->get('10km/years', function() {
     return $result;
 });
 $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
+$app->put('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@update');
 $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');
 $app->post('10km', 'Skunenieki\System\Http\Controllers\IdividualController@store');
 

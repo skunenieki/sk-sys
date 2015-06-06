@@ -1160,12 +1160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "acc1042b198918280001d03e7a49568aecbb870f"
+                "reference": "653c88acef813c262c5e65553eb0ea4a76643727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/acc1042b198918280001d03e7a49568aecbb870f",
-                "reference": "acc1042b198918280001d03e7a49568aecbb870f",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/653c88acef813c262c5e65553eb0ea4a76643727",
+                "reference": "653c88acef813c262c5e65553eb0ea4a76643727",
                 "shasum": ""
             },
             "require": {
@@ -1211,7 +1211,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2015-06-03 16:45:08"
+            "time": "2015-06-05 13:56:28"
         },
         {
             "name": "illuminate/encryption",
@@ -1219,15 +1219,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/encryption.git",
-                "reference": "026f86324c1c2ded21d0728899e7c92cc1cf14c7"
+                "reference": "2a042e9ffbe2508775cf03741d6bae3b5c9e57d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/encryption/zipball/026f86324c1c2ded21d0728899e7c92cc1cf14c7",
-                "reference": "026f86324c1c2ded21d0728899e7c92cc1cf14c7",
+                "url": "https://api.github.com/repos/illuminate/encryption/zipball/2a042e9ffbe2508775cf03741d6bae3b5c9e57d0",
+                "reference": "2a042e9ffbe2508775cf03741d6bae3b5c9e57d0",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "ext-openssl": "*",
                 "illuminate/contracts": "5.1.*",
                 "illuminate/support": "5.1.*",
@@ -1256,7 +1257,7 @@
             ],
             "description": "The Illuminate Encryption package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-04 16:40:52"
+            "time": "2015-06-05 13:46:45"
         },
         {
             "name": "illuminate/events",
@@ -1645,12 +1646,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "d9e84f3aa416d2d2af06f94255a278ecaab9fc4f"
+                "reference": "2b39cbe0d8edc052211f9c577acf4dede08f665d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/d9e84f3aa416d2d2af06f94255a278ecaab9fc4f",
-                "reference": "d9e84f3aa416d2d2af06f94255a278ecaab9fc4f",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/2b39cbe0d8edc052211f9c577acf4dede08f665d",
+                "reference": "2b39cbe0d8edc052211f9c577acf4dede08f665d",
                 "shasum": ""
             },
             "require": {
@@ -1690,7 +1691,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-04 12:57:53"
+            "time": "2015-06-05 13:06:26"
         },
         {
             "name": "illuminate/translation",
@@ -3525,16 +3526,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.7.0",
+            "version": "4.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c2241b8d3381be3e4c6125ae347687d59f286784"
+                "reference": "bdd15c9ec6e16a307398d5385b3445673608e805"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c2241b8d3381be3e4c6125ae347687d59f286784",
-                "reference": "c2241b8d3381be3e4c6125ae347687d59f286784",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bdd15c9ec6e16a307398d5385b3445673608e805",
+                "reference": "bdd15c9ec6e16a307398d5385b3445673608e805",
                 "shasum": ""
             },
             "require": {
@@ -3593,7 +3594,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-05 04:14:02"
+            "time": "2015-06-05 13:25:13"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
