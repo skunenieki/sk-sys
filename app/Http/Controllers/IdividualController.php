@@ -131,6 +131,7 @@ class IdividualController extends Controller
         $ind = new Individual;
         $ind->number        = $request->number;
         $ind->name          = $request->name;
+        $ind->bikeType      = null;
         $ind->birthYear     = new Carbon($request->birthYear.'-01-01');
         $ind->gender        = $request->gender;
         $ind->eventYear     = new Carbon('august '.$request->eventYear.' second sunday 9:00 AM');
