@@ -37,7 +37,7 @@ class IdividualController extends Controller
         }
 
         if (false !== $number) {
-            $result->where('number', $number);
+            $result->whereIn('number', explode(',', $number));
         }
 
         $result->skip($skip)->take($take);
