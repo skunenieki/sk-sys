@@ -55,16 +55,18 @@ class IdividualController extends Controller
         $result = $result->get();
 
         $result->map(function($item) {
-            if (null !== $item->start && null !== $item->finish) {
-                $item->result = $this->calculateResult($item->start, $item->finish, $item->penalty);
-            } else {
-                $item->result = null;
-            }
+            if (null === $item->group) {
+                if (null !== $item->start && null !== $item->finish) {
+                    $item->result = $this->calculateResult($item->start, $item->finish, $item->penalty);
+                } else {
+                    $item->result = null;
+                }
 
-            if (null != $item->gender) {
-                $item->group = $this->calculateGroup($item);
-            } else {
-                $item->group = null;
+                if (null != $item->gender) {
+                    $item->group = $this->calculateGroup($item);
+                } else {
+                    $item->group = null;
+                }
             }
         });
 
