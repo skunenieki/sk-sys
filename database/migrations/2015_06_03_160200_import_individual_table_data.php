@@ -20,8 +20,8 @@ class ImportIndividualTableData extends Migration
         $data = unserialize(file_get_contents(__DIR__.'/data/10km.txt'));
 
         foreach ($data as $item) {
-            $item['birthYear'] = (int) $item['birthYear']->format('Y');
-            $item['eventYear'] = (int) $item['eventYear']->format('Y');
+            $item['birthYear'] = $item['birthYear']->format('Y');
+            $item['eventYear'] = $item['eventYear']->format('Y');
             Individual::create($item);
         }
     }

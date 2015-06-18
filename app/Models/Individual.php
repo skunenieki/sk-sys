@@ -19,7 +19,7 @@ class Individual extends Model
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'birthYear', 'eventYear'];
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * The teams that belong to the 10km participant.
