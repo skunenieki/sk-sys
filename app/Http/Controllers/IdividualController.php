@@ -163,6 +163,14 @@ class IdividualController extends Controller
         return $individual;
     }
 
+    public function years()
+    {
+        return Individual::select('eventYear')
+                         ->distinct()
+                         ->orderBy('eventYear', 'desc')
+                         ->get();
+    }
+
     public function statistics()
     {
         return [

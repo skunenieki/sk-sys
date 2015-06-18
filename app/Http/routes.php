@@ -15,10 +15,7 @@ $app->get('participants', 'Skunenieki\System\Http\Controllers\ParticipantControl
 
 $app->get('10km', 'Skunenieki\System\Http\Controllers\IdividualController@index');
 $app->get('10km/statistics', 'Skunenieki\System\Http\Controllers\IdividualController@statistics');
-$app->get('10km/years', function() {
-    $eventYears = Skunenieki\System\Models\Individual::select('eventYear')->distinct()->orderBy('eventYear', 'desc')->get();
-    return $eventYears;
-});
+$app->get('10km/years', 'Skunenieki\System\Http\Controllers\IdividualController@years');
 $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
 $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');
 $app->put('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@update');
