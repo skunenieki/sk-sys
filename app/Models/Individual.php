@@ -2,6 +2,7 @@
 
 namespace Skunenieki\System\Models;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -412,6 +413,10 @@ class Individual extends Model
             return $this->group;
         }
 
+        if (null === $this->gender && null === $this->bikeType) {
+            return null;
+        }
+
         if (true === empty($this->groups)) {
             $this->groups = [];
             foreach ($yearRanges as $yearRange => $ageRanges) {
@@ -432,8 +437,6 @@ class Individual extends Model
             }
         }
 
-        // dd($this->groups);
-
         if (false !== strpos($this->bikeType, 'AK') || false !== strpos($this->gender, 'AK')) {
             return 'AK';
         }
@@ -443,5 +446,17 @@ class Individual extends Model
         } catch (\Exception $e) {
             return 'NaN';
         }
+    }
+
+    public function result()
+    {
+        if (null !== $this->start && null !== $this->finish) {
+            return (new Carbon($this->start))->diff(
+                    (new Carbon($this->finish))->addSeconds(
+                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
+                )->format('%H:%I:%S');
+        }
+
+        return null;
     }
 }

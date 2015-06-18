@@ -53,19 +53,8 @@ class IdividualController extends Controller
         $result = $result->get();
 
         $result->map(function($item) {
-            if (null !== $item->start && null !== $item->finish) {
-                $item->result = $this->calculateResult($item->start, $item->finish, $item->penalty);
-            } else {
-                $item->result = null;
-            }
-
-            if (null === $item->group) {
-                if (null != $item->gender) {
-                    $item->group = $item->group();
-                } else {
-                    $item->group = null;
-                }
-            }
+            $item->result = $item->result();
+            $item->group  = $item->group();
         });
 
         return $result;
@@ -75,13 +64,8 @@ class IdividualController extends Controller
     {
         $individual = Individual::with('teams')->findOrFail($id);
 
-        if (null !== $individual->start && null !== $individual->finish) {
-            $individual->result = $this->calculateResult($individual->start, $individual->finish, $individual->penalty);
-        } else {
-            $individual->result = null;
-        }
-
-        $individual->group = $individual->group();
+        $individual->result = $individual->result();
+        $individual->group  = $individual->group();
 
         return $individual;
     }
@@ -174,13 +158,8 @@ class IdividualController extends Controller
         $individual->teams()->sync($teams);
         $individual->save();
 
-        if (null !== $individual->start && null !== $individual->finish) {
-            $individual->result = $this->calculateResult($individual->start, $individual->finish, $individual->penalty);
-        } else {
-            $individual->result = null;
-        }
-
-        $individual->group = $individual->group();
+        $individual->result = $individual->result();
+        $individual->group  = $individual->group();
 
         return $individual;
     }
