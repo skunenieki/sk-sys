@@ -64,8 +64,7 @@ class IdividualController extends Controller
     {
         $individual = Individual::with('teams')->findOrFail($id);
 
-        $individual->result = $individual->result();
-        $individual->group  = $individual->group();
+        $individual->result = $individual->result;
 
         return $individual;
     }
@@ -171,12 +170,5 @@ class IdividualController extends Controller
             'V'     => 1,
             'S'     => 4,
         ];
-    }
-
-    protected function calculateResult($start, $finish, $penalty) {
-        return (new Carbon($start))->diff(
-                (new Carbon($finish))->addSeconds(
-                    (new Carbon($penalty))->diffInSeconds(new Carbon('0:00:00')))
-            )->format('%H:%I:%S');
     }
 }
