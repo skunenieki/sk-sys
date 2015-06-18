@@ -42,7 +42,7 @@ class Individual extends Model
 
     public function getGroupAttribute($group)
     {
-        $yearRanges = require __DIR__.'/../groups.php';
+        $yearRanges = require __DIR__.'/../IndividualGroups.php';
 
         if (null !== $group) {
             return $group;
