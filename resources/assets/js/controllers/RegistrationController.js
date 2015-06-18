@@ -26,8 +26,7 @@ angular.module('skApp.RegistrationController', [])
         acceptExisting: true,
     };
 
-    self.checkExistingParticipantCache = {
-    };
+    self.checkExistingParticipantCache = {};
 
     self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
