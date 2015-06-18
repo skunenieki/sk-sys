@@ -48,6 +48,7 @@
                        ng-maxlength="4"
                        ng-model="partCtrl.participant.birthYear"
                        required>
+                Vecums: {{ partCtrl.participant.eventYear - partCtrl.participant.birthYear}}
             </div>
         </div>
 
@@ -80,6 +81,12 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="inputBikeType" value="AK" ng-model="partCtrl.participant.bikeType" required> Cits
+                </label>
+                <label class="radio-inline" ng-if="partCtrl.participant.eventYear < 2001">
+                    <input type="radio" name="inputBikeType" value="K" ng-model="partCtrl.participant.bikeType" required> K
+                </label>
+                <label class="radio-inline" ng-if="partCtrl.participant.eventYear < 2001">
+                    <input type="radio" name="inputBikeType" value="P" ng-model="partCtrl.participant.bikeType" required> P
                 </label>
             </div>
         </div>

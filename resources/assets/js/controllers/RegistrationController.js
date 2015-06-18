@@ -1,10 +1,4 @@
 angular.module('skApp.RegistrationController', [])
-.filter('dateYear', function () {
-    var moment = require('moment');
-    return function (input) {
-        return moment(input).year();
-    }
-})
 .directive('ngReallyClick', [function() {
     return {
         restrict: 'A',
@@ -63,8 +57,7 @@ angular.module('skApp.RegistrationController', [])
     self.onSelect = function ($item) {
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
-        var moment = require('moment');
-        self.participation.birthYear = moment($item.birthYear).year();
+        self.participation.birthYear = $item.birthYear;
     };
 
     self.registerParticipant = function() {

@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="customTemplate.html">
   <a>
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{ match.model.birthYear | dateYear }})
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{ match.model.birthYear }})
   </a>
 </script>
 
@@ -47,7 +47,7 @@
                      typeahead-focus-first="false"
                      placeholder="Vārds Uzvārds"
                      ng-blur="regCtrl.checkExistingParticipant()"
-                     ng-change="regCtrl.capitalizeWords()"3
+                     ng-change="regCtrl.capitalizeWords()"
                      autofocus
                      tabindex="2"
                      required>
@@ -160,7 +160,7 @@
           <tr ng-repeat="recReg in regCtrl.recentlyRegistered">
               <td>{{ recReg.number }}</td>
               <td>{{ recReg.name }}</td>
-              <td>{{ recReg.birthYear | dateYear }}</td>
+              <td>{{ recReg.birthYear }}</td>
               <td>{{ recReg.gender }}</td>
               <td>
                   <a class="btn btn-primary btn-xs" ng-href="#{{ '10km.participants' | routeSegmentUrl }}{{recReg.id}}/edit">
