@@ -48,7 +48,7 @@ class Individual extends Model
             return $group;
         }
 
-        if (null === $this->gender && null === $this->bikeType) {
+        if (null === $this->gender || null === $this->bikeType) {
             return null;
         }
 

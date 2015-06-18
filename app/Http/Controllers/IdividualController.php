@@ -16,6 +16,7 @@ class IdividualController extends Controller
         $take      = $request->get('limit', 10);
         $sort      = $request->get('sort', false);
         $name      = $request->get('name', false);
+        $start     = $request->get('start', false);
         $number    = $request->get('number', false);
         $birthYear = $request->get('birthYear', false);
         $eventYear = $request->get('eventYear', false);
@@ -38,6 +39,13 @@ class IdividualController extends Controller
             $result->whereIn('number', explode(',', $number));
         }
 
+        if (false !== $start) {
+            // dd(explode(',', $start));
+            $result->whereIn('start', explode(',', $start));
+        }
+
+        // dd($result->toSql());
+
         $result->skip($skip)->take($take);
 
         if (false !== $sort) {
@@ -49,6 +57,11 @@ class IdividualController extends Controller
                 }
             }
         }
+
+        // \Event::listen('illuminate.query', function($query, $params, $time, $conn)
+        // {
+        //     dd(array($query, $params, $time, $conn));
+        // });
 
         $result = $result->get();
 
@@ -140,6 +153,8 @@ class IdividualController extends Controller
             }
         }
 
+        // dd($request);
+
         $individual            = Individual::find($id);
         $individual->number    = $request->number;
         $individual->name      = $request->name;
@@ -156,8 +171,7 @@ class IdividualController extends Controller
         $individual->teams()->sync($teams);
         $individual->save();
 
-        $individual->result = $individual->result();
-        $individual->group  = $individual->group();
+        $individual->group  = $individual->group;
 
         return $individual;
     }
