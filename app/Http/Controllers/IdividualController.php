@@ -53,8 +53,7 @@ class IdividualController extends Controller
         $result = $result->get();
 
         $result->map(function($item) {
-            $item->result = $item->result();
-            $item->group  = $item->group();
+            $item->result = $item->result;
         });
 
         return $result;
