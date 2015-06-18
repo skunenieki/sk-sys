@@ -11,7 +11,7 @@ class FillParticipantsTable extends Migration
      */
     public function up()
     {
-        DB::insert('INSERT IGNORE INTO participants (name, birthYear, gender) SELECT DISTINCT name, birthYear, gender from 10km ORDER BY name;');
+        DB::insert('INSERT IGNORE INTO participants (name, birthYear, gender) SELECT DISTINCT name, birthYear, gender FROM individual ORDER BY name;');
     }
 
     /**

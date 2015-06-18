@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Skunenieki\System\Models\Individual;
 use Illuminate\Database\Migrations\Migration;
 
-class Import10kmTableData extends Migration
+class ImportIndividualTableData extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,13 @@ class Import10kmTableData extends Migration
     {
         Model::unguard();
 
-        DB::table('10km')->delete();
+        DB::table('individual')->delete();
 
         $data = unserialize(file_get_contents(__DIR__.'/data/10km.txt'));
 
         foreach ($data as $item) {
+            $item['birthYear'] = (int) $item['birthYear']->format('Y');
+            $item['eventYear'] = (int) $item['eventYear']->format('Y');
             Individual::create($item);
         }
     }
@@ -31,6 +33,5 @@ class Import10kmTableData extends Migration
      */
     public function down()
     {
-        //
     }
 }

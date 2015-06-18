@@ -15,8 +15,8 @@ class CreateParticipantsTable extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('birthYear');
-            $table->enum('gender', ['V', 'S']);
+            $table->smallInteger('birthYear');
+            $table->string('gender');
             $table->timestamps();
         });
     }

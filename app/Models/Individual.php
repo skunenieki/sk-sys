@@ -12,7 +12,7 @@ class Individual extends Model
      *
      * @var string
      */
-    protected $table = '10km';
+    protected $table = 'individual';
 
     /**
      * The attributes that should be mutated to dates.

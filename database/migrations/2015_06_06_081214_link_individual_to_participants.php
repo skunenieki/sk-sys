@@ -4,7 +4,7 @@ use Skunenieki\System\Models\Individual;
 use Skunenieki\System\Models\Participant;
 use Illuminate\Database\Migrations\Migration;
 
-class Link10kmToParticipants extends Migration
+class LinkIndividualToParticipants extends Migration
 {
     /**
      * Run the migrations.
