@@ -42,7 +42,11 @@ class Individual extends Model
 
     public function getGroupAttribute($group)
     {
-        $yearRanges = require __DIR__.'/../IndividualGroups.php';
+
+        static $yearRanges = null;
+        if (true === is_null($yearRanges)) {
+            $yearRanges = require __DIR__.'/../IndividualGroups.php';
+        }
 
         if (null !== $group) {
             return $group;
@@ -52,8 +56,8 @@ class Individual extends Model
             return null;
         }
 
-        if (true === empty($this->groups)) {
-            $this->groups = [];
+        static $groups = [];
+        if (true === empty($groups)) {
             foreach ($yearRanges as $yearRange => $ageRanges) {
                 if (false !== strpos($yearRange, '-')) {
                     $yearRange = explode('-', $yearRange);
@@ -61,10 +65,10 @@ class Individual extends Model
                         foreach ($ageRanges as $ageRange => $groupRanges) {
                             $ageRange = explode('-', $ageRange);
                             for ($age = intval($ageRange[0]); $age <= intval($ageRange[1]); $age++) {
-                                if (false === isset($this->groups[$year][$age])) {
-                                     $this->groups[$year][$age] = [];
+                                if (false === isset($groups[$year][$age])) {
+                                     $groups[$year][$age] = [];
                                 }
-                                $this->groups[$year][$age] = array_merge($this->groups[$year][$age], $groupRanges);
+                                $groups[$year][$age] = array_merge($groups[$year][$age], $groupRanges);
                             }
                         }
                     }
@@ -77,7 +81,7 @@ class Individual extends Model
         }
 
         try {
-            return $this->groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->bikeType.$this->gender)];
+            return $groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->bikeType.$this->gender)];
         } catch (\Exception $e) {
             return 'NaN';
         }
