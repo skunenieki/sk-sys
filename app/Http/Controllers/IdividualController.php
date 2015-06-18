@@ -33,7 +33,7 @@ class IdividualController extends Controller
         }
 
         if (false !== $birthYear) {
-            $result->whereIn('birthYear', explode(',', $birthYear);
+            $result->whereIn('birthYear', explode(',', $birthYear));
         }
 
         if (false !== $number) {
