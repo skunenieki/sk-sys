@@ -20,3 +20,13 @@ $app->put('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@u
 $app->post('10km', 'Skunenieki\System\Http\Controllers\IdividualController@store');
 
 $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
+
+use Knp\Snappy\Pdf;
+
+$app->get('pdf', function() {
+    $snappy = new Pdf(base_path().'/vendor/bin/wkhtmltopdf-amd64');
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="file.pdf"');
+    echo $snappy->getOutput('http://www.skunenieki.lv');
+});
+

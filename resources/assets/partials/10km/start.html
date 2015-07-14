@@ -5,7 +5,7 @@
                 <th>Starts</th>
                 <th></th>
                 <th>#</th>
-                <th>Velosipeds</th>
+                <th>Velo</th>
                 <th>Dalibnieks</th>
                 <th>Grupa</th>
                 <th>Komentars</th>
@@ -16,15 +16,21 @@
                 <form ng-submit="startCtrl.saveStart($index)">
                     <td>{{start.strTime}}</td>
                     <td>
-                        <span class="glyphicon" ng-class="{ 'glyphicon-refresh': start.status == 'saving', 'glyphicon-ok': start.status == 'saved', 'glyphicon-remove': start.status =='failed'}"></span>
-                        <input type="checkbox" ng-if="start.status == 'unconfirmed'" ng-true-value="'confirmed'" ng-model="start.status" ng-change="startCtrl.saveStart($index)">
+                        <span class="glyphicon"
+                              ng-class="{ 'glyphicon-refresh': start.status == 'saving', 'glyphicon-ok': start.status == 'saved', 'glyphicon-remove': start.status =='failed'}">
+                        </span>
+                        <input type="checkbox"
+                               ng-if="start.status == 'unconfirmed'"
+                               ng-true-value="'confirmed'"
+                               ng-model="start.status"
+                               ng-change="startCtrl.saveStart($index)">
                     </td>
                     <td class="col-xs-2">
                         <input type="number" class="form-control input-sm" ng-model="start.number" ng-blur="startCtrl.saveStart($index)">
                     </td>
                     <td class="col-xs-2">
                         <select class="form-control" ng-model="start.bikeType" ng-change="startCtrl.saveStart($index)">
-                          <option value="T">Kalnu</option>
+                          <option value="T">Tautas</option>
                           <option value="S">Sporta</option>
                           <option value="C">Celu</option>
                           <option value="AK">AK</option>
