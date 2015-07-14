@@ -24,7 +24,7 @@ class ExampleTest extends TestCase
                                ->where('number', (int) $item[0])
                                ->first();
 
-                $this->assertEquals($item[6], $i->group(), "Group mismatch for {$item[0]} in {$item[12]} ({$item[1]})");
+                $this->assertEquals($item[6], $i->group, "Group mismatch for {$item[0]} in {$item[12]} ({$item[1]})");
             }
         }
     }

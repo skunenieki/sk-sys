@@ -23,16 +23,11 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
 });
 
+$app->get('results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\ResultsController@resultsByGroups');
+$app->get('results/{eventYear}/summary', 'Skunenieki\System\Http\Controllers\ResultsController@resultsSummary');
+
 $app->get('print', function() {
     return view('print');
 });
 
-use Knp\Snappy\Pdf;
-use Illuminate\Http\Request;
-
-$app->get('pdf', function(Request $request) {
-    $snappy = new Pdf(base_path().'/vendor/bin/wkhtmltopdf-amd64');
-    header('Content-Type: application/pdf');
-    echo $snappy->getOutputFromHtml(view('print'));
-});
 

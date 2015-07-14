@@ -75,7 +75,7 @@ var skApp = angular.module('skApp', [
             })
 
             .when('/10km', '10km')
-            .when('/10km/participants/', '10km.participants')
+            .when('/10km/participants', '10km.participants')
             .when('/10km/participants/:eventYear', '10km.participants.year')
             .when('/10km/participants/:participantId/edit', '10km.participants.edit')
             .when('/10km/registration', '10km.registration')
@@ -83,6 +83,8 @@ var skApp = angular.module('skApp', [
             .when('/10km/turn', '10km.turn')
             .when('/10km/finish', '10km.finish')
             .when('/10km/chronometer', '10km.chronometer')
+            .when('/10km/results', '10km.results')
+            .when('/10km/diplomas', '10km.diplomas')
             .segment('10km', {
                 templateUrl: '10km/main.html',
             })
@@ -114,6 +116,12 @@ var skApp = angular.module('skApp', [
                 })
                 .segment('chronometer', {
                     templateUrl: '10km/chronometer.html'
+                })
+                .segment('results', {
+                    templateUrl: '10km/results.html'
+                })
+                .segment('diplomas', {
+                    templateUrl: '10km/diplomas.html'
                 })
                 .up()
 
@@ -176,6 +184,10 @@ var skApp = angular.module('skApp', [
                     templateUrl: 'archive/10km.html'
                 })
                 .up()
+            .when('/settings', 'settings')
+            .segment('settings', {
+                templateUrl: 'settings/settings.html',
+            })
 
         $routeProvider.otherwise({ redirectTo: '/' });
     }]);
