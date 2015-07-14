@@ -33,6 +33,6 @@ use Illuminate\Http\Request;
 $app->get('pdf', function(Request $request) {
     $snappy = new Pdf(base_path().'/vendor/bin/wkhtmltopdf-amd64');
     header('Content-Type: application/pdf');
-    echo $snappy->getOutput('http://'.$request->header('Host').'/print');
+    echo $snappy->getOutputFromHtml(view('print'));
 });
 
