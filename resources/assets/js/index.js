@@ -16,6 +16,7 @@ require('./partials');
 
 require('./services/IndividualService');
 require('./services/ParticipantService');
+require('./services/IndividualTurnService');
 require('./services/IndividualYearsService');
 
 require('./directives/ngRemoteValidate');
@@ -25,6 +26,7 @@ require('./controllers/EventYearController');
 require('./controllers/IndividualController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
+require('./controllers/IndividualTurnController');
 require('./controllers/IndividualStartController');
 require('./controllers/RecentlyRegisteredConrtoller');
 
@@ -57,6 +59,7 @@ var skApp = angular.module('skApp', [
 
         'skApp.IndividualService',
         'skApp.ParticipantService',
+        'skApp.IndividualTurnService',
         'skApp.IndividualYearsService',
 
         'skApp.MainController',
@@ -64,6 +67,7 @@ var skApp = angular.module('skApp', [
         'skApp.IndividualController',
         'skApp.ParticipantController',
         'skApp.RegistrationController',
+        'skApp.IndividualTurnController',
         'skApp.IndividualStartController',
         'skApp.RecentlyRegisteredConrtoller',
     ])

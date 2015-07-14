@@ -145,15 +145,26 @@ class IdividualController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (false !== empty($request->teams)) {
-            $teams = [];
-            foreach ($request->teams as $team) {
+        $requestTeams = $request->input('teams', false);
+        $teams = [];
+        if (false !== $requestTeams) {
+            foreach ($requestTeams as $team) {
                 $team = Team::firstOrCreate(['name' => $team['name']]);
                 $teams[] = $team->id;
             }
         }
 
-        // dd($request);
+        if ($request->start === '') {
+            $request->start = null;
+        }
+
+        if ($request->turn === '') {
+            $request->turn = null;
+        }
+
+        if ($request->finish === '') {
+            $request->finish = null;
+        }
 
         $individual            = Individual::find($id);
         $individual->number    = $request->number;
@@ -171,7 +182,8 @@ class IdividualController extends Controller
         $individual->teams()->sync($teams);
         $individual->save();
 
-        $individual->group  = $individual->group;
+        $individual->teams = $individual->teams;
+        $individual->group = $individual->group;
 
         return $individual;
     }

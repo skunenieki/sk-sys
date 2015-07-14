@@ -3,7 +3,7 @@ angular.module('skApp.IndividualStartController', [])
     var self = this;
     var moment = require('moment');
 
-    self.individualStartTime = '2015-06-18T20:00:00+03:00';
+    self.individualStartTime = '2015-07-14T20:00:00+03:00';
 
     self.currentTime = false;
 
