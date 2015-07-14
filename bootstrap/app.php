@@ -27,9 +27,9 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 $app->withEloquent();
 
-$logger = $app->make(\Psr\Log\LoggerInterface::class);
-$logger->popHandler();
-$logger->pushHandler(new \Monolog\Handler\ErrorLogHandler());
+// $logger = $app->make(\Psr\Log\LoggerInterface::class);
+// $logger->popHandler();
+// $logger->pushHandler(new \Monolog\Handler\ErrorLogHandler());
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +64,6 @@ $app->singleton(
 */
 
 $app->middleware([
-    'Skunenieki\System\Http\Middleware\AuthenticateOnceWithBasicAuth',
     // 'Illuminate\Cookie\Middleware\EncryptCookies',
     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
     // 'Illuminate\Session\Middleware\StartSession',
@@ -72,9 +71,9 @@ $app->middleware([
     // 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
 ]);
 
-// $app->routeMiddleware([
-
-// ]);
+$app->routeMiddleware([
+    'auth' => Skunenieki\System\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
+]);
 
 /*
 |--------------------------------------------------------------------------

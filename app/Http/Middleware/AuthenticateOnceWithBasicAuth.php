@@ -19,5 +19,4 @@ class AuthenticateOnceWithBasicAuth implements Middleware
     {
         return Auth::onceBasic() ?: $next($request);
     }
-
 }

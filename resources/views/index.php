@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Šķūnenieku Kauss</title>
-    <link href="<?php echo elixir('css/app.css'); ?>" rel="stylesheet">
+    <link href="<?php echo elixir('css/app.css'); ?>" rel="stylesheet"  media="screen">
 </head>
 <body ng-controller="MainController as mainCtrl">
     <div ng-include="'header.html'"></div>

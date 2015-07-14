@@ -1,4 +1,3 @@
-
 @import (inline) '../../../node_modules/ng-tags-input/build/ng-tags-input.css';
 @import (inline) '../../../node_modules/ng-tags-input/build/ng-tags-input.bootstrap.css';
 
@@ -6,7 +5,14 @@
 @icon-font-path: "/fonts/";
 
 
-body {
-  padding-top: 51px;
+@media screen {
+    body {
+      padding-top: 51px;
+    }
 }
 
+@media print {
+    body {
+      padding-top: 0px;
+    }
+}
