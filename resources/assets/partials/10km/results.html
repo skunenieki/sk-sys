@@ -4,26 +4,86 @@
         <div class="panel panel-default" ng-repeat="eventYear in evtYCtrl.eventYears">
             <div class="panel-heading">{{ eventYear.eventYear }}</div>
             <div class="panel-body">
-                <a href="#" class="btn btn-primary" role="button">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                    Sievietes - pa grupam
-                </a>
-                <a href="#" class="btn btn-primary" role="button">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                    Sievietes - pa grupam
-                </a>
-                <a href="#" class="btn btn-primary" role="button">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                    Sievietes - kopvertejums
-                </a>
-                <a href="#" class="btn btn-primary" role="button">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                    Viriesi - kopvertejums
-                </a>
-                <a href="#" class="btn btn-primary" role="button">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                    Visi protokoli
-                </a>
+                <table class="table">
+                  <tr>
+                    <td>Sievietes - pa grupam</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/groups?gender=s&pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sievietes - kopvertejums</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s&pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Viriesi - pa grupam</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/groups?gender=s&pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Viriesi - kopvertejums</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s&pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?gender=s" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Visi - pa grupam</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/groups?pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Visi - kopvertejums</td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary?pdf" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/results/{{ eventYear.eventYear }}/summary" target="_blank" class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                        </a>
+                    </td>
+                  </tr>
+                </table>
             </div>
         </div>
     </div>
