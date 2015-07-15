@@ -35,7 +35,7 @@ class IdividualFinishController extends Controller
 
         $individual->map(function($item) {
             $item->tempResultInSeconds = $item->turnInSeconds - $item->startInSeconds;
-            $item->tempResult = '1:11:11';
+            $item->tempResult = (new Carbon)->diff((new Carbon)->addSeconds($item->tempResultInSeconds))->format('%H:%I:%S');
         });
 
         $individual = $individual->toArray();

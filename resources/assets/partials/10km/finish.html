@@ -80,24 +80,12 @@
                         <tr>
                             <th>Seciba</th>
                             <th>#</th>
-                            <th>Laiks</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>3</td>
-                            <td>1</td>
-                            <td>1:11:11</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>1</td>
-                            <td>1:11:11</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>1:11:11</td>
+                        <tr ng-repeat="finished in indFinNumCtrl.finished | limitTo: 30">
+                            <td>{{ finished.slot }}</td>
+                            <td>{{ finished.number }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -3,7 +3,42 @@ angular.module('skApp.IndividualFinishNumberController', [])
     var self = this;
     var _ = require('underscore');
 
+    self.manualNumber       = null;
+    self.finished           = IndividualFinishNumberService.query();;
     self.potentialFinishers = [];
+
+    self.markFinish = function(idx) {
+        var number = null;
+        var manual = false;
+
+
+        if (false !== idx) {
+            number = self.potentialFinishers[idx].number;
+        } else if (false === idx && self.manualNumber !== null) {
+            number = self.manualNumber;
+            manual = true;
+        }
+
+        var finish = new IndividualFinishNumberService({
+            number: number,
+            manual: manual,
+        });
+
+        finish.$save()
+           .then(function(response) {
+                if (idx !== false) {
+                    self.potentialFinishers.splice(idx, 1);
+                }
+
+                if (self.manualNumber !== null) {
+                    self.manualNumber = null;
+                }
+
+                self.finished.unshift(response);
+            }, function(response) {
+                // Failure
+            });
+    };
 
     self.updatePotentialFinishers = function() {
         return $http.get('/10km/finish', {})

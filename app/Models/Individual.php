@@ -105,6 +105,11 @@ class Individual extends Model
         return null;
     }
 
+    public function getTempResultInSecondsAttribute($value)
+    {
+        return $this->turnInSeconds - $this->startInSeconds;
+    }
+
     public function getResultInSecondsAttribute($value)
     {
         if (null !== $this->start && null !== $this->finish) {
