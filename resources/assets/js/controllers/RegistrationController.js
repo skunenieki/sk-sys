@@ -12,7 +12,7 @@ angular.module('skApp.RegistrationController', [])
         }
     }
 }])
-.controller('RegistrationController', ['$http', 'ParticipantService', 'IndividualService', function($http, ParticipantService, IndividualService) {
+.controller('RegistrationController', ['$http', 'IndividualService', function($http, IndividualService) {
     var self = this;
 
     self.capitalizeWords = function() {

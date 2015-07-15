@@ -17,6 +17,11 @@ class IdividualFinishController extends Controller
                                 ->whereNull('turn')
                                 ->orderBy('start', 'asc')
                                 ->get();
+
+        $individual->map(function($item) {
+            $item->startInSeconds = $item->startInSeconds;
+        });
+
         return $individual;
     }
 }

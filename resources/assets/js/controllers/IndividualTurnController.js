@@ -1,57 +1,64 @@
 angular.module('skApp.IndividualTurnController', [])
-.controller('IndividualTurnController', ['IndividualTurnService', 'IndividualService', function(IndividualTurnService, IndividualService) {
+.controller('IndividualTurnController', ['$interval', 'IndividualTurnService', function($interval, IndividualTurnService) {
     var self = this;
-    var moment = require('moment');
+    var _ = require('underscore');
 
-    self.turn = IndividualTurnService.query();
+    self.turns  = [];
+    self.turned = [];
 
     self.setTurn = function(idx) {
+        var id     = null;
+        var number = null;
 
-        self.individualStartTime = '2015-07-14T20:00:00+03:00';
+        if (false !== idx) {
+            id     = self.turns[idx].id;
+            number = self.turns[idx].number;
+        }
 
-        var turnTime = moment().diff(
-            moment(self.individualStartTime),
-            'seconds'
-        );
+        var turn = new IndividualTurnService({
+            id: id,
+            number: number
+        });
 
-        self.turn[idx].turn = self.sec2humanReadable(turnTime);
-        IndividualService.update(self.turn[idx], function(response) {
-            self.turn.splice(idx, 1);
+        turn.$save()
+           .then(function(response) {
+                if (idx !== false) {
+                    self.turns.splice(idx, 1);
+                }
+                self.turned.unshift(response);
+            }, function(response) {
+                // Failure
+            });
+    };
+
+    self.loadPotentialTurns = function() {
+        return IndividualTurnService.query();
+    };
+
+    self.updatePotentialTurns = function() {
+        var turns = IndividualTurnService.query({}, function(response) {
+            for (var i = 0; i < response.length; i++) {
+                var turnIndex = _.indexOf(self.turns, _.find(self.turns, function(turn) { return turn.number == response[i].number }));
+                if (-1 === turnIndex) {
+                    self.turns.push(response[i]);
+                } else {
+                    self.turns[turnIndex].startInSeconds = response[i].startInSeconds;
+                }
+            }
+
+            for (var i = self.turns.length - 1; i >= 0; i--) {
+                if (typeof _.find(response, function(turn) { return turn.number == self.turns[i].number }) === 'undefined') {
+                    self.turns.splice(i, 1);
+                }
+            };
+
+            self.turns.sort(function(a, b) {
+                return a.startInSeconds - b.startInSeconds;
+            });
         });
     };
 
-    self.sec2humanReadable = function(duration) {
-        var hour = 0;
-        var min = 0;
-        var sec = 0;
+    $interval(self.updatePotentialTurns, 5000);
 
-        if (duration) {
-            if (duration >= 60) {
-                min = Math.floor(duration / 60);
-                sec = duration % 60;
-            } else {
-                sec = duration;
-            }
-
-            if (min >= 60) {
-                hour = Math.floor(min / 60);
-                min = min - hour * 60;
-            }
-
-            if (hour < 10) {
-                hour = '0'+hour;
-            }
-
-            if (min < 10) {
-                min = '0'+min;
-            }
-
-            if (sec < 10) {
-                sec = '0'+sec;
-            }
-        }
-
-        return hour +":"+ min +":"+ sec;
-    }
-
+    self.updatePotentialTurns();
 }]);

@@ -87,6 +87,15 @@ class Individual extends Model
         }
     }
 
+    public function getStartInSecondsAttribute($value)
+    {
+        if (null !== $this->start) {
+            return (new Carbon($this->start))->diffInSeconds(new Carbon('0:00:00'));
+        }
+
+        return null;
+    }
+
     public function getResultAttribute($value)
     {
         if (null !== $this->start && null !== $this->finish) {
