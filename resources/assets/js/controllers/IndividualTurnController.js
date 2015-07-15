@@ -43,10 +43,6 @@ angular.module('skApp.IndividualTurnController', [])
             });
     };
 
-    self.loadPotentialTurns = function() {
-        return IndividualTurnService.query();
-    };
-
     self.updatePotentialTurns = function() {
         return $http.get('/10km/turn', {})
             .then(function(response){

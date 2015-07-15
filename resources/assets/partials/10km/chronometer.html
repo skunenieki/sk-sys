@@ -18,8 +18,14 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="finish in indFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
-                        <td>{{ finish.slot }}</td>
-                        <td>{{ finish.finish }}</td>
+                        <td>
+                            <span ng-if="finish.disabled === false">{{ finish.slot }}</span>
+                            <del ng-if="finish.disabled === true">{{ finish.slot }}</del>
+                        </td>
+                        <td>
+                            <span ng-if="finish.disabled === false">{{ finish.finish }}</span>
+                            <del ng-if="finish.disabled === true">{{ finish.finish }}</del>
+                        </td>
                         <td>
                             <button type="button"
                                     class="btn btn-xs"

@@ -1,116 +1,107 @@
-<br>
-<div class="row">
-    <div class="col-xs-12">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">Nezinams</a>
+<div class="row" ng-controller="IndividualFinishNumberController as indFinNumCtrl">
+    <div class="col-xs-8">
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:12">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:18">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:24">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:30">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:36">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:42">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+                <p class="text-center">{{ finisher.tempResult }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="row">
+            <div class="col-xs-6">
+                <br>
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish(false)" role="button">Nezinams</button>
+            </div>
+            <div class="col-xs-6">
+                <br>
+                <form>
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="#" ng-model="indFinNumCtrl.manualNumber">
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="indFinNumCtrl.markFinish(false)">Pievienot</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-hover table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Seciba</th>
+                            <th>#</th>
+                            <th>Laiks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>1:11:11</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>1:11:11</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1:11:11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-<br>
-<div class="row">
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-    <div class="col-xs-2">
-        <a class="btn btn-primary btn-xlarge btn-block" href="#" role="button">123</a>
-    </div>
-</div>
-
-<p>Tie kas ir startejusi</p>
-<p>Tie kas ir apgriezusies</p>
-<p>Seciba finisa pec agrieziena rezultatiem</p>
-<p></p>

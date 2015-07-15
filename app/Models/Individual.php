@@ -96,13 +96,10 @@ class Individual extends Model
         return null;
     }
 
-    public function getResultAttribute($value)
+    public function getTurnInSecondsAttribute($value)
     {
-        if (null !== $this->start && null !== $this->finish) {
-            return (new Carbon($this->start))->diff(
-                    (new Carbon($this->finish))->addSeconds(
-                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
-                )->format('%H:%I:%S');
+        if (null !== $this->turn) {
+            return (new Carbon($this->turn))->diffInSeconds(new Carbon('0:00:00'));
         }
 
         return null;
@@ -115,6 +112,18 @@ class Individual extends Model
                     (new Carbon($this->finish))->addSeconds(
                         (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
                 );
+        }
+
+        return null;
+    }
+
+    public function getResultAttribute($value)
+    {
+        if (null !== $this->start && null !== $this->finish) {
+            return (new Carbon($this->start))->diff(
+                    (new Carbon($this->finish))->addSeconds(
+                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
+                )->format('%H:%I:%S');
         }
 
         return null;

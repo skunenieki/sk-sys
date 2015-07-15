@@ -10,7 +10,7 @@ use Skunenieki\System\Models\Individual;
 
 class IdividualFinishController extends Controller
 {
-    public function finish(Request $request)
+    public function turn(Request $request)
     {
         $individual = Individual::where('eventYear', 2015)
                                 ->whereNotNull('start')
@@ -20,6 +20,28 @@ class IdividualFinishController extends Controller
 
         $individual->map(function($item) {
             $item->startInSeconds = $item->startInSeconds;
+        });
+
+        return $individual;
+    }
+
+    public function finish(Request $request)
+    {
+        $individual = Individual::where('eventYear', 2015)
+                                ->whereNotNull('start')
+                                ->whereNotNull('turn')
+                                ->whereNull('finish')
+                                ->get();
+
+        $individual->map(function($item) {
+            $item->tempResultInSeconds = $item->turnInSeconds - $item->startInSeconds;
+            $item->tempResult = '1:11:11';
+        });
+
+        $individual = $individual->toArray();
+
+        usort($individual, function($a, $b) {
+            return $a['tempResultInSeconds'] - $b['tempResultInSeconds'];
         });
 
         return $individual;
