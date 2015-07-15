@@ -9,6 +9,14 @@ use Skunenieki\System\Models\IndividualTurn;
 
 class IdividualTurnController extends Controller
 {
+    public function index()
+    {
+        return IndividualTurn::where('eventYear', 2015)
+                             ->orderBy('slot', 'desc')
+                             ->take(20)
+                             ->get();
+    }
+
     public function store(Request $request)
     {
         $id     = $request->input('id', null);
