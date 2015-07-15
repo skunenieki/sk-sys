@@ -19,23 +19,22 @@ class IdividualTurnController extends Controller
 
     public function store(Request $request)
     {
-        $id     = $request->input('id', null);
         $number = $request->input('number', null);
-
-        $turnTime = Carbon::now()->diff(new Carbon('2015-07-14T20:00:00+03:00'))->format('%H:%I:%S');
-
 
         // TODO: Change start date so that it comes from settings
         $turn = new IndividualTurn;
         $turn->number    = $number;
-        $turn->turn      = $turnTime;
+        $turn->turn      = Carbon::now()->diff(new Carbon('2015-07-14T20:00:00+03:00'))->format('%H:%I:%S');
         $turn->slot      = IndividualTurn::where('eventYear', 2015)->count() + 1;
+        $turn->manual    = $request->input('manual', false);
         $turn->eventYear = 2015;
         $turn->save();
 
-        if ($number !== null && $id !== null) {
-            $individual = Individual::find($id);
-            $individual->turn = $turnTime;
+        if ($number !== null) {
+            $individual = Individual::where('eventYear', 2015)->where('number', $number)->first();
+            if ($individual->turn === null || ($individual->turn !== null && $turn->manual === true)) {
+                $individual->turn = $turn->turn;
+            }
             $individual->save();
         }
 

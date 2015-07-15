@@ -18,6 +18,7 @@ require('./services/IndividualService');
 require('./services/ParticipantService');
 require('./services/IndividualTurnService');
 require('./services/IndividualYearsService');
+require('./services/IndividualFinishTimeService');
 
 require('./directives/ngRemoteValidate');
 
@@ -29,6 +30,7 @@ require('./controllers/RegistrationController');
 require('./controllers/IndividualTurnController');
 require('./controllers/IndividualStartController');
 require('./controllers/RecentlyRegisteredConrtoller');
+require('./controllers/IndividualFinishTimeController');
 
 var AppConfig = angular.module('AppConfig', [])
     .provider('AppConfig', function () {
@@ -61,6 +63,7 @@ var skApp = angular.module('skApp', [
         'skApp.ParticipantService',
         'skApp.IndividualTurnService',
         'skApp.IndividualYearsService',
+        'skApp.IndividualFinishTimeService',
 
         'skApp.MainController',
         'skApp.EventYearController',
@@ -70,6 +73,7 @@ var skApp = angular.module('skApp', [
         'skApp.IndividualTurnController',
         'skApp.IndividualStartController',
         'skApp.RecentlyRegisteredConrtoller',
+        'skApp.IndividualFinishTimeController',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider

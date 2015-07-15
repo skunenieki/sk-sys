@@ -6,23 +6,14 @@ use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class IndividualTurn extends Model
+class IndividualStart extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'individual_turns';
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'manual' => 'boolean',
-    ];
+    protected $table = 'individual_start';
 
     /**
      * The attributes that should be mutated to dates.

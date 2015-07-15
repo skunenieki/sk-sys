@@ -5,21 +5,26 @@ angular.module('skApp.IndividualTurnController', [])
 
     // TODO: Add processing indication when someone hits the number button
 
+    self.manualNumber = null;
+
     self.turns  = [];
     self.turned = IndividualTurnService.query();
 
     self.setTurn = function(idx) {
-        var id     = null;
         var number = null;
+        var manual = false;
+
 
         if (false !== idx) {
-            id     = self.turns[idx].id;
             number = self.turns[idx].number;
+        } else if (false === idx && self.manualNumber !== null) {
+            number = self.manualNumber;
+            manual = true;
         }
 
         var turn = new IndividualTurnService({
-            id: id,
-            number: number
+            number: number,
+            manual: manual,
         });
 
         turn.$save()
@@ -27,6 +32,11 @@ angular.module('skApp.IndividualTurnController', [])
                 if (idx !== false) {
                     self.turns.splice(idx, 1);
                 }
+
+                if (self.manualNumber !== null) {
+                    self.manualNumber = null;
+                }
+
                 self.turned.unshift(response);
             }, function(response) {
                 // Failure

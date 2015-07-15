@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Skunenieki\System\Models\Team;
 use Skunenieki\System\Models\Individual;
 use Skunenieki\System\Models\Participant;
+use Skunenieki\System\Models\IndividualStart;
 
 class IdividualController extends Controller
 {
@@ -172,6 +173,15 @@ class IdividualController extends Controller
         $individual->birthYear = $request->birthYear;
         $individual->gender    = $request->gender;
         $individual->bikeType  = $request->bikeType;
+
+        if ($request->number !== null && $request->start !== $individual->start) {
+            $individualStart            = new IndividualStart;
+            $individualStart->number    = $request->number;
+            $individualStart->start     = $request->start;
+            $individualStart->slot      = IndividualStart::where('eventYear', 2015)->count() + 1;
+            $individualStart->eventYear = 2015;
+            $individualStart->save();
+        }
 
         $individual->start     = $request->start;
         $individual->turn      = $request->turn;

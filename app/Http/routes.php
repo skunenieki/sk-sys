@@ -19,6 +19,11 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('10km/turn', 'Skunenieki\System\Http\Controllers\IdividualFinishController@finish');
     $app->get('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@index');
     $app->post('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@store');
+    $app->get('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@index');
+    $app->post('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@store');
+    $app->put('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@update');
+
+
 
     $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
     $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');

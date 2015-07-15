@@ -1,1 +1,36 @@
-10km chronometer
+<div ng-controller="IndividualFinishTimeController as indFinTimeCtrl">
+    <div class="row">
+        <div class="col-xs-6">
+            <br>
+            <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinTimeCtrl.finish()" role="button">
+                <span class="glyphicon glyphicon-time"></span> Fikset finisa laiku
+            </button>
+        </div>
+        <div class="col-xs-6">
+            <br>
+            <table class="table table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Seciba</th>
+                        <th>Laiks</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="finish in indFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
+                        <td>{{ finish.slot }}</td>
+                        <td>{{ finish.finish }}</td>
+                        <td>
+                            <button type="button"
+                                    class="btn btn-xs"
+                                    ng-click="indFinTimeCtrl.toogleState($index)"
+                                    ng-class="{ 'btn-danger': finish.disabled === false, 'btn-success': finish.disabled === true }">
+                                <span class="glyphicon" ng-class="{ 'glyphicon-trash': finish.disabled === false, 'glyphicon-check': finish.disabled === true }"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
