@@ -1,0 +1,45 @@
+<br>
+<div class="panel panel-default">
+    <div class="panel-heading">Sacensibu laiki</div>
+    <div class="panel-body">
+        <form class="form-horizontal" ng-submit="evtCtrl.saveEvent()">
+            <div class="form-group">
+                <label for="inputEventDate" class="col-sm-3 control-label">Sacensibu datums un laiks</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputEventDate" placeholder="Datums" ng-model="evtCtrl.event.startDate">
+                    <p class="help-block"><strong>Formats: </strong>2015-07-14T20:00:00+03:00</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputStartInterval" class="col-sm-3 control-label">Starta intervals</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputStartInterval" placeholder="Starta intervals" ng-model="evtCtrl.event.startInterval">
+                    <p class="help-block">Starpiba sekundes startam. Si vertiba neietekme rezultatus.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Saglabat
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+<div class="panel panel-default">
+    <div class="panel-heading">Grupu sadalijums</div>
+    <div class="panel-body">
+        Panel content
+    </div>
+</div>
+
+<br>
+<div class="panel panel-default">
+    <div class="panel-heading">Protokolu grupu atsifrejumi</div>
+    <div class="panel-body">
+        Panel content
+    </div>
+</div>

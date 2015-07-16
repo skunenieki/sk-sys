@@ -40,4 +40,10 @@ class IdividualTurnController extends Controller
 
         return $turn;
     }
+
+    public function destroy($id)
+    {
+        IndividualTurn::destroy($id);
+        return;
+    }
 }

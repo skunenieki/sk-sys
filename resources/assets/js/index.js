@@ -14,7 +14,10 @@ require('bootstrap/js/collapse');
 require('ng-tags-input');
 require('./partials');
 
+require('./services/EventService');
+require('./services/OptionService');
 require('./services/IndividualService');
+require('./services/OptionStateService');
 require('./services/ParticipantService');
 require('./services/IndividualTurnService');
 require('./services/IndividualYearsService');
@@ -24,7 +27,7 @@ require('./services/IndividualFinishNumberService');
 require('./directives/ngRemoteValidate');
 
 require('./controllers/MainController');
-require('./controllers/EventYearController');
+require('./controllers/EventController');
 require('./controllers/IndividualController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
@@ -61,7 +64,10 @@ var skApp = angular.module('skApp', [
 
         'skApp.ngRemoteValidate',
 
+        'skApp.EventService',
+        'skApp.OptionService',
         'skApp.IndividualService',
+        'skApp.OptionStateService',
         'skApp.ParticipantService',
         'skApp.IndividualTurnService',
         'skApp.IndividualYearsService',
@@ -69,7 +75,7 @@ var skApp = angular.module('skApp', [
         'skApp.IndividualFinishNumberService',
 
         'skApp.MainController',
-        'skApp.EventYearController',
+        'skApp.EventController',
         'skApp.IndividualController',
         'skApp.ParticipantController',
         'skApp.RegistrationController',
@@ -93,6 +99,8 @@ var skApp = angular.module('skApp', [
             .when('/10km/registration', '10km.registration')
             .when('/10km/start', '10km.start')
             .when('/10km/turn', '10km.turn')
+            .when('/10km/turn/grid', '10km.turn.grid')
+            .when('/10km/turn/table', '10km.turn.table')
             .when('/10km/finish', '10km.finish')
             .when('/10km/chronometer', '10km.chronometer')
             .when('/10km/results', '10km.results')
@@ -123,6 +131,14 @@ var skApp = angular.module('skApp', [
                 .segment('turn', {
                     templateUrl: '10km/turn.html'
                 })
+                .within()
+                    .segment('grid', {
+                        templateUrl: '10km/turnGrid.html'
+                    })
+                    .segment('table', {
+                        templateUrl: '10km/turnTable.html'
+                    })
+                    .up()
                 .segment('finish', {
                     templateUrl: '10km/finish.html'
                 })
@@ -197,9 +213,38 @@ var skApp = angular.module('skApp', [
                 })
                 .up()
             .when('/settings', 'settings')
+            .when('/settings/new', 'settings.new')
+            .when('/settings/:eventYear', 'settings.eventyear')
+            .when('/settings/:eventYear/10km', 'settings.eventyear.10km')
+            .when('/settings/:eventYear/mtb', 'settings.eventyear.mtb')
+            .when('/settings/:eventYear/triathlon', 'settings.eventyear.triathlon')
+            .when('/settings/:eventYear/football', 'settings.eventyear.football')
             .segment('settings', {
                 templateUrl: 'settings/settings.html',
             })
+            .within()
+                .segment('new', {
+                     templateUrl: 'settings/new.html',
+                })
+                .segment('eventyear', {
+                    templateUrl: 'settings/settingsYear.html',
+                    dependencies: ['eventYear']
+                })
+                .within()
+                    .segment('10km', {
+                        templateUrl: 'settings/10km.html',
+                    })
+                    .segment('mtb', {
+                         templateUrl: 'settings/mtb.html',
+                    })
+                    .segment('triathlon', {
+                         templateUrl: 'settings/triathlon.html',
+                    })
+                    .segment('football', {
+                         templateUrl: 'settings/football.html',
+                    })
+                    .up()
+                .up()
 
         $routeProvider.otherwise({ redirectTo: '/' });
     }]);

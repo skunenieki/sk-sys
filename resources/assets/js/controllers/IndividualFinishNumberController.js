@@ -1,10 +1,11 @@
 angular.module('skApp.IndividualFinishNumberController', [])
-.controller('IndividualFinishNumberController', ['$interval', '$http', 'IndividualFinishNumberService', function($interval, $http, IndividualFinishNumberService) {
+.controller('IndividualFinishNumberController', ['$interval', '$http', 'IndividualFinishNumberService', 'IndividualFinishTimeService', function($interval, $http, IndividualFinishNumberService, IndividualFinishTimeService) {
     var self = this;
     var _ = require('underscore');
 
     self.manualNumber       = null;
-    self.finished           = IndividualFinishNumberService.query();;
+    self.finished           = IndividualFinishNumberService.query();
+    self.finishes           = []; // IndividualFinishTimeService.query();
     self.potentialFinishers = [];
 
     self.markFinish = function(idx) {
@@ -66,4 +67,10 @@ angular.module('skApp.IndividualFinishNumberController', [])
 
     $interval(self.updatePotentialFinishers, 5000);
     self.updatePotentialFinishers();
+
+    self.updateFinishes = function() {
+        self.finishes = IndividualFinishTimeService.query();
+    };
+
+    self.updateFinishes();
 }]);

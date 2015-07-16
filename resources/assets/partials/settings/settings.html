@@ -1,1 +1,21 @@
-settings
+<br>
+<div class="row" ng-controller="EventController as evtCtrl">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a ng-href="#{{ 'settings' | routeSegmentUrl }}/new">
+                    <span class="glyphicon glyphicon-plus"></span> Izveidot jaunu
+                </a>
+            </li>
+            <li ng-repeat="event in evtCtrl.events | orderBy: '-eventYear'"
+                ng-class="{active: ('settings.eventyear' | routeSegmentStartsWith) && ('eventYear' | routeSegmentParam) == event.eventYear}">
+                <a ng-href="#{{ 'settings' | routeSegmentUrl }}/{{ event.eventYear }}/10km"
+                   ng-click="evtCtrl.changeEventModel(event.eventYear)">
+                    <span ng-show="mainCtrl.options.get('activeEventYear') == event.eventYear" class="glyphicon glyphicon-ok"></span> {{ event.eventYear }}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-10" app-view-segment="1"></div>
+</div>

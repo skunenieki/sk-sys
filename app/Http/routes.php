@@ -12,6 +12,15 @@ $app->group(['middleware' => 'auth'], function ($app) {
 
     $app->get('participants', 'Skunenieki\System\Http\Controllers\ParticipantController@index');
 
+    $app->get('options', 'Skunenieki\System\Http\Controllers\OptionController@index');
+    $app->get('options/{optionName}', 'Skunenieki\System\Http\Controllers\OptionController@show');
+    $app->put('options/{optionName}', 'Skunenieki\System\Http\Controllers\OptionController@update');
+
+    $app->get('events', 'Skunenieki\System\Http\Controllers\EventController@index');
+    $app->post('events', 'Skunenieki\System\Http\Controllers\EventController@store');
+    $app->put('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@update');
+    $app->delete('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@destroy');
+
     $app->get('10km', 'Skunenieki\System\Http\Controllers\IdividualController@index');
     $app->post('10km', 'Skunenieki\System\Http\Controllers\IdividualController@store');
     $app->get('10km/statistics', 'Skunenieki\System\Http\Controllers\IdividualController@statistics');
@@ -20,13 +29,12 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('10km/finish', 'Skunenieki\System\Http\Controllers\IdividualFinishController@finish');
     $app->get('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@index');
     $app->post('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@store');
+    $app->delete('10km/turns/{id}', 'Skunenieki\System\Http\Controllers\IdividualTurnController@destroy');
     $app->get('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@index');
     $app->post('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@store');
     $app->get('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@index');
     $app->post('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@store');
     $app->put('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@update');
-
-
 
     $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
     $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');

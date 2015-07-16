@@ -79,13 +79,15 @@
                     <thead>
                         <tr>
                             <th>Seciba</th>
+                            <th>Finiss</th>
                             <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="finished in indFinNumCtrl.finished | limitTo: 30">
-                            <td>{{ finished.slot }}</td>
-                            <td>{{ finished.number }}</td>
+                        <tr ng-repeat="finish in indFinNumCtrl.finishes | limitTo: 30">
+                            <td>{{ finish.slot }}</td>
+                            <td>{{ finish.finish }}</td>
+                            <td>{{ finish.number }}</td>
                         </tr>
                     </tbody>
                 </table>

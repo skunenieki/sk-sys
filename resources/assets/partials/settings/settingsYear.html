@@ -1,0 +1,46 @@
+<br>
+
+<div class="pull-right">
+    <button type="button"
+            class="btn btn-sm btn-warning"
+            ng-hide="mainCtrl.options.get('activeEventYear') == ('eventYear' | routeSegmentParam)"
+            ng-really-message="Vai tiesam aktivizet so sacensibu gadu?"
+            ng-really-click="evtCtrl.activateEvent(('eventYear' | routeSegmentParam))">
+        <span class="glyphicon glyphicon-ok"></span>
+    </button>
+
+    <button type="button"
+            class="btn btn-danger btn-sm"
+            ng-hide="mainCtrl.options.get('activeEventYear') == ('eventYear' | routeSegmentParam)"
+            ng-really-message="Vai tiesam dzest so sacensibu gadu?"
+            ng-really-click="evtCtrl.deleteEvent(('eventYear' | routeSegmentParam))">
+        <span class="glyphicon glyphicon-trash"></span>
+    </button>
+</div>
+
+<ul class="nav nav-tabs">
+    <li role="presentation"
+        ng-class="{active: ('settings.eventyear.10km' | routeSegmentStartsWith)}">
+        <a ng-href="#{{ 'settings.eventyear.10km' | routeSegmentUrl }}">10KM</a>
+    </li>
+    <li role="presentation"
+        ng-class="{active: ('settings.eventyear.mtb' | routeSegmentStartsWith)}">
+        <a ng-href="#{{ 'settings.eventyear.mtb' | routeSegmentUrl }}">MTB</a>
+    </li>
+    <li role="presentation"
+        ng-class="{active: ('settings.eventyear.triathlon' | routeSegmentStartsWith)}">
+        <a ng-href="#{{ 'settings.eventyear.triathlon' | routeSegmentUrl }}">Triatlons</a>
+    </li>
+    <li role="presentation"
+        ng-class="{active: ('settings.eventyear.football' | routeSegmentStartsWith)}">
+        <a ng-href="#{{ 'settings.eventyear.football' | routeSegmentUrl }}">Futbols</a>
+    </li>
+    <li role="presentation">
+        <a ng-really-message="Vai tiesam dzest so sacensibu gadu?"
+           ng-really-click="evtCtrl.deleteEvent(('eventYear' | routeSegmentParam))">
+
+        </a>
+    </li>
+</ul>
+
+<div app-view-segment="2"></div>

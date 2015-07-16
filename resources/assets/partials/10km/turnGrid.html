@@ -1,0 +1,90 @@
+<div class="row" ng-controller="IndividualTurnController as indTurnCtrl">
+    <div class="col-xs-8">
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:12">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:18">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:24">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:30">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:36">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="turning in indTurnCtrl.turns | limitTo: 6:42">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn($index)" role="button">{{ turning.number }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="row">
+            <div class="col-xs-6">
+                <br>
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indTurnCtrl.setTurn(false)" role="button">Nezinams</button>
+            </div>
+            <div class="col-xs-6">
+                <br>
+                <form>
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="#" ng-model="indTurnCtrl.manualNumber">
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="indTurnCtrl.setTurn(false)">Pievienot</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-hover table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Seciba</th>
+                            <th>#</th>
+                            <th>Laiks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="turned in indTurnCtrl.turned | limitTo: 20"
+                            ng-class="{ 'warning': turned.manual === true, 'danger': turned.number === null }">
+                            <td>{{ turned.slot }}</td>
+                            <td>{{ turned.number }}</td>
+                            <td>{{ turned.turn }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

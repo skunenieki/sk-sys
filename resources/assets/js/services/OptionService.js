@@ -1,7 +1,7 @@
-angular.module('skApp.IndividualTurnService', [])
-.factory('IndividualTurnService', ['$resource', function($resource) {
+angular.module('skApp.OptionService', [])
+.factory('OptionService', ['$resource', function($resource) {
     return $resource(
-        '/10km/turns/:id',
+        '/options/:id',
         {
             id:'@id',
         },

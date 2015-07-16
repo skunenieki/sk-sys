@@ -10,6 +10,12 @@ angular.module('skApp.IndividualTurnController', [])
     self.turns  = [];
     self.turned = IndividualTurnService.query();
 
+    self.deleteTurn = function(idx) {
+        IndividualTurnService.delete({id: self.turned[idx].id}, function() {
+            self.turned.splice(idx, 1);
+        });
+    };
+
     self.setTurn = function(idx) {
         var number = null;
         var manual = false;

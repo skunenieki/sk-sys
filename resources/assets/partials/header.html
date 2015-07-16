@@ -12,11 +12,11 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li ng-class="{active: ('10km' | routeSegmentStartsWith)}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">10KM</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">10KM</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ '10km.registration' | routeSegmentUrl }}">Registracija</a></li>
                         <li><a ng-href="#{{ '10km.start' | routeSegmentUrl }}">Starts</a></li>
-                        <li><a ng-href="#{{ '10km.turn' | routeSegmentUrl }}">Apgrieziens</a></li>
+                        <li><a ng-href="#{{ '10km.turn.grid' | routeSegmentUrl }}">Apgrieziens</a></li>
                         <li><a ng-href="#{{ '10km.finish' | routeSegmentUrl }}">Finiss</a></li>
                         <li><a ng-href="#{{ '10km.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
                         <li class="divider"></li>
@@ -27,14 +27,14 @@
                     </ul>
                 </li>
                 <li ng-class="{active: ('mtb' | routeSegmentStartsWith)}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">MTB</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">MTB</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ 'mtb.registration' | routeSegmentUrl }}">Registracija</a></li>
                         <li><a ng-href="#{{ 'mtb.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('triathlon' | routeSegmentStartsWith)}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Triatlons</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">Triatlons</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ 'triathlon.registration' | routeSegmentUrl }}">Registracija</a></li>
                         <li><a ng-href="#{{ 'triathlon.turn' | routeSegmentUrl }}">Apgrieziens</a></li>
@@ -44,13 +44,13 @@
                     </ul>
                 </li>
                 <li ng-class="{active: ('football' | routeSegmentStartsWith)}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Futbols</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">Futbols</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ 'football.registration' | routeSegmentUrl }}">Registracija</a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('archive' | routeSegmentStartsWith)}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Arhivs</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">Arhivs</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ 'archive.10km' | routeSegmentUrl }}">10KM</a></li>
                     </ul>
@@ -58,10 +58,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-cog"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-cog"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Lietotaji</a></li>
-                        <li><a href="#{{ 'settings' | routeSegmentUrl }}">Uzstadijumi</a></li>
+                        <li><a ng-href="#">Lietotaji</a></li>
+                        <li><a ng-href="#{{ 'settings' | routeSegmentUrl }}">Uzstadijumi</a></li>
                     </ul>
                 </li>
             </ul>

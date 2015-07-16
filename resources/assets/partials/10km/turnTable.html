@@ -1,0 +1,32 @@
+<div class="row" ng-controller="IndividualTurnController as indTurnCtrl">
+    <div class="col-xs-12">
+        <table class="table table-hover table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Seciba</th>
+                    <th>Dalibnieka numurs</th>
+                    <th>Laiks</th>
+                    <th>Izveidots</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="turned in indTurnCtrl.turned"
+                    ng-class="{ 'warning': turned.manual === true, 'danger': turned.number === null }">
+                    <td>{{ turned.slot }}</td>
+                    <td>{{ turned.number }}</td>
+                    <td>{{ turned.turn }}</td>
+                    <td>{{ turned.created_at }}</td>
+                    <td>
+                        <button type="button"
+                                class="btn btn-danger btn-xs"
+                                ng-really-message="Vai tiesam dzest apgriezienu?"
+                                ng-really-click="indTurnCtrl.deleteTurn($index)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

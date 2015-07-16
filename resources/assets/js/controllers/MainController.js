@@ -1,4 +1,7 @@
 angular.module('skApp.MainController', [])
-    .controller('MainController', [function() {
+    .controller('MainController', ['OptionStateService', function(OptionStateService) {
         var self = this;
+
+        self.options = OptionStateService;
+        OptionStateService.refreshOptions();
     }]);
