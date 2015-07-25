@@ -12,8 +12,13 @@ class MainViewController extends Controller
 
         $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
 
-        return view('index', [
-            'indActiveEventStart' => $activeEvent->settings['startDate'] ?: null,
-        ]);
+        $settings = [
+            'indActiveEventStart' => null,
+        ];
+        if (null !== $activeEvent) {
+            $settings['indActiveEventStart'] = $activeEvent->settings['startDate'] ?: null;
+        }
+
+        return view('index', $settings);
     }
 }
