@@ -7,7 +7,7 @@
     },
     "angular-bootstrap": {
       "version": "0.12.2",
-      "from": "angular-bootstrap@0.12.2",
+      "from": "https://registry.npmjs.org/angular-bootstrap/-/angular-bootstrap-0.12.2.tgz",
       "resolved": "https://registry.npmjs.org/angular-bootstrap/-/angular-bootstrap-0.12.2.tgz"
     },
     "angular-resource": {

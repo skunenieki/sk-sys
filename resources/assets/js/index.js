@@ -6,7 +6,7 @@ require('angular/angular.min');
 require('angular/angular.min');
 require('angular-resource/angular-resource.min');
 require('angular-route/angular-route.min');
-require('angular-bootstrap/dist/ui-bootstrap');
+require('angular-bootstrap/ui-bootstrap');
 require('./vendor/angular-route-segment');
 require('bootstrap/js/dropdown');
 require('bootstrap/js/transition');
