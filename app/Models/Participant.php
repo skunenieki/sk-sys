@@ -20,4 +20,9 @@ class Participant extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at'];
+
+    public function individual()
+    {
+        return $this->hasMany('Skunenieki\System\Models\Individual', 'participantId');
+    }
 }
