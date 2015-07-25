@@ -4,6 +4,8 @@ namespace Skunenieki\System\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Skunenieki\System\Models\Event;
+use Skunenieki\System\Models\Option;
 use Skunenieki\System\Models\Individual;
 use Skunenieki\System\Models\IndividualTurn;
 
@@ -21,10 +23,11 @@ class IdividualTurnController extends Controller
     {
         $number = $request->input('number', null);
 
-        // TODO: Change start date so that it comes from settings
+        $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
+
         $turn = new IndividualTurn;
         $turn->number    = $number;
-        $turn->turn      = Carbon::now()->diff(new Carbon('2015-07-14T20:00:00+03:00'))->format('%H:%I:%S');
+        $turn->turn      = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
         $turn->slot      = IndividualTurn::where('eventYear', 2015)->count() + 1;
         $turn->manual    = $request->input('manual', false);
         $turn->eventYear = 2015;

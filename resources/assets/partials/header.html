@@ -17,8 +17,8 @@
                         <li><a ng-href="#{{ '10km.registration' | routeSegmentUrl }}">Registracija</a></li>
                         <li><a ng-href="#{{ '10km.start' | routeSegmentUrl }}">Starts</a></li>
                         <li><a ng-href="#{{ '10km.turn.grid' | routeSegmentUrl }}">Apgrieziens</a></li>
-                        <li><a ng-href="#{{ '10km.finish' | routeSegmentUrl }}">Finiss</a></li>
-                        <li><a ng-href="#{{ '10km.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
+                        <li><a ng-href="#{{ '10km.finish.input' | routeSegmentUrl }}">Finiss</a></li>
+                        <li><a ng-href="#{{ '10km.chronometer.input' | routeSegmentUrl }}">Hronometrs</a></li>
                         <li class="divider"></li>
                         <li><a ng-href="#{{ '10km.participants' | routeSegmentUrl }}">Dalibnieki</a></li>
                         <li><a ng-href="#{{ '10km.results' | routeSegmentUrl }}">Protokoli</a></li>
@@ -57,10 +57,13 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <p class="navbar-text" ng-show="mainCtrl.timer() !== null">
+                    <span class="glyphicon glyphicon-time"></span> {{ mainCtrl.timer() }}
+                </p>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="glyphicon glyphicon-cog"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a ng-href="#">Lietotaji</a></li>
+                        <li><a>Lietotaji</a></li>
                         <li><a ng-href="#{{ 'settings' | routeSegmentUrl }}">Uzstadijumi</a></li>
                     </ul>
                 </li>

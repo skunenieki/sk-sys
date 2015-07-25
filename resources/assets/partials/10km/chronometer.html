@@ -2,41 +2,28 @@
     <div class="row">
         <div class="col-xs-6">
             <br>
+            <div class="panel panel-default text-right">
+                <div class="panel-body">
+                    <h1>{{ mainCtrl.timer() }}</h1>
+                </div>
+            </div>
             <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinTimeCtrl.finish()" role="button">
                 <span class="glyphicon glyphicon-time"></span> Fikset finisa laiku
             </button>
         </div>
         <div class="col-xs-6">
             <br>
-            <table class="table table-hover table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <th>Seciba</th>
-                        <th>Laiks</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="finish in indFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
-                        <td>
-                            <span ng-if="finish.disabled === false">{{ finish.slot }}</span>
-                            <del ng-if="finish.disabled === true">{{ finish.slot }}</del>
-                        </td>
-                        <td>
-                            <span ng-if="finish.disabled === false">{{ finish.finish }}</span>
-                            <del ng-if="finish.disabled === true">{{ finish.finish }}</del>
-                        </td>
-                        <td>
-                            <button type="button"
-                                    class="btn btn-xs"
-                                    ng-click="indFinTimeCtrl.toogleState($index)"
-                                    ng-class="{ 'btn-danger': finish.disabled === false, 'btn-success': finish.disabled === true }">
-                                <span class="glyphicon" ng-class="{ 'glyphicon-trash': finish.disabled === false, 'glyphicon-check': finish.disabled === true }"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: ('10km.chronometer.input' | routeSegmentStartsWith)}" role="presentation">
+                    <a ng-href="#{{ '10km.chronometer.input' | routeSegmentUrl }}">Ievade</a>
+                </li>
+                <li ng-class="{active: ('10km.chronometer.edit' | routeSegmentStartsWith)}" role="presentation">
+                    <a ng-href="#{{ '10km.chronometer.edit' | routeSegmentUrl }}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </li>
+            </ul>
+            <div app-view-segment="2"></div>
         </div>
     </div>
 </div>

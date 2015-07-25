@@ -18,7 +18,7 @@
     <script>
         angular.module('AppConfig').config(function (AppConfigProvider) {
             AppConfigProvider.set({
-                x: '<?php echo $x; ?>',
+                indActiveEventStart: '<?php echo $indActiveEventStart; ?>',
             });
         });
     </script>

@@ -1,0 +1,14 @@
+<table class="table table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Seciba</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="finish in indFinNumCtrl.finishes | limitTo: 30">
+            <td>{{ indFinNumCtrl.finishes.length - $index }}</td>
+            <td>{{ finish.number }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,10 +1,9 @@
 angular.module('skApp.IndividualTurnController', [])
-.controller('IndividualTurnController', ['$interval', '$http', 'IndividualTurnService', function($interval, $http, IndividualTurnService) {
+.controller('IndividualTurnController', ['$interval', '$http', 'IndividualTurnService', 'PersistentStateService', function($interval, $http, IndividualTurnService, PersistentStateService) {
     var self = this;
     var _ = require('underscore');
 
     // TODO: Add processing indication when someone hits the number button
-
     self.manualNumber = null;
 
     self.turns  = [];
@@ -73,6 +72,9 @@ angular.module('skApp.IndividualTurnController', [])
             });
     };
 
-    $interval(self.updatePotentialTurns, 5000);
+    if (false === PersistentStateService.turnInterval) {
+        PersistentStateService.turnInterval = $interval(self.updatePotentialTurns, 5000);
+    }
+
     self.updatePotentialTurns();
 }]);

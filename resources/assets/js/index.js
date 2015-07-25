@@ -20,6 +20,7 @@ require('./services/IndividualService');
 require('./services/OptionStateService');
 require('./services/ParticipantService');
 require('./services/IndividualTurnService');
+require('./services/PersistentStateService');
 require('./services/IndividualYearsService');
 require('./services/IndividualFinishTimeService');
 require('./services/IndividualFinishNumberService');
@@ -70,6 +71,7 @@ var skApp = angular.module('skApp', [
         'skApp.OptionStateService',
         'skApp.ParticipantService',
         'skApp.IndividualTurnService',
+        'skApp.PersistentStateService',
         'skApp.IndividualYearsService',
         'skApp.IndividualFinishTimeService',
         'skApp.IndividualFinishNumberService',
@@ -102,7 +104,11 @@ var skApp = angular.module('skApp', [
             .when('/10km/turn/grid', '10km.turn.grid')
             .when('/10km/turn/table', '10km.turn.table')
             .when('/10km/finish', '10km.finish')
+            .when('/10km/finish/input', '10km.finish.input')
+            .when('/10km/finish/edit', '10km.finish.edit')
             .when('/10km/chronometer', '10km.chronometer')
+            .when('/10km/chronometer/input', '10km.chronometer.input')
+            .when('/10km/chronometer/edit', '10km.chronometer.edit')
             .when('/10km/results', '10km.results')
             .when('/10km/diplomas', '10km.diplomas')
             .segment('10km', {
@@ -142,9 +148,25 @@ var skApp = angular.module('skApp', [
                 .segment('finish', {
                     templateUrl: '10km/finish.html'
                 })
+                .within()
+                    .segment('input', {
+                        templateUrl: '10km/finish-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: '10km/finish-edit.html'
+                    })
+                    .up()
                 .segment('chronometer', {
                     templateUrl: '10km/chronometer.html'
                 })
+                .within()
+                    .segment('input', {
+                        templateUrl: '10km/chronometer-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: '10km/chronometer-edit.html'
+                    })
+                    .up()
                 .segment('results', {
                     templateUrl: '10km/results.html'
                 })

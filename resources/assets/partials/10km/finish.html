@@ -75,22 +75,17 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <table class="table table-hover table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th>Seciba</th>
-                            <th>Finiss</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="finish in indFinNumCtrl.finishes | limitTo: 30">
-                            <td>{{ finish.slot }}</td>
-                            <td>{{ finish.finish }}</td>
-                            <td>{{ finish.number }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: ('10km.finish.input' | routeSegmentStartsWith)}" role="presentation">
+                        <a ng-href="#{{ '10km.finish.input' | routeSegmentUrl }}">Ievade</a>
+                    </li>
+                    <li ng-class="{active: ('10km.finish.edit' | routeSegmentStartsWith)}" role="presentation">
+                        <a ng-href="#{{ '10km.finish.edit' | routeSegmentUrl }}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </li>
+                </ul>
+                <div app-view-segment="2"></div>
             </div>
         </div>
     </div>

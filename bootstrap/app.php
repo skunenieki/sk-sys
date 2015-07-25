@@ -87,6 +87,7 @@ $app->routeMiddleware([
 */
 
 // $app->register('Skunenieki\System\Providers\AppServiceProvider');
+$app->register(Skunenieki\System\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

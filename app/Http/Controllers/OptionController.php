@@ -21,7 +21,7 @@ class OptionController extends Controller
     {
         $option = Option::where('key', $optionName)->first();
 
-        if (0 === $option->count()) {
+        if (null === $option || 0 === $option->count()) {
             $option = new Option;
             $option->key = $optionName;
         }

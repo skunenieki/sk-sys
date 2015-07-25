@@ -12,8 +12,6 @@ angular.module('skApp.OptionStateService', [])
                 _.each(response, function(value) {
                     self.options[value.key] = value.value;
                 });
-
-                console.log(self.options);
             });
         }
     };

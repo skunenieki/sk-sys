@@ -1,13 +1,10 @@
 <?php
 
 $app->group(['middleware' => 'auth'], function ($app) {
-    $app->get('/', function() {
-        return view('index', [
-            'x' => 'zzz',
-        ]);
-    });
+    $app->get('/', 'Skunenieki\System\Http\Controllers\MainViewController@render');
 
     $app->get('dbdump', 'Skunenieki\System\Http\Controllers\DBDumpController@dump');
+    $app->get('test', 'Skunenieki\System\Http\Controllers\TestController@test');
     $app->get('authenticate', 'Skunenieki\System\Http\Controllers\AuthenticationController@authenticate');
 
     $app->get('participants', 'Skunenieki\System\Http\Controllers\ParticipantController@index');
@@ -18,6 +15,7 @@ $app->group(['middleware' => 'auth'], function ($app) {
 
     $app->get('events', 'Skunenieki\System\Http\Controllers\EventController@index');
     $app->post('events', 'Skunenieki\System\Http\Controllers\EventController@store');
+    $app->get('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@show');
     $app->put('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@update');
     $app->delete('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@destroy');
 
@@ -32,9 +30,11 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->delete('10km/turns/{id}', 'Skunenieki\System\Http\Controllers\IdividualTurnController@destroy');
     $app->get('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@index');
     $app->post('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@store');
+    $app->delete('10km/finishnumbers/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@destroy');
     $app->get('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@index');
     $app->post('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@store');
     $app->put('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@update');
+    $app->delete('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@destroy');
 
     $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
     $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');

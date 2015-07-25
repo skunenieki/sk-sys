@@ -1,5 +1,5 @@
 angular.module('skApp.EventController', [])
-.controller('EventController', ['$routeSegment', 'EventService', 'OptionService', 'OptionStateService', function($routeSegment, EventService, OptionService, OptionStateService) {
+.controller('EventController', ['$window', '$routeSegment', 'EventService', 'OptionService', 'OptionStateService', function($window, $routeSegment, EventService, OptionService, OptionStateService) {
     var self = this;
     var _ = require('underscore');
 
@@ -23,13 +23,14 @@ angular.module('skApp.EventController', [])
         self.eventIdx = _.indexOf(self.events, _.find(self.events, function(event) { return event.eventYear == year }));
         self.event = self.events[self.eventIdx];
 
-        _.each(self.event.settings, function(value, key) {
-            self.event[key] = value;
-        });
+        if (typeof self.event !== 'undefined') {
+            _.each(self.event.settings, function(value, key) {
+                self.event[key] = value;
+            });
+        }
     };
 
     self.saveEvent = function() {
-        console.log(self.events[self.eventIdx]);
         EventService.update(self.events[self.eventIdx]);
     };
 
@@ -47,13 +48,12 @@ angular.module('skApp.EventController', [])
     self.activateEvent = function (year) {
         OptionService.update({id: 'activeEventYear', value: year}, function(response) {
             OptionStateService.refreshOptions(true);
-            console.log(response);
+            $window.location.reload();
         });
     };
 
     self.deleteEvent = function (year) {
         EventService.delete({eventYear: year}, function(response) {
-            console.log(response);
             // remove from event array here
         });
     };

@@ -5,7 +5,6 @@ namespace Skunenieki\System\Http\Controllers;
 use mysqli;
 use MySQLDump;
 
-
 class DBDumpController extends Controller
 {
     public function dump()

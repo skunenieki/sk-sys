@@ -1,12 +1,17 @@
 angular.module('skApp.IndividualFinishNumberController', [])
-.controller('IndividualFinishNumberController', ['$interval', '$http', 'IndividualFinishNumberService', 'IndividualFinishTimeService', function($interval, $http, IndividualFinishNumberService, IndividualFinishTimeService) {
+.controller('IndividualFinishNumberController', ['$interval', '$http', 'IndividualFinishNumberService', 'PersistentStateService', function($interval, $http, IndividualFinishNumberService, PersistentStateService) {
     var self = this;
     var _ = require('underscore');
 
     self.manualNumber       = null;
-    self.finished           = IndividualFinishNumberService.query();
-    self.finishes           = []; // IndividualFinishTimeService.query();
+    self.finishes           = [];
     self.potentialFinishers = [];
+
+    self.deleteFinishNumber = function(idx) {
+        IndividualFinishNumberService.delete({id: self.finishes[idx].id}, function() {
+            self.finishes.splice(idx, 1);
+        });
+    };
 
     self.markFinish = function(idx) {
         var number = null;
@@ -35,7 +40,7 @@ angular.module('skApp.IndividualFinishNumberController', [])
                     self.manualNumber = null;
                 }
 
-                self.finished.unshift(response);
+                self.finishes.unshift(response);
             }, function(response) {
                 // Failure
             });
@@ -65,11 +70,14 @@ angular.module('skApp.IndividualFinishNumberController', [])
             });
     };
 
-    $interval(self.updatePotentialFinishers, 5000);
+    if (false === PersistentStateService.potentialFinishersTimer) {
+        PersistentStateService.potentialFinishersTimer = $interval(self.updatePotentialFinishers, 5000);
+    }
+
     self.updatePotentialFinishers();
 
     self.updateFinishes = function() {
-        self.finishes = IndividualFinishTimeService.query();
+        self.finishes = IndividualFinishNumberService.query();
     };
 
     self.updateFinishes();

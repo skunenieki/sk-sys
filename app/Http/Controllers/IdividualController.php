@@ -66,9 +66,9 @@ class IdividualController extends Controller
 
         $result = $result->get();
 
-        $result->map(function($item) {
-            $item->result = $item->result;
-        });
+        // $result->map(function($item) {
+        //     $item->result = $item->result;
+        // });
 
         return $result;
     }
@@ -77,7 +77,7 @@ class IdividualController extends Controller
     {
         $individual = Individual::with('teams')->findOrFail($id);
 
-        $individual->result = $individual->result;
+        // $individual->result = $individual->result;
 
         return $individual;
     }

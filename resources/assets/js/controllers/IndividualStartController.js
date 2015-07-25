@@ -1,9 +1,9 @@
 angular.module('skApp.IndividualStartController', [])
-.controller('IndividualStartController', ['$interval', 'IndividualService', function($interval, IndividualService) {
+.controller('IndividualStartController', ['AppConfig', '$interval', 'IndividualService', 'PersistentStateService', function(AppConfig, $interval, IndividualService, PersistentStateService) {
     var self = this;
     var moment = require('moment');
 
-    self.individualStartTime = '2015-07-14T20:00:00+03:00';
+    self.individualStartTime = AppConfig.indActiveEventStart;
 
     self.currentTime = false;
 
@@ -150,8 +150,9 @@ angular.module('skApp.IndividualStartController', [])
         }
     }
 
-    $interval(self.updateStartTimes, 1000);
-
+    if (false === PersistentStateService.startInterval) {
+        PersistentStateService.startInterval = $interval(self.updateStartTimes, 1000);
+    }
 
     self.setStartTimes();
 }]);

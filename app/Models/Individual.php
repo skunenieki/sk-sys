@@ -17,6 +17,8 @@ class Individual extends Model
      */
     protected $table = 'individual';
 
+    protected $appends = ['result'];
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -125,10 +127,16 @@ class Individual extends Model
     public function getResultAttribute($value)
     {
         if (null !== $this->start && null !== $this->finish) {
-            return (new Carbon($this->start))->diff(
-                    (new Carbon($this->finish))->addSeconds(
-                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
-                )->format('%H:%I:%S');
+            $start = new Carbon($this->start);
+            $finish = new Carbon($this->finish);
+
+            if (null !== $this->penalty) {
+                $finish->addSeconds(
+                    (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00'))
+                );
+            }
+
+            return $start->diff($finish)->format('%H:%I:%S');;
         }
 
         return null;

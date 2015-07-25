@@ -12,6 +12,11 @@ class EventController extends Controller
         return Event::orderBy('eventYear', 'desc')->get();
     }
 
+    public function show($eventYear)
+    {
+        return Event::where('eventYear', $eventYear)->first();
+    }
+
     public function store(Request $request)
     {
         $event = new Event;

@@ -2,8 +2,12 @@
 
 namespace Skunenieki\System\Http\Controllers;
 
+use Event as LaravelEvent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Skunenieki\System\Models\Event;
+use Skunenieki\System\Models\Option;
+use Skunenieki\System\Events\UpdateFinish;
 use Skunenieki\System\Models\IndividualFinishTime;
 
 class IdividualFinishTimeController extends Controller
@@ -11,20 +15,22 @@ class IdividualFinishTimeController extends Controller
     public function index()
     {
         return IndividualFinishTime::where('eventYear', 2015)
-                                   ->orderBy('slot', 'desc')
+                                   ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
     }
 
     public function store(Request $request)
     {
-        // TODO: Change start date so that it comes from settings
+        $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
+
         $finishTime            = new IndividualFinishTime;
-        $finishTime->slot      = IndividualFinishTime::where('eventYear', 2015)->count() + 1;
-        $finishTime->finish    = Carbon::now()->diff(new Carbon('2015-07-14T20:00:00+03:00'))->format('%H:%I:%S');
+        $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2015;
         $finishTime->save();
+
+        LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -35,6 +41,18 @@ class IdividualFinishTimeController extends Controller
         $finishTime->disabled = $request->disabled;
         $finishTime->save();
 
+        LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
+
         return $finishTime;
+    }
+
+    public function destroy($id)
+    {
+        $finishTime = IndividualFinishTime::find($id);
+        $eventYear = $finishTime->eventYear;
+        $finishTime->delete();
+
+        LaravelEvent::fire(new UpdateFinish($eventYear));
+        return;
     }
 }

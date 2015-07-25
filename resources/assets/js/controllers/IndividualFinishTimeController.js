@@ -20,4 +20,10 @@ angular.module('skApp.IndividualFinishTimeController', [])
         console.log(self.finishTimes[idx]);
         IndividualFinishTimeService.update(self.finishTimes[idx]);
     };
+
+    self.deleteFinishTime = function(idx) {
+        IndividualFinishTimeService.delete({id: self.finishTimes[idx].id}, function() {
+            self.finishTimes.splice(idx, 1);
+        });
+    };
 }]);
