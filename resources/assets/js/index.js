@@ -29,7 +29,7 @@ require('./services/IndividualFinishTimeService');
 require('./services/IndividualFinishNumberService');
 
 require('./directives/ngRemoteValidate');
-require('./directives/ngreallyClick');
+require('./directives/ngReallyClick');
 
 require('./controllers/MtbController');
 require('./controllers/MainController');
