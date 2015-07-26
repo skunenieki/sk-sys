@@ -90,7 +90,7 @@ class Mtb extends Model
                 );
         }
 
-        return null;
+        return PHP_INT_MAX;
     }
 
     public function getResultAttribute()

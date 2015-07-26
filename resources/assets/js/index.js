@@ -211,6 +211,8 @@ var skApp = angular.module('skApp', [
             .when('/mtb/participants', 'mtb.participants')
             .when('/mtb/participants/:eventYear', 'mtb.participants.year')
             .when('/mtb/participants/:participantId/edit', 'mtb.participants.edit')
+            .when('/mtb/results', 'mtb.results')
+            .when('/mtb/diplomas', 'mtb.diplomas')
             .segment('mtb', {
                 templateUrl: 'mtb/main.html',
             })
@@ -253,6 +255,12 @@ var skApp = angular.module('skApp', [
                         templateUrl: 'mtb/finish-edit.html'
                     })
                     .up()
+                .segment('results', {
+                    templateUrl: 'mtb/results.html'
+                })
+                .segment('diplomas', {
+                    templateUrl: 'mtb/diplomas.html'
+                })
                 .up()
 
             .when('/triathlon', 'triathlon')

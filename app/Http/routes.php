@@ -1,5 +1,10 @@
 <?php
 
+$app->get('/10km/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\IndividualResultsController@resultsByGroups');
+$app->get('/10km/results/{eventYear}/summary', 'Skunenieki\System\Http\Controllers\IndividualResultsController@resultsSummary');
+
+$app->get('/mtb/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\MtbResultsController@resultsByGroups');
+
 $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('/', 'Skunenieki\System\Http\Controllers\MainViewController@render');
 
@@ -54,13 +59,6 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->put('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@update');
 
     $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
-});
-
-$app->get('results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\ResultsController@resultsByGroups');
-$app->get('results/{eventYear}/summary', 'Skunenieki\System\Http\Controllers\ResultsController@resultsSummary');
-
-$app->get('print', function() {
-    return view('print');
 });
 
 
