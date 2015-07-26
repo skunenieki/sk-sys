@@ -15,5 +15,9 @@ class EventServiceProvider extends ServiceProvider
         'Skunenieki\System\Events\UpdateFinish' => [
             'Skunenieki\System\Listeners\UpdateFinishListener',
         ],
+        'Skunenieki\System\Events\UpdateMtbFinish' => [
+            'Skunenieki\System\Listeners\UpdateMtbFinishListener',
+        ],
+
     ];
 }

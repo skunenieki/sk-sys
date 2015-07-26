@@ -14,27 +14,35 @@ require('bootstrap/js/collapse');
 require('ng-tags-input');
 require('./partials');
 
+require('./services/MtbService');
 require('./services/EventService');
 require('./services/OptionService');
 require('./services/IndividualService');
 require('./services/OptionStateService');
 require('./services/ParticipantService');
+require('./services/MtbFinishTimeService');
 require('./services/IndividualTurnService');
+require('./services/MtbFinishNumberService');
 require('./services/PersistentStateService');
 require('./services/IndividualYearsService');
 require('./services/IndividualFinishTimeService');
 require('./services/IndividualFinishNumberService');
 
 require('./directives/ngRemoteValidate');
+require('./directives/ngreallyClick');
 
+require('./controllers/MtbController');
 require('./controllers/MainController');
 require('./controllers/EventController');
 require('./controllers/IndividualController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
+require('./controllers/MtbFinishTimeController');
+require('./controllers/MtbParticipantController');
 require('./controllers/IndividualTurnController');
+require('./controllers/MtbFinishNumberController');
+require('./controllers/MtbRegistrationController');
 require('./controllers/IndividualStartController');
-require('./controllers/RecentlyRegisteredConrtoller');
 require('./controllers/IndividualFinishTimeController');
 require('./controllers/IndividualFinishNumberController');
 
@@ -63,29 +71,46 @@ var skApp = angular.module('skApp', [
         'view-segment',
         'ngTagsInput',
 
+        // Directives
+        'skApp.ngReallyClick',
         'skApp.ngRemoteValidate',
+
+        // Services
+        'skApp.MtbService',
+        'skApp.MtbFinishTimeService',
+        'skApp.MtbFinishNumberService',
 
         'skApp.EventService',
         'skApp.OptionService',
-        'skApp.IndividualService',
         'skApp.OptionStateService',
-        'skApp.ParticipantService',
+
+        'skApp.IndividualService',
         'skApp.IndividualTurnService',
         'skApp.PersistentStateService',
         'skApp.IndividualYearsService',
         'skApp.IndividualFinishTimeService',
         'skApp.IndividualFinishNumberService',
 
+        'skApp.ParticipantService',
+
+        // Controllers
         'skApp.MainController',
         'skApp.EventController',
+
+        'skApp.MtbController',
+        'skApp.MtbFinishTimeController',
+        'skApp.MtbParticipantController',
+        'skApp.MtbRegistrationController',
+        'skApp.MtbFinishNumberController',
+
         'skApp.IndividualController',
-        'skApp.ParticipantController',
-        'skApp.RegistrationController',
         'skApp.IndividualTurnController',
         'skApp.IndividualStartController',
-        'skApp.RecentlyRegisteredConrtoller',
         'skApp.IndividualFinishTimeController',
         'skApp.IndividualFinishNumberController',
+
+        'skApp.ParticipantController',
+        'skApp.RegistrationController',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider
@@ -177,7 +202,15 @@ var skApp = angular.module('skApp', [
 
             .when('/mtb', 'mtb')
             .when('/mtb/registration', 'mtb.registration')
+            .when('/mtb/finish', 'mtb.finish')
+            .when('/mtb/finish/input', 'mtb.finish.input')
+            .when('/mtb/finish/edit', 'mtb.finish.edit')
             .when('/mtb/chronometer', 'mtb.chronometer')
+            .when('/mtb/chronometer/input', 'mtb.chronometer.input')
+            .when('/mtb/chronometer/edit', 'mtb.chronometer.edit')
+            .when('/mtb/participants', 'mtb.participants')
+            .when('/mtb/participants/:eventYear', 'mtb.participants.year')
+            .when('/mtb/participants/:participantId/edit', 'mtb.participants.edit')
             .segment('mtb', {
                 templateUrl: 'mtb/main.html',
             })
@@ -185,9 +218,41 @@ var skApp = angular.module('skApp', [
                 .segment('registration', {
                     templateUrl: 'mtb/registration.html'
                 })
+                .segment('participants', {
+                    templateUrl: 'mtb/participants.html',
+                })
+                .within()
+                    .segment('year', {
+                        templateUrl: 'mtb/participant-table.html',
+                        dependencies: ['eventYear']
+                    })
+                    .segment('edit', {
+                        templateUrl: 'mtb/participant-edit.html',
+                        dependencies: ['participantId']
+                    })
+                    .up()
                 .segment('chronometer', {
                     templateUrl: 'mtb/chronometer.html'
                 })
+                .within()
+                    .segment('input', {
+                        templateUrl: 'mtb/chronometer-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: 'mtb/chronometer-edit.html'
+                    })
+                    .up()
+                .segment('finish', {
+                    templateUrl: 'mtb/finish.html'
+                })
+                .within()
+                    .segment('input', {
+                        templateUrl: 'mtb/finish-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: 'mtb/finish-edit.html'
+                    })
+                    .up()
                 .up()
 
             .when('/triathlon', 'triathlon')

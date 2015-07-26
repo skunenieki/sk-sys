@@ -14,9 +14,15 @@ class MainViewController extends Controller
 
         $settings = [
             'indActiveEventStart' => null,
+            'mtbActiveEventStart' => null,
         ];
+
         if (null !== $activeEvent) {
-            $settings['indActiveEventStart'] = $activeEvent->settings['startDate'] ?: null;
+            $settings['indActiveEventStart'] = isset($activeEvent->settings['startDate']) ? $activeEvent->settings['startDate'] : null;
+        }
+
+        if (null !== $activeEvent) {
+            $settings['mtbActiveEventStart'] = isset($activeEvent->settings['mtbStartDate']) ? $activeEvent->settings['mtbStartDate'] : null;
         }
 
         return view('index', $settings);

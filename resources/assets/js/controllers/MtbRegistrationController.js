@@ -1,5 +1,5 @@
-angular.module('skApp.RegistrationController', [])
-.controller('RegistrationController', ['$http', 'IndividualService', function($http, IndividualService) {
+angular.module('skApp.MtbRegistrationController', [])
+.controller('MtbRegistrationController', ['$http', 'MtbService', function($http, MtbService) {
     var self = this;
 
     self.capitalizeWords = function() {
@@ -15,7 +15,7 @@ angular.module('skApp.RegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = IndividualService.query({eventYear: 2015, sort: '-created_at'});
+    self.recentlyRegistered = MtbService.query({eventYear: 2015, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -30,16 +30,6 @@ angular.module('skApp.RegistrationController', [])
         });
     }
 
-    self.loadItems = function(teamName) {
-        return $http.get('/teams', {
-            params: {
-                name: teamName,
-            }
-        }).then(function(response) {
-            return response.data;
-        });
-    }
-
     self.onSelect = function ($item) {
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
@@ -47,7 +37,7 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.registerParticipant = function() {
-        var res = new IndividualService(self.participation);
+        var res = new MtbService(self.participation);
 
         var currentNumber = self.participation.number;
 
@@ -71,7 +61,7 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.loadMore = function() {
-        self.recentlyRegistered = IndividualService.query({
+        self.recentlyRegistered = MtbService.query({
             eventYear: 2015,
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
@@ -79,7 +69,7 @@ angular.module('skApp.RegistrationController', [])
     };
 
     self.delete = function(idx) {
-        IndividualService.delete({id: self.recentlyRegistered[idx].id}, function() {
+        MtbService.delete({id: self.recentlyRegistered[idx].id}, function() {
             self.recentlyRegistered.splice(idx, 1);
         });
     };
@@ -99,7 +89,7 @@ angular.module('skApp.RegistrationController', [])
 
             $http({
                 method: 'GET',
-                url: '/10km',
+                url: '/mtb',
                 params: {
                     name: self.participation.name,
                     birthYear: self.participation.birthYear,

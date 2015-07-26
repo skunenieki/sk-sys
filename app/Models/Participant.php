@@ -2,7 +2,6 @@
 
 namespace Skunenieki\System\Models;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model

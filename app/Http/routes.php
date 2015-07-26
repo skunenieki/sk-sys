@@ -35,10 +35,23 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->post('10km/finishtimes', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@store');
     $app->put('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@update');
     $app->delete('10km/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\IdividualFinishTimeController@destroy');
-
     $app->get('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@show');
     $app->delete('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@destroy');
     $app->put('10km/{id}', 'Skunenieki\System\Http\Controllers\IdividualController@update');
+
+    $app->get('mtb', 'Skunenieki\System\Http\Controllers\MtbController@index');
+    $app->post('mtb', 'Skunenieki\System\Http\Controllers\MtbController@store');
+    $app->get('mtb/finish', 'Skunenieki\System\Http\Controllers\MtbFinishController@finish');
+    $app->get('mtb/finishnumbers', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@index');
+    $app->post('mtb/finishnumbers', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@store');
+    $app->delete('mtb/finishnumbers/{id}', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@destroy');
+    $app->get('mtb/finishtimes', 'Skunenieki\System\Http\Controllers\MtbFinishTimeController@index');
+    $app->post('mtb/finishtimes', 'Skunenieki\System\Http\Controllers\MtbFinishTimeController@store');
+    $app->put('mtb/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\MtbFinishTimeController@update');
+    $app->delete('mtb/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\MtbFinishTimeController@destroy');
+    $app->get('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@show');
+    $app->delete('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@destroy');
+    $app->put('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@update');
 
     $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
 });

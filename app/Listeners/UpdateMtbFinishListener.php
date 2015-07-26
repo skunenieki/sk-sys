@@ -1,18 +1,33 @@
 <?php
 
-namespace Skunenieki\System\Http\Controllers;
+namespace Skunenieki\System\Listeners;
 
+use Illuminate\Queue\InteractsWithQueue;
 use Skunenieki\System\Models\Mtb;
 use Skunenieki\System\Models\MtbFinishTime;
 use Skunenieki\System\Models\MtbFinishNumber;
+use Skunenieki\System\Events\UpdateMtbFinish;
 
-class TestController extends Controller
+class UpdateMtbFinishListener
 {
-    public function test()
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $event = new \StdClass;
-        $event->eventYear = 2015;
+        //
+    }
 
+    /**
+     * Handle the event.
+     *
+     * @param  PodcastWasPurchased  $event
+     * @return void
+     */
+    public function handle(UpdateMtbFinish $event)
+    {
         $numbers = MtbFinishNumber::where('eventYear', $event->eventYear)->orderBy('id', 'asc')->get();
         $times   = MtbFinishTime::where('eventYear', $event->eventYear)->where('disabled', false)->orderBy('id', 'asc')->get();
 
@@ -32,16 +47,16 @@ class TestController extends Controller
                     'lap'    => $lapCount[$numbers[$order]->number],
                 ];
 
-                // // $mtb = Mtb::where('eventYear', $event->eventYear)->where('number', $numbers[$order]->number)->first();
-                // if (null !== $mtb) {
-                //     if ($lapCount[$numbers[$order]->number] < $mtb->laps) {
-                //         $varName = "lap{$lapCount[$numbers[$order]->number]}";
-                //         $mtb->{$varName} = $time->finish;
-                //     } else {
-                //         $mtb->finish = $time->finish;
-                //     }
-                //     $mtb->save();
-                // }
+                $mtb = Mtb::where('eventYear', $event->eventYear)->where('number', $numbers[$order]->number)->first();
+                if (null !== $mtb) {
+                    if ($lapCount[$numbers[$order]->number] < $mtb->laps) {
+                        $varName = "lap{$lapCount[$numbers[$order]->number]}";
+                        $mtb->{$varName} = $time->finish;
+                    } else {
+                        $mtb->finish = $time->finish;
+                    }
+                    $mtb->save();
+                }
             } else {
                 $matches[] = [
                     'number' => false,
@@ -49,9 +64,5 @@ class TestController extends Controller
                 ];
             }
         }
-
-
-
-        return $matches;
     }
 }

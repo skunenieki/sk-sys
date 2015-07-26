@@ -1,7 +1,7 @@
-<div ng-controller="ParticipantController as partCtrl">
+<div ng-controller="MtbParticipantController as mtbPartCtrl">
     <form class="form-horizontal"
-          name="partCtrl.partForm"
-          ng-submit="partCtrl.updateParticipant()"
+          name="mtbPartCtrl.partForm"
+          ng-submit="mtbPartCtrl.updateParticipant()"
           novalidate>
         <div class="form-group has-feedback"
              ng-class="{'has-error': false}">
@@ -15,7 +15,7 @@
                        min="1"
                        max="999"
                        ng-maxlength="3"
-                       ng-model="partCtrl.participant.number"
+                       ng-model="mtbPartCtrl.participant.number"
                        tabindex="1"
                        required>
             </div>
@@ -30,7 +30,7 @@
                        class="form-control"
                        id="inputName"
                        placeholder="Vards, Uzvards"
-                       ng-model="partCtrl.participant.name"
+                       ng-model="mtbPartCtrl.participant.name"
                        required>
             </div>
         </div>
@@ -46,9 +46,9 @@
                        min="1915"
                        max="2015"
                        ng-maxlength="4"
-                       ng-model="partCtrl.participant.birthYear"
+                       ng-model="mtbPartCtrl.participant.birthYear"
                        required>
-                <p class="help-block">Vecums: {{ partCtrl.participant.eventYear - partCtrl.participant.birthYear}}</p>
+                <p class="help-block">Vecums: {{ mtbPartCtrl.participant.eventYear - mtbPartCtrl.participant.birthYear}}</p>
             </div>
         </div>
 
@@ -56,37 +56,10 @@
             <label class="col-sm-2 control-label">Dzimums</label>
             <div class="col-xs-12 col-sm-10">
                 <label class="radio-inline">
-                    <input type="radio" name="inputGender" tabindex="4" id="inputGenderMale" value="V" ng-model="partCtrl.participant.gender" required> Vīrietis
+                    <input type="radio" name="inputGender" tabindex="4" id="inputGenderMale" value="V" ng-model="mtbPartCtrl.participant.gender" required> Vīrietis
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inputGender" id="inputGenderFemale" value="S" ng-model="partCtrl.participant.gender" required> Sieviete
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="inputGender" id="inputGenderFemale" value="AK" ng-model="partCtrl.participant.gender" required> AK
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Velosipeds</label>
-            <div class="col-xs-12 col-sm-10">
-                <label class="radio-inline">
-                    <input type="radio" name="inputBikeType" value="T" ng-model="partCtrl.participant.bikeType"> Kalnu
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="inputBikeType" value="S" ng-model="partCtrl.participant.bikeType"> Sporta
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="inputBikeType" value="C" ng-model="partCtrl.participant.bikeType"> Celu
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="inputBikeType" value="AK" ng-model="partCtrl.participant.bikeType"> Cits
-                </label>
-                <label class="radio-inline" ng-if="partCtrl.participant.eventYear < 2001">
-                    <input type="radio" name="inputBikeType" value="K" ng-model="partCtrl.participant.bikeType"> K
-                </label>
-                <label class="radio-inline" ng-if="partCtrl.participant.eventYear < 2001">
-                    <input type="radio" name="inputBikeType" value="P" ng-model="partCtrl.participant.bikeType"> P
+                    <input type="radio" name="inputGender" id="inputGenderFemale" value="S" ng-model="mtbPartCtrl.participant.gender" required> Sieviete
                 </label>
             </div>
         </div>
@@ -100,7 +73,7 @@
                        class="form-control"
                        id="inputGroup"
                        placeholder="-"
-                       ng-model="partCtrl.participant.group"
+                       ng-model="mtbPartCtrl.participant.group"
                        readonly>
             </div>
         </div>
@@ -114,20 +87,49 @@
                        class="form-control"
                        id="inputStart"
                        placeholder="00:00:00"
-                       ng-model="partCtrl.participant.start">
+                       ng-model="mtbPartCtrl.participant.start"
+                       readonly>
             </div>
         </div>
 
         <div class="form-group has-feedback"
              ng-class="{'has-error': false}">
-            <label for="inputTurn" class="col-sm-2 control-label">Apgrieziens</label>
+            <label for="inputLap1" class="col-sm-2 control-label">1. aplis</label>
             <div class="col-xs-12 col-md-2">
                 <input type="text"
                        name="turn"
                        class="form-control"
-                       id="inputTurn"
+                       id="inputLap1"
                        placeholder="00:00:00"
-                       ng-model="partCtrl.participant.turn">
+                       ng-model="mtbPartCtrl.participant.lap1">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': false}">
+            <label for="inputLap2" class="col-sm-2 control-label">2. aplis</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="turn"
+                       class="form-control"
+                       id="inputLap2"
+                       placeholder="00:00:00"
+                       ng-model="mtbPartCtrl.participant.lap2">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': false}">
+            <label for="inputLap3" class="col-sm-2 control-label">3. aplis</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="turn"
+                       class="form-control"
+                       id="inputLap3"
+                       placeholder="00:00:00"
+                       ng-model="mtbPartCtrl.participant.lap3"
+                       ng-readonly="mtbPartCtrl.participant.laps < 4"
+                       ng-disabled="mtbPartCtrl.participant.laps < 4">
             </div>
         </div>
 
@@ -140,7 +142,7 @@
                        class="form-control"
                        id="inputFinish"
                        placeholder="00:00:00"
-                       ng-model="partCtrl.participant.finish">
+                       ng-model="mtbPartCtrl.participant.finish">
             </div>
         </div>
 
@@ -153,7 +155,7 @@
                        class="form-control"
                        id="inputPenalty"
                        placeholder="00:00:00"
-                       ng-model="partCtrl.participant.penalty">
+                       ng-model="mtbPartCtrl.participant.penalty">
             </div>
         </div>
 
@@ -166,24 +168,15 @@
                        class="form-control"
                        id="inputResult"
                        placeholder="00:00:00"
-                       ng-model="partCtrl.participant.result"
+                       ng-model="mtbPartCtrl.participant.result"
                        readonly>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Kolektīvs</label>
-            <div class="col-sm-10">
-                <tags-input ng-model="partCtrl.participant.teams" display-property="name" placeholder="Kolektivi">
-                    <auto-complete source="partCtrl.loadItems($query)" select-first-match="false"></auto-complete>
-                </tags-input>
             </div>
         </div>
 
         <div class="form-group">
             <label for="inputNotes" class="col-sm-2 control-label">Komentārs</label>
             <div class="col-sm-10">
-                <textarea id="inputNotes" class="form-control" rows="2" ng-model="partCtrl.participant.comment"></textarea>
+                <textarea id="inputNotes" class="form-control" rows="2" ng-model="mtbPartCtrl.participant.comment"></textarea>
             </div>
         </div>
 
@@ -197,7 +190,7 @@
                        min="1996"
                        max="2015"
                        ng-maxlength="4"
-                       ng-model="partCtrl.participant.eventYear"
+                       ng-model="mtbPartCtrl.participant.eventYear"
                        required>
             </div>
         </div>
@@ -205,7 +198,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-xs-12 col-md-3">
-                <button type="button" class="btn btn-danger" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="partCtrl.delete()">
+                <button type="button" class="btn btn-danger" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="mtbPartCtrl.delete()">
                     <span class="glyphicon glyphicon-trash"></span> Dzest dalibnieku
                 </button>
             </div>
@@ -214,8 +207,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary" tabindex="5" ng-disabled="partCtrl.partForm.$invalid">Saglabat</button>
-                <button type="button" class="btn btn-default" ng-click="partCtrl.back()">Atpakal</button>
+                <button type="submit" class="btn btn-primary" tabindex="5" ng-disabled="mtbPartCtrl.partForm.$invalid">Saglabat</button>
+                <button type="button" class="btn btn-default" ng-click="mtbPartCtrl.back()">Atpakal</button>
             </div>
         </div>
     </form>

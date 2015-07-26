@@ -1,0 +1,40 @@
+<div ng-controller="MtbController as mtbCtrl">
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Vards, Uzvards</th>
+                <th>Grupa</th>
+                <th>Starts</th>
+                <th>1. aplis</th>
+                <th>2. aplis</th>
+                <th>3. aplis</th>
+                <th>Finiss</th>
+                <th>Sods</th>
+                <th>Rezultats</th>
+                <th>Komentars</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="participant in mtbCtrl.participants">
+                <td>{{ participant.number }}</td>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.group }}</td>
+                <td>{{ participant.start }}</td>
+                <td>{{ participant.lap1 }}</td>
+                <td>{{ participant.lap2 }}</td>
+                <td>{{ participant.lap3 }}</td>
+                <td>{{ participant.finish }}</td>
+                <td>{{ participant.penalty }}</td>
+                <th>{{ participant.result }}</th>
+                <td>{{ participant.comment }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ 'mtb.participants' | routeSegmentUrl }}/{{participant.id}}/edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,29 @@
+<table class="table table-hover table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Seciba</th>
+            <th>Laiks</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="finish in mtbFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
+            <td>
+                <span ng-if="finish.disabled === false">{{ mtbFinTimeCtrl.finishTimes.length - $index }}</span>
+                <del ng-if="finish.disabled === true">{{ mtbFinTimeCtrl.finishTimes.length - $index }}</del>
+            </td>
+            <td>
+                <span ng-if="finish.disabled === false">{{ finish.finish }}</span>
+                <del ng-if="finish.disabled === true">{{ finish.finish }}</del>
+            </td>
+            <td>
+                <button type="button"
+                        class="btn btn-xs"
+                        ng-click="mtbFinTimeCtrl.toogleState($index)"
+                        ng-class="{ 'btn-danger': finish.disabled === false, 'btn-success': finish.disabled === true }">
+                    <span class="glyphicon" ng-class="{ 'glyphicon-trash': finish.disabled === false, 'glyphicon-check': finish.disabled === true }"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

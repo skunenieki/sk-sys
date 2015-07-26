@@ -3,8 +3,8 @@
     <div class="col-md-1">
         <ul class="nav nav-pills nav-stacked" ng-controller="EventController as evtCtrl">
             <li ng-repeat="eventYear in evtCtrl.events | orderBy: '-eventYear'"
-                ng-class="{active: ('10km.participants' | routeSegmentStartsWith) && ('eventYear' | routeSegmentParam) == eventYear.eventYear}">
-                <a href="#{{ '10km.participants' | routeSegmentUrl }}/{{ eventYear.eventYear }}">{{ eventYear.eventYear }}</a>
+                ng-class="{active: ('mtb.participants' | routeSegmentStartsWith) && ('eventYear' | routeSegmentParam) == eventYear.eventYear}">
+                <a href="#{{ 'mtb.participants' | routeSegmentUrl }}/{{ eventYear.eventYear }}">{{ eventYear.eventYear }}</a>
             </li>
         </ul>
     </div>

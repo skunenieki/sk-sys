@@ -5,7 +5,7 @@ namespace Skunenieki\System\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Individual extends Model
+class Mtb extends Model
 {
     protected $groups = [];
 
@@ -14,9 +14,9 @@ class Individual extends Model
      *
      * @var string
      */
-    protected $table = 'individual';
+    protected $table = 'mtb';
 
-    protected $appends = ['result'];
+    protected $appends = ['result', 'group', 'start', 'laps', 'lapsDone'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -24,14 +24,6 @@ class Individual extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at'];
-
-    /**
-     * The teams that belong to the 10km participant.
-     */
-    public function teams()
-    {
-        return $this->belongsToMany('Skunenieki\System\Models\Team');
-    }
 
     /**
      * Get the participant record associated with 10km record.
@@ -46,14 +38,14 @@ class Individual extends Model
 
         static $yearRanges = null;
         if (true === is_null($yearRanges)) {
-            $yearRanges = require __DIR__.'/../IndividualGroups.php';
+            $yearRanges = require __DIR__.'/../MtbGroups.php';
         }
 
         if (null !== $group) {
             return $group;
         }
 
-        if (null === $this->gender || null === $this->bikeType) {
+        if (null === $this->gender) {
             return null;
         }
 
@@ -77,41 +69,19 @@ class Individual extends Model
             }
         }
 
-        if (false !== strpos($this->bikeType, 'AK') || false !== strpos($this->gender, 'AK')) {
-            return 'AK';
-        }
-
         try {
-            return $groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->bikeType.$this->gender)];
+            return $groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->gender)];
         } catch (\Exception $e) {
             return 'NaN';
         }
     }
 
-    public function getStartInSecondsAttribute($value)
+    public function getStartAttribute()
     {
-        if (null !== $this->start) {
-            return (new Carbon($this->start))->diffInSeconds(new Carbon('0:00:00'));
-        }
-
-        return null;
+        return '0:00:00';
     }
 
-    public function getTurnInSecondsAttribute($value)
-    {
-        if (null !== $this->turn) {
-            return (new Carbon($this->turn))->diffInSeconds(new Carbon('0:00:00'));
-        }
-
-        return null;
-    }
-
-    public function getTempResultInSecondsAttribute($value)
-    {
-        return $this->turnInSeconds - $this->startInSeconds;
-    }
-
-    public function getResultInSecondsAttribute($value)
+    public function getResultInSecondsAttribute()
     {
         if (null !== $this->start && null !== $this->finish) {
             return (new Carbon($this->start))->diffInSeconds(
@@ -123,7 +93,7 @@ class Individual extends Model
         return null;
     }
 
-    public function getResultAttribute($value)
+    public function getResultAttribute()
     {
         if (null !== $this->start && null !== $this->finish) {
             $start = new Carbon($this->start);
@@ -139,5 +109,35 @@ class Individual extends Model
         }
 
         return null;
+    }
+
+    public function getLapsAttribute()
+    {
+        if (true === in_array($this->group, ['V1', 'V3', 'S1', 'S3'])) {
+            return 3;
+        }
+
+        return 4;
+    }
+
+    public function getLapsDoneAttribute()
+    {
+        if (null !== $this->finish) {
+            return 4;
+        } elseif (null !== $this->lap3) {
+            return 3;
+        } elseif (null !== $this->lap2) {
+            return 2;
+        } elseif (null !== $this->lap1) {
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public function getGenderWeightAttribute()
+    {
+        return $this->gender === 'V' ? 'AMale' : 'BFemale';
     }
 }

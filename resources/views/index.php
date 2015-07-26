@@ -19,6 +19,7 @@
         angular.module('AppConfig').config(function (AppConfigProvider) {
             AppConfigProvider.set({
                 indActiveEventStart: '<?php echo $indActiveEventStart; ?>',
+                mtbActiveEventStart: '<?php echo $mtbActiveEventStart; ?>',
             });
         });
     </script>

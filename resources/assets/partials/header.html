@@ -30,7 +30,10 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">MTB</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-href="#{{ 'mtb.registration' | routeSegmentUrl }}">Registracija</a></li>
-                        <li><a ng-href="#{{ 'mtb.chronometer' | routeSegmentUrl }}">Hronometrs</a></li>
+                        <li><a ng-href="#{{ 'mtb.finish.input' | routeSegmentUrl }}">Finiss</a></li>
+                        <li><a ng-href="#{{ 'mtb.chronometer.input' | routeSegmentUrl }}">Hronometrs</a></li>
+                        <li class="divider"></li>
+                        <li><a ng-href="#{{ 'mtb.participants' | routeSegmentUrl }}">Dalibnieki</a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: ('triathlon' | routeSegmentStartsWith)}">

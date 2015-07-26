@@ -4,14 +4,14 @@ namespace Skunenieki\System\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class IndividualFinishTime extends Model
+class MtbFinishNumber extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'individual_finish_times';
+    protected $table = 'mtb_finish_numbers';
 
     /**
      * The attributes that should be casted to native types.
@@ -19,7 +19,7 @@ class IndividualFinishTime extends Model
      * @var array
      */
     protected $casts = [
-        'disabled' => 'boolean',
+        'manual' => 'boolean',
     ];
 
     /**

@@ -5,14 +5,14 @@ namespace Skunenieki\System\Http\Controllers;
 use Carbon\Carbon;
 use Event as LaravelEvent;
 use Illuminate\Http\Request;
-use Skunenieki\System\Events\UpdateFinish;
-use Skunenieki\System\Models\IndividualFinishNumber;
+use Skunenieki\System\Events\UpdateMtbFinish;
+use Skunenieki\System\Models\MtbFinishNumber;
 
-class IdividualFinishNumberController extends Controller
+class MtbFinishNumberController extends Controller
 {
     public function index()
     {
-        return IndividualFinishNumber::where('eventYear', 2015)
+        return MtbFinishNumber::where('eventYear', 2015)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -20,20 +20,20 @@ class IdividualFinishNumberController extends Controller
 
     public function store(Request $request)
     {
-        $finishNumber            = new IndividualFinishNumber;
+        $finishNumber            = new MtbFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
         $finishNumber->eventYear = 2015;
         $finishNumber->save();
 
-        LaravelEvent::fire(new UpdateFinish($finishNumber->eventYear));
+        LaravelEvent::fire(new UpdateMtbFinish($finishNumber->eventYear));
 
         return $finishNumber;
     }
 
     public function destroy($id)
     {
-        $finishNumber = IndividualFinishNumber::find($id);
+        $finishNumber = MtbFinishNumber::find($id);
         $eventYear = $finishNumber->eventYear;
         $finishNumber->delete();
 

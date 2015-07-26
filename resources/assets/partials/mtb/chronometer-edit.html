@@ -7,10 +7,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="finish in indFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
+        <tr ng-repeat="finish in mtbFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
             <td>
-                <span ng-if="finish.disabled === false">{{ iindFinTimeCtrl.finishTimes.length - $index }}</span>
-                <del ng-if="finish.disabled === true">{{ iindFinTimeCtrl.finishTimes.length - $index }}</del>
+                <span ng-if="finish.disabled === false">{{ mtbFinTimeCtrl.finishTimes.length - $index }}</span>
+                <del ng-if="finish.disabled === true">{{ mtbFinTimeCtrl.finishTimes.length - $index }}</del>
             </td>
             <td>
                 <span ng-if="finish.disabled === false">{{ finish.finish }}</span>
@@ -20,7 +20,7 @@
                 <button type="button"
                         class="btn btn-xs btn-danger"
                         ng-really-message="Vai tiesam dzest finisa laiku?"
-                        ng-really-click="indFinTimeCtrl.deleteFinishTime($index)"
+                        ng-really-click="mtbFinTimeCtrl.deleteFinishTime($index)"
                         ng-show="finish.disabled === true">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>

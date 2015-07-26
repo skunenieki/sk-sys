@@ -2,8 +2,6 @@
 
 namespace Skunenieki\System\Models;
 
-use Carbon\Carbon;
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
 class IndividualFinishNumber extends Model

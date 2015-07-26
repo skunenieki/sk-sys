@@ -1,1 +1,29 @@
-mtb chronometer
+<div ng-controller="MtbFinishTimeController as mtbFinTimeCtrl">
+    <div class="row">
+        <div class="col-xs-6">
+            <br>
+            <div class="panel panel-default text-right">
+                <div class="panel-body">
+                    <h1>{{ mainCtrl.timer() }}</h1>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="mtbFinTimeCtrl.finish()" role="button">
+                <span class="glyphicon glyphicon-time"></span> Fikset finisa laiku
+            </button>
+        </div>
+        <div class="col-xs-6">
+            <br>
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: ('mtb.chronometer.input' | routeSegmentStartsWith)}" role="presentation">
+                    <a ng-href="#{{ 'mtb.chronometer.input' | routeSegmentUrl }}">Ievade</a>
+                </li>
+                <li ng-class="{active: ('mtb.chronometer.edit' | routeSegmentStartsWith)}" role="presentation">
+                    <a ng-href="#{{ 'mtb.chronometer.edit' | routeSegmentUrl }}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </li>
+            </ul>
+            <div app-view-segment="2"></div>
+        </div>
+    </div>
+</div>
