@@ -2,24 +2,22 @@
 <div class="row">
     <div class="col-xs-12" ng-controller="EventController as evtCtrl">
         <div class="panel panel-default" ng-repeat="eventYear in evtCtrl.events">
-            <div class="panel-heading">{{ eventYear.eventYear }}</div>
-            <div class="panel-body">
-                <table class="table">
-                  <tr>
-                    <td>Visi - pa grupam</td>
-                    <td>
-                        <a href="/mtb/results/{{ eventYear.eventYear }}/groups?pdf" target="_blank" class="btn btn-primary" role="button">
-                            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
-                        </a>
-                    </td>
-                    <td>
-                        <a href="/mtb/results/{{ eventYear.eventYear }}/groups" target="_blank" class="btn btn-primary" role="button">
-                            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
-                        </a>
-                    </td>
-                  </tr>
-                </table>
-            </div>
+            <div class="panel-heading"><h3 class="panel-title">{{ eventYear.eventYear }}</h3></div>
+            <table class="table">
+              <tr>
+                <td>Visi - pa grupam</td>
+                <td>
+                    <a href="/mtb/results/{{ eventYear.eventYear }}/groups?pdf" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                    </a>
+                </td>
+                <td>
+                    <a href="/mtb/results/{{ eventYear.eventYear }}/groups" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                    </a>
+                </td>
+              </tr>
+            </table>
         </div>
     </div>
 </div>
