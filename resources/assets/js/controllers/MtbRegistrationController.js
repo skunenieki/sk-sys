@@ -3,7 +3,9 @@ angular.module('skApp.MtbRegistrationController', [])
     var self = this;
 
     self.capitalizeWords = function() {
-        self.participation.name = self.participation.name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        self.participation.name = self.participation.name.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(firstLetter) {
+            return firstLetter.toUpperCase();
+        });
     };
 
     var defaultModelValues = {
