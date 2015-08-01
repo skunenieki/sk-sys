@@ -113,11 +113,12 @@ class Mtb extends Model
 
     public function getLapsAttribute()
     {
-        if (true === in_array($this->group, ['V1', 'V3', 'S1', 'S3'])) {
-            return 3;
-        }
+        $laps = [
+            2009 => ['V1' => 4, 'V2' => 4, 'S1' => 2, 'S2' => 3],
+            2015 => ['V1' => 3, 'V2' => 4, 'V3' => 3, 'S1' => 3, 'S2' => 4, 'S3' => 3],
+        ];
 
-        return 4;
+        return $laps[$this->eventYear][$this->group];
     }
 
     public function getLapsDoneAttribute()

@@ -114,7 +114,9 @@
                        class="form-control"
                        id="inputLap2"
                        placeholder="00:00:00"
-                       ng-model="mtbPartCtrl.participant.lap2">
+                       ng-model="mtbPartCtrl.participant.lap2"
+                       ng-readonly="mtbPartCtrl.participant.laps < 3"
+                       ng-disabled="mtbPartCtrl.participant.laps < 3">
             </div>
         </div>
 
