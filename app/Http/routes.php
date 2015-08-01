@@ -9,6 +9,14 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('/', 'Skunenieki\System\Http\Controllers\MainViewController@render');
 
     $app->get('dbdump', 'Skunenieki\System\Http\Controllers\DBDumpController@dump');
+
+    $app->get('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+    $app->post('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+    $app->put('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+    $app->patch('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+    $app->options('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+    $app->delete('adminer', 'Skunenieki\System\Http\Controllers\AdminerController@adminer');
+
     $app->get('test', 'Skunenieki\System\Http\Controllers\TestController@test');
     $app->get('authenticate', 'Skunenieki\System\Http\Controllers\AuthenticationController@authenticate');
 
