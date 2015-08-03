@@ -1,0 +1,28 @@
+<br>
+<div class="row">
+    <div class="col-xs-12" ng-controller="IndividualDiplomasController as indDipCtrl">
+        <div class="panel panel-default" ng-repeat="(group, participants) in indDipCtrl.diplomas">
+            <div class="panel-heading"><h3 class="panel-title">{{ group }}</h3></div>
+            <table class="table">
+                <tr>
+                    <th>Vieta</th>
+                    <th>#</th>
+                    <th>Vards, Uzvards</th>
+                    <th>Kam?</th>
+                    <th>Rezultats</th>
+                    <th>Komentars</th>
+                </tr>
+                <tr ng-repeat="participant in participants">
+                    <td>{{ participant.place }}</td>
+                    <td>{{ participant.number }}</td>
+                    <td>{{ participant.name }}</td>
+                    <td>
+                        <input type="text" class="form-control" placeholder="Vards dativa">
+                    </td>
+                    <th>{{ participant.result }}</th>
+                    <td>{{ participant.comment }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

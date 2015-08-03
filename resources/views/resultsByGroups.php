@@ -97,6 +97,9 @@
                             <tbody>
                                 <?php $i = 1; ?>
                                 <?php foreach ($individualIds as $resultInSeconds): ?>
+                                    <?php
+                                        $last = end($resultInSeconds);
+                                    ?>
                                     <?php foreach ($resultInSeconds as $individual): ?>
                                         <tr>
                                             <td><?=$i?></td>
@@ -109,7 +112,14 @@
                                             <td><?=$individual->result?></td>
                                             <td><?=$individual->comment?></td>
                                         </tr>
-                                        <?php $i++; ?>
+                                        <?php
+                                            if (count($resultInSeconds) > 1 && $individual === $last) {
+                                                $i += count($resultInSeconds);
+                                            }
+                                            if (count($resultInSeconds) < 2) {
+                                                $i++;
+                                            }
+                                        ?>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </tbody>
