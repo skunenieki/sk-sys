@@ -4,6 +4,7 @@ namespace Skunenieki\System\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Skunenieki\System\Models\Participant;
 
 class Individual extends Model
 {
@@ -38,12 +39,16 @@ class Individual extends Model
      */
     public function participant()
     {
-        return $this->hasOne('Skunenieki\System\Models\Participant', 'participantId');
+        return $this->hasOne(Participant::class, 'participantId');
+    }
+
+    public function getNameInDativeAttribute()
+    {
+        return Participant::find($this->participantId)->nameInDative;
     }
 
     public function getGroupAttribute($group)
     {
-
         static $yearRanges = null;
         if (true === is_null($yearRanges)) {
             $yearRanges = require __DIR__.'/../IndividualGroups.php';

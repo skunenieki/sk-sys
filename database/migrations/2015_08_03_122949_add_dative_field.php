@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddManualFieldToIndividualTurn extends Migration
+class AddDativeField extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddManualFieldToIndividualTurn extends Migration
      */
     public function up()
     {
-        Schema::table('individual_turns', function ($table) {
-            $table->boolean('manual');
+        Schema::table('participants', function ($table) {
+            $table->string('nameInDative')->after('name');
         });
     }
 
@@ -24,8 +24,8 @@ class AddManualFieldToIndividualTurn extends Migration
      */
     public function down()
     {
-        Schema::table('individual_turns', function ($table) {
-            $table->dropColumn(['manual']);
+        Schema::table('participants', function ($table) {
+            $table->dropColumn(['nameInDative']);
         });
     }
 }

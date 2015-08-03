@@ -1,5 +1,5 @@
 angular.module('skApp.IndividualDiplomasController', [])
-.controller('IndividualDiplomasController', ['$routeSegment', '$http', function($routeSegment, $http) {
+.controller('IndividualDiplomasController', ['$routeSegment', '$http', 'ParticipantService', function($routeSegment, $http, ParticipantService) {
     var self = this;
 
     self.diplomas = [];
@@ -8,4 +8,12 @@ angular.module('skApp.IndividualDiplomasController', [])
         .then(function(response){
             self.diplomas = response.data;
         });
+
+    self.updateDative = function(group, idx) {
+        console.log(self.diplomas[group][idx]);
+        ParticipantService.update({
+            id: self.diplomas[group][idx].participantId,
+            nameInDative: self.diplomas[group][idx].nameInDative
+        });
+    };
 }]);

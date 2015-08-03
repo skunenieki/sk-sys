@@ -19,4 +19,12 @@ class ParticipantController extends Controller
 
         return $result->get();
     }
+
+    public function update(Request $request, $id) {
+        $participant = Participant::find($id);
+        $participant->nameInDative = $request->input('nameInDative', '');
+        $participant->save();
+
+        return $participant;
+    }
 }

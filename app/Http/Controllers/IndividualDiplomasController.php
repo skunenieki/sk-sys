@@ -19,6 +19,7 @@ class IndividualDiplomasController extends Controller
         $results = [];
         foreach ($individual->get() as $individual) {
             $results[$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
+            $individual->nameInDative = $individual->nameInDative;
         }
 
         $this->ksortRecursive($results);

@@ -21,6 +21,7 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('authenticate', 'Skunenieki\System\Http\Controllers\AuthenticationController@authenticate');
 
     $app->get('participants', 'Skunenieki\System\Http\Controllers\ParticipantController@index');
+    $app->put('participants/{id}', 'Skunenieki\System\Http\Controllers\ParticipantController@update');
 
     $app->get('options', 'Skunenieki\System\Http\Controllers\OptionController@index');
     $app->get('options/{optionName}', 'Skunenieki\System\Http\Controllers\OptionController@show');
