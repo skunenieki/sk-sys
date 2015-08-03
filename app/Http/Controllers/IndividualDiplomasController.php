@@ -2,14 +2,31 @@
 
 namespace Skunenieki\System\Http\Controllers;
 
+use Knp\Snappy\Pdf;
 use Illuminate\Http\Request;
 use Skunenieki\System\Models\Individual;
 
 class IndividualDiplomasController extends Controller
 {
-    public function diplomas(Request $request, $eventYear)
+    public function diplomas($eventYear)
     {
         return $this->getDiplomas($eventYear);
+    }
+
+    public function prepare(Request $request, $eventYear)
+    {
+        $view = view('diplomas', [
+            'diplomas' => $this->getDiplomas($eventYear),
+        ]);
+
+        if ($request->input('pdf', false) !== false) {
+            $snappy = new Pdf(base_path().'/vendor/bin/wkhtmltopdf-amd64');
+            // $snappy->setOption('print-media-type', true);
+            header('Content-Type: application/pdf');
+            $view = $snappy->getOutputFromHtml($view);
+        }
+
+        return $view;
     }
 
     protected function getDiplomas($eventYear)

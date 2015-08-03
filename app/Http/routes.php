@@ -42,6 +42,7 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@index');
     $app->post('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@store');
     $app->get('10km/diplomas/{eventYear}', 'Skunenieki\System\Http\Controllers\IndividualDiplomasController@diplomas');
+    $app->get('10km/diplomas/{eventYear}/print', 'Skunenieki\System\Http\Controllers\IndividualDiplomasController@prepare');
     $app->delete('10km/turns/{id}', 'Skunenieki\System\Http\Controllers\IdividualTurnController@destroy');
     $app->get('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@index');
     $app->post('10km/finishnumbers', 'Skunenieki\System\Http\Controllers\IdividualFinishNumberController@store');
