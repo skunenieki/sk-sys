@@ -6,13 +6,13 @@
             <table class="table">
                 <tr>
                     <td>
-                        <a class="btn btn-primary" href="#" role="button">
+                        <a class="btn btn-primary" traget="_blank" ng-href="/10km/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=1" role="button">
                             <span class="glyphicon glyphicon-print"></span> 1 vietu diplomi
                         </a>
-                        <a class="btn btn-primary" href="#" role="button">
+                        <a class="btn btn-primary" traget="_blank" ng-href="/10km/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=2" role="button">
                             <span class="glyphicon glyphicon-print"></span> 2 vietu diplomi
                         </a>
-                        <a class="btn btn-primary" href="#" role="button">
+                        <a class="btn btn-primary" traget="_blank" ng-href="/10km/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=3" role="button">
                             <span class="glyphicon glyphicon-print"></span> 3 vietu diplomi
                         </a>
                     </td>
@@ -46,7 +46,7 @@
                     <th>{{ participant.result }}</th>
                     <td>{{ participant.comment }}</td>
                     <td>
-                        <a class="btn btn-primary" href="#" role="button">
+                        <a class="btn btn-primary" target="_blank" ng-href="/10km/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?number={{ participant.number }}" role="button">
                             <span class="glyphicon glyphicon-print"></span>
                         </a>
                     </td>

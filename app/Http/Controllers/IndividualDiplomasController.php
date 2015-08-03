@@ -15,21 +15,18 @@ class IndividualDiplomasController extends Controller
 
     public function prepare(Request $request, $eventYear)
     {
-        $view = view('diplomas', [
-            'diplomas' => $this->getDiplomas($eventYear),
+        return view('diplomas', [
+            'diplomas' => $this->getDiplomas(
+                $eventYear,
+                [
+                    'place' => $request->input('place', null),
+                    'number' => $request->input('number', null),
+                ]
+            ),
         ]);
-
-        if ($request->input('pdf', false) !== false) {
-            $snappy = new Pdf(base_path().'/vendor/bin/wkhtmltopdf-amd64');
-            // $snappy->setOption('print-media-type', true);
-            header('Content-Type: application/pdf');
-            $view = $snappy->getOutputFromHtml($view);
-        }
-
-        return $view;
     }
 
-    protected function getDiplomas($eventYear)
+    protected function getDiplomas($eventYear, $attrs = null)
     {
         $individual = Individual::where('eventYear', $eventYear);
 
@@ -55,7 +52,19 @@ class IndividualDiplomasController extends Controller
                         break;
                     }
                     $participant['place'] = $i;
-                    $diplomas[$group][] = $participant;
+
+
+                    if (null !== $attrs && null !== $attrs['place']) {
+                        if ($attrs['place'] == $i) {
+                            $diplomas[$group][] = $participant;
+                        }
+                    } elseif (null !== $attrs && null !== $attrs['number']) {
+                        if ($attrs['number'] == $participant->number) {
+                            $diplomas[$group][] = $participant;
+                        }
+                    } else {
+                        $diplomas[$group][] = $participant;
+                    }
 
                     if (count($individual) > 1 && $participant === $last) {
                         $i += count($individual);
