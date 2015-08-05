@@ -77,7 +77,7 @@ angular.module('skApp.TriTeamRegistrationController', [])
                 self.regForm[response.data.error.field].$setValidity('unique', false);
             });
 
-        // self.reset();
+        self.reset();
         self.participation.number = currentNumber+1;
     };
 
