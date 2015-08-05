@@ -77,11 +77,10 @@ class Triathlon extends Model
 
     public function getStartAttribute()
     {
-        // if ($this->group)
         if (in_array($this->group, ['S1', 'S2'])) {
             return '0:05:00';
         } elseif (in_array($this->group, ['V1', 'V2'])) {
-            return '0:09:00';
+            return '0:10:00';
         } else {
             return null;
         }

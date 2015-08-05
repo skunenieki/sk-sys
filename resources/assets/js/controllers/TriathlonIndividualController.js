@@ -3,6 +3,8 @@ angular.module('skApp.TriathlonIndividualController', [])
     var self = this;
 
     self.participants = TriathlonService.query({
-        eventYear: $routeSegment.$routeParams.eventYear
+        eventYear: $routeSegment.$routeParams.eventYear,
+        limit: 10000,
+        sort: 'number'
     });
 }]);
