@@ -131,8 +131,6 @@ class IndividualResultsController extends Controller
 
     protected function phrases($eventYear)
     {
-        // dd($this->ageRangesForGroup($eventYear, 'CV 3'));
-
         return [
             'eventDate'                => '2015. gada 8. augusts',
             'eventDescription'         => 'Riteņbraukšnas sacensību protokols',

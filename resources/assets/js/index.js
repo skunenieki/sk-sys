@@ -42,6 +42,7 @@ require('./controllers/IndividualController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
 require('./controllers/MtbFinishTimeController');
+require('./controllers/IndividualInfoController');
 require('./controllers/MtbParticipantController');
 require('./controllers/IndividualTurnController');
 require('./controllers/TriathlonTeamsController');
@@ -123,6 +124,7 @@ var skApp = angular.module('skApp', [
         'skApp.MtbFinishNumberController',
 
         'skApp.IndividualController',
+        'skApp.IndividualInfoController',
         'skApp.IndividualTurnController',
         'skApp.IndividualStartController',
         'skApp.IndividualDiplomasController',
@@ -167,6 +169,7 @@ var skApp = angular.module('skApp', [
             .when('/10km/results', '10km.results')
             .when('/10km/diplomas', '10km.diplomas')
             .when('/10km/diplomas/:eventYear', '10km.diplomas.year')
+            .when('/10km/info', '10km.info')
             .segment('10km', {
                 templateUrl: '10km/main.html',
             })
@@ -235,6 +238,9 @@ var skApp = angular.module('skApp', [
                         dependencies: ['eventYear']
                     })
                     .up()
+                .segment('info', {
+                    templateUrl: '10km/info.html'
+                })
                 .up()
 
             .when('/mtb', 'mtb')
