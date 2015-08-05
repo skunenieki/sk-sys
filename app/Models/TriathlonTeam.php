@@ -41,6 +41,18 @@ class TriathlonTeam extends Model
         return null;
     }
 
+    public function getResultInSecondsAttribute()
+    {
+        if (null !== $this->start && null !== $this->finish) {
+            return (new Carbon($this->start))->diffInSeconds(
+                    (new Carbon($this->finish))->addSeconds(
+                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
+                );
+        }
+
+        return PHP_INT_MAX;
+    }
+
     public function getGroupAttribute()
     {
         return 'K';

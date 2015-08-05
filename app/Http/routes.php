@@ -4,6 +4,7 @@ $app->get('/10km/results/{eventYear}/groups', 'Skunenieki\System\Http\Controller
 $app->get('/10km/results/{eventYear}/summary', 'Skunenieki\System\Http\Controllers\IndividualResultsController@resultsSummary');
 
 $app->get('/mtb/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\MtbResultsController@resultsByGroups');
+$app->get('/triathlon/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\TriathlonResultsController@resultsByGroups');
 
 $app->group(['middleware' => 'auth'], function ($app) {
     $app->get('/', 'Skunenieki\System\Http\Controllers\MainViewController@render');

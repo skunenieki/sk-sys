@@ -15,7 +15,7 @@
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 26px;
             color: white;
         }
 
@@ -30,7 +30,6 @@
 
         p {
             font-size: 13px;
-            font-weight: bold;
             text-align: right;
             margin: 0;
         }
@@ -86,12 +85,18 @@
                                     <th>Vieta</th>
                                     <th>#</th>
                                     <th><?=$phrases[$gender.'Participant']?></th>
-                                    <th>Dz gads</th>
+                                    <?php if ($group !== 'K'): ?>
+                                        <th>Dz gads</th>
+                                    <?php endif; ?>
                                     <th>Starts</th>
                                     <th>Finišs</th>
-                                    <th>Sods</th>
                                     <th>Rezultāts</th>
-                                    <th>Komentārs</th>
+                                    <?php if ($group === 'K'): ?>
+                                        <th>Dalībnieki</th>
+                                    <?php endif; ?>
+                                    <?php if ($group !== 'K'): ?>
+                                        <th>Komentārs</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,12 +110,22 @@
                                             <td><?=$i?></td>
                                             <td><?=$individual->number?></td>
                                             <td><?=$individual->name?></td>
-                                            <td><?=$individual->birthYear?></td>
+                                            <?php if ($group !== 'K'): ?>
+                                                <td><?=$individual->birthYear?></td>
+                                            <?php endif; ?>
                                             <td><?=$individual->start?></td>
                                             <td><?=$individual->finish?></td>
-                                            <td><?=$individual->penalty?></td>
-                                            <td><?=$individual->result?></td>
-                                            <td><?=$individual->comment?></td>
+                                            <th><?=$individual->result?></th>
+                                            <?php if ($group === 'K'): ?>
+                                                <td>
+                                                    <?=$individual->swimmerName?><span class="pull-right"><?=$individual->swimmerBirthYear?></span><br/>
+                                                    <?=$individual->bikerName?><span class="pull-right"><?=$individual->bikerBirthYear?></span><br/>
+                                                    <?=$individual->runnerName?><span class="pull-right"><?=$individual->runnerBirthYear?></span>
+                                                </td>
+                                            <?php endif; ?>
+                                            <?php if ($group !== 'K'): ?>
+                                                <td><?=$individual->comment?></td>
+                                            <?php endif; ?>
                                         </tr>
                                         <?php
                                             if (count($resultInSeconds) > 1 && $individual === $last) {

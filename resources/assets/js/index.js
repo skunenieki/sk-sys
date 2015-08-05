@@ -317,6 +317,7 @@ var skApp = angular.module('skApp', [
             .when('/triathlon/teams', 'triathlon.teams')
             .when('/triathlon/teams/:eventYear', 'triathlon.teams.year')
             .when('/triathlon/teams/:participantId/edit', 'triathlon.teams.edit')
+            .when('/triathlon/results', 'triathlon.results')
             .segment('triathlon', {
                 templateUrl: 'triathlon/main.html',
             })
@@ -383,6 +384,9 @@ var skApp = angular.module('skApp', [
                         dependencies: ['participantId']
                     })
                     .up()
+                .segment('results', {
+                    templateUrl: 'triathlon/results.html'
+                })
                 .up()
 
             .when('/football', 'football')

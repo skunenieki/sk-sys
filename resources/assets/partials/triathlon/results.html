@@ -1,0 +1,49 @@
+<br>
+<div class="row">
+    <div class="col-xs-12" ng-controller="EventController as evtCtrl">
+        <div class="panel panel-default" ng-repeat="eventYear in evtCtrl.events">
+            <div class="panel-heading"><h3 class="panel-title">{{ eventYear.eventYear }}</h3></div>
+            <table class="table">
+              <tr>
+                <td>Sievietes - pa grupam</td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?pdf&gender=S" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                    </a>
+                </td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?gender=S" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                    </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Viriesi - pa grupam</td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?pdf&gender=V" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                    </a>
+                </td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?gender=V" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                    </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Komandas</td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?pdf&gender=K" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> PDF
+                    </a>
+                </td>
+                <td>
+                    <a href="/triathlon/results/{{ eventYear.eventYear }}/groups?gender=K" target="_blank" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> HTML
+                    </a>
+                </td>
+              </tr>
+            </table>
+        </div>
+    </div>
+</div>
