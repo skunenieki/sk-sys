@@ -12,7 +12,9 @@
 </head>
 <body ng-controller="MainController as mainCtrl">
     <div ng-include="'header.html'" ng-hide="('10km.info' | routeSegmentStartsWith)"></div>
-    <div class="container" app-view-segment="0"></div>
+    <div ng-class="{'container': !('10km.info' | routeSegmentStartsWith), 'container-fluid': ('10km.info' | routeSegmentStartsWith)}"
+         app-view-segment="0">
+    </div>
     <script src="<?php echo elixir('js/bundle.js'); ?>"></script>
     <script>
         angular.module('AppConfig').config(function (AppConfigProvider) {
