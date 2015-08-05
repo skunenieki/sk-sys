@@ -64,7 +64,7 @@
                     <h3>ar rezultātu <?=$diploma->result?></h3>
                 </div>
                 <div class="description">
-                    <?=$diploma->group?> - vīrieši, kas dzimuši no 1965. līdz 1974. gadam; tūristu un kalnu velosipēdi
+                    <?=$diploma->group?> - <?=$phrases[$diploma->group]?>
                 </div>
             </div>
         <?php endforeach; ?>
