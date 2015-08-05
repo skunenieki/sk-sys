@@ -1,1 +1,35 @@
-part
+<br>
+<div class="row">
+    <div class="col-xs-12" ng-controller="TriathlonIndividualController as triIndCtrl">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Vards, Uzvards</th>
+                <th>Dz. Gads</th>
+                <th>Grupa</th>
+                <th>Starts</th>
+                <th>Finiss</th>
+                <th>Sods</th>
+                <th>Rezultats</th>
+                <th>Komentars</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="participant in triIndCtrl.participants">
+                <td>{{ participant.number }}</td>
+                <td>{{ participant.name }}</td>
+                <td>{{ participant.birthYear }}</td>
+                <td>{{ participant.group }}</td>
+                <td>{{ participant.start }}</td>
+                <td>{{ participant.finish }}</td>
+                <td>{{ participant.penalty }}</td>
+                <td>{{ participant.result }}</td>
+                <td>{{ participant.comment }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ 'triathlon.participants' | routeSegmentUrl }}/{{participant.id}}/edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

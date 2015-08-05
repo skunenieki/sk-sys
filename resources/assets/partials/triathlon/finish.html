@@ -1,1 +1,84 @@
-tri fin
+<div class="row" ng-controller="TriathlonFinishNumberController as triFinNumCtrl">
+    <div class="col-xs-8">
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:6">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:12">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:18">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:24">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:30">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:36">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-2" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 6:42">
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish($index)" role="button">{{ finisher.number }}</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="row">
+            <div class="col-xs-6">
+                <br>
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish(false)" role="button">Nezinams</button>
+            </div>
+            <div class="col-xs-6">
+                <br>
+                <form>
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="#" ng-model="triFinNumCtrl.manualNumber">
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="triFinNumCtrl.markFinish(false)">Pievienot</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: ('triathlon.finish.input' | routeSegmentStartsWith)}" role="presentation">
+                        <a ng-href="#{{ 'triathlon.finish.input' | routeSegmentUrl }}">Ievade</a>
+                    </li>
+                    <li ng-class="{active: ('triathlon.finish.edit' | routeSegmentStartsWith)}" role="presentation">
+                        <a ng-href="#{{ 'triathlon.finish.edit' | routeSegmentUrl }}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </li>
+                </ul>
+                <div app-view-segment="2"></div>
+            </div>
+        </div>
+    </div>
+</div>

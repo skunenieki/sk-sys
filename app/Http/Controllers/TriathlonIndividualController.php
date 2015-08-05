@@ -4,11 +4,10 @@ namespace Skunenieki\System\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Skunenieki\System\Models\Mtb;
+use Skunenieki\System\Models\Triathlon;
 use Skunenieki\System\Models\Participant;
-use Skunenieki\System\Models\IndividualStart;
 
-class MtbController extends Controller
+class TriathlonIndividualController extends Controller
 {
     public function index(Request $request)
     {
@@ -21,7 +20,7 @@ class MtbController extends Controller
         $birthYear = $request->get('birthYear', false);
         $eventYear = $request->get('eventYear', false);
 
-        $result = Mtb::where('id', '>', '0');
+        $result = Triathlon::where('id', '>', '0');
 
         if (false !== $name) {
             $result->where('name', $name);
@@ -40,11 +39,8 @@ class MtbController extends Controller
         }
 
         if (false !== $start) {
-            // dd(explode(',', $start));
             $result->whereIn('start', explode(',', $start));
         }
-
-        // dd($result->toSql());
 
         $result->skip($skip)->take($take);
 
@@ -58,11 +54,6 @@ class MtbController extends Controller
             }
         }
 
-        // \Event::listen('illuminate.query', function($query, $params, $time, $conn)
-        // {
-        //     dd(array($query, $params, $time, $conn));
-        // });
-
         $result = $result->get();
 
         return $result;
@@ -70,14 +61,12 @@ class MtbController extends Controller
 
     public function show($id)
     {
-        $mtb = Mtb::find($id);
-
-        return $mtb;
+        return Triathlon::find($id);
     }
 
     public function store(Request $request)
     {
-        $ind = Mtb::where('number', $request->number)
+        $ind = Triathlon::where('number', $request->number)
                          ->where('eventYear', $request->eventYear)
                          ->first();
 
@@ -85,7 +74,7 @@ class MtbController extends Controller
             return response(['error' => ['field' => 'number', 'msg' => 'Number already registered']], 400);
         }
 
-        $ind = Mtb::where('name', $request->name)
+        $ind = Triathlon::where('name', $request->name)
                          ->where('birthYear', $request->birthYear)
                          ->where('eventYear', $request->eventYear)
                          ->first();
@@ -106,7 +95,7 @@ class MtbController extends Controller
             $participant->save();
         }
 
-        $ind = new Mtb;
+        $ind = new Triathlon;
         $ind->number        = $request->number;
         $ind->name          = $request->name;
         $ind->birthYear     = $request->birthYear;
@@ -122,24 +111,12 @@ class MtbController extends Controller
 
     public function destroy($id)
     {
-        Mtb::destroy($id);
+        Triathlon::destroy($id);
         return;
     }
 
     public function update(Request $request, $id)
     {
-        if ($request->input('lap1') === '') {
-            $request->lap1 = null;
-        }
-
-        if ($request->input('lap2') === '') {
-            $request->lap2 = null;
-        }
-
-        if ($request->input('lap3') === '') {
-            $request->lap3 = null;
-        }
-
         if ($request->input('finish') === '') {
             $request->finish = null;
         }
@@ -148,36 +125,25 @@ class MtbController extends Controller
             $request->penalty = null;
         }
 
-        $mtb            = Mtb::find($id);
-        $mtb->number    = $request->input('number');
-        $mtb->name      = $request->input('name');
-        $mtb->birthYear = $request->input('birthYear');
-        $mtb->gender    = $request->input('gender');
-        $mtb->lap1      = $request->lap1;
-        $mtb->lap2      = $request->lap2;
-        $mtb->lap3      = $request->lap3;
-        $mtb->finish    = $request->finish;
-        $mtb->penalty   = $request->penalty;
-        $mtb->comment   = $request->input('comment');
-        $mtb->save();
+        $tri            = Triathlon::find($id);
+        $tri->number    = $request->input('number');
+        $tri->name      = $request->input('name');
+        $tri->birthYear = $request->input('birthYear');
+        $tri->gender    = $request->input('gender');
+        $tri->finish    = $request->finish;
+        $tri->penalty   = $request->penalty;
+        $tri->eventYear = $request->input('eventYear');
+        $tri->comment   = $request->input('comment');
+        $tri->save();
 
-        return $mtb;
+        return $tri;
     }
 
     public function years()
     {
-        return Mtb::select('eventYear')
+        return Triathlon::select('eventYear')
                          ->distinct()
                          ->orderBy('eventYear', 'desc')
                          ->get();
-    }
-
-    public function statistics()
-    {
-        return [
-            'total' => 5,
-            'V'     => 1,
-            'S'     => 4,
-        ];
     }
 }

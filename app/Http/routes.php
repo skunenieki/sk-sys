@@ -69,11 +69,27 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->delete('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@destroy');
     $app->put('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@update');
 
+
+    $app->get('triathlon/finish', 'Skunenieki\System\Http\Controllers\TriathlonFinishController@finish');
+    $app->get('triathlon/finishnumbers', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@index');
+    $app->post('triathlon/finishnumbers', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@store');
+    $app->delete('triathlon/finishnumbers/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@destroy');
+    $app->get('triathlon/finishtimes', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@index');
+    $app->post('triathlon/finishtimes', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@store');
+    $app->put('triathlon/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@update');
+    $app->delete('triathlon/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@destroy');
+
     $app->get('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@index');
     $app->post('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@store');
     $app->get('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@show');
     $app->put('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@update');
     $app->delete('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@destroy');
+
+    $app->get('triathlon/individual', 'Skunenieki\System\Http\Controllers\TriathlonIndividualController@index');
+    $app->post('triathlon/individual', 'Skunenieki\System\Http\Controllers\TriathlonIndividualController@store');
+    $app->get('triathlon/individual/{id}', 'Skunenieki\System\Http\Controllers\TriathlonIndividualController@show');
+    $app->put('triathlon/individual/{id}', 'Skunenieki\System\Http\Controllers\TriathlonIndividualController@update');
+    $app->delete('triathlon/individual/{id}', 'Skunenieki\System\Http\Controllers\TriathlonIndividualController@destroy');
 
     $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
 });

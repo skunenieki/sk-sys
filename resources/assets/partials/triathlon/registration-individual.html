@@ -16,7 +16,7 @@
                        max="999"
                        ng-maxlength="3"
                        ng-model="triIRegCtrl.participation.number"
-                       ng-remote-validate="/mtb?eventYear={{triIRegCtrl.participation.eventYear}}"
+                       ng-remote-validate="/triathlon/individual?eventYear={{triIRegCtrl.participation.eventYear}}"
                        tabindex="1"
                        required>
                 <span ng-show="!triIRegCtrl.regForm.number.$invalid && triIRegCtrl.regForm.number.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span>
@@ -127,4 +127,32 @@
             </div>
         </div>
     </form>
+
+    <table class="table table-hover">
+        <caption>Nesen registretie dalibnieki.</caption>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nosaukums</th>
+                <th>Grupa</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="recReg in triIRegCtrl.recentlyRegistered">
+                <td>{{ recReg.number }}</td>
+                <td>{{ recReg.name }}</td>
+                <td>{{ recReg.group }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ 'triathlon.participants' | routeSegmentUrl }}/{{recReg.id}}/edit">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest komandu?" ng-really-click="triIRegCtrl.delete($index)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary btn-block" ng-click="triIRegCtrl.loadMore()">Vairak..</button>
 </div>

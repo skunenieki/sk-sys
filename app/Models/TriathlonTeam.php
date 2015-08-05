@@ -2,6 +2,7 @@
 
 namespace Skunenieki\System\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class TriathlonTeam extends Model
@@ -13,7 +14,7 @@ class TriathlonTeam extends Model
      */
     protected $table = 'triathlon_teams';
 
-    protected $appends = ['result', 'group', 'start'];
+    protected $appends = ['group', 'start', 'result'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -24,7 +25,20 @@ class TriathlonTeam extends Model
 
     public function getResultAttribute()
     {
-        return '1:00:01';
+        if (null !== $this->start && null !== $this->finish) {
+            $start = new Carbon($this->start);
+            $finish = new Carbon($this->finish);
+
+            if (null !== $this->penalty) {
+                $finish->addSeconds(
+                    (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00'))
+                );
+            }
+
+            return $start->diff($finish)->format('%H:%I:%S');;
+        }
+
+        return null;
     }
 
     public function getGroupAttribute()

@@ -27,7 +27,9 @@ require('./services/IndividualTurnService');
 require('./services/MtbFinishNumberService');
 require('./services/PersistentStateService');
 require('./services/IndividualYearsService');
+require('./services/TriathlonFinishTimeService');
 require('./services/IndividualFinishTimeService');
+require('./services/TriathlonFinishNumberService');
 require('./services/IndividualFinishNumberService');
 
 require('./directives/ngRemoteValidate');
@@ -49,10 +51,14 @@ require('./controllers/IndividualStartController');
 require('./controllers/TriRegistrationController');
 require('./controllers/TriTeamParticipantController');
 require('./controllers/IndividualDiplomasController');
+require('./controllers/TriathlonIndividualController');
 require('./controllers/TriTeamRegistrationController');
+require('./controllers/TriathlonFinishTimeController');
 require('./controllers/IndividualFinishTimeController');
 require('./controllers/IndividualFinishNumberController');
+require('./controllers/TriathlonFinishNumberController');
 require('./controllers/TriIndividualRegistrationController');
+require('./controllers/TriathlonIndividualParticipantController');
 
 var AppConfig = angular.module('AppConfig', [])
     .provider('AppConfig', function () {
@@ -103,6 +109,8 @@ var skApp = angular.module('skApp', [
 
         'skApp.TriathlonService',
         'skApp.TriathlonTeamService',
+        'skApp.TriathlonFinishTimeService',
+        'skApp.TriathlonFinishNumberService',
 
         // Controllers
         'skApp.MainController',
@@ -127,8 +135,12 @@ var skApp = angular.module('skApp', [
         'skApp.TriathlonTeamsController',
         'skApp.TriRegistrationController',
         'skApp.TriTeamParticipantController',
+        'skApp.TriathlonFinishTimeController',
         'skApp.TriTeamRegistrationController',
+        'skApp.TriathlonIndividualController',
+        'skApp.TriathlonFinishNumberController',
         'skApp.TriIndividualRegistrationController',
+        'skApp.TriathlonIndividualParticipantController',
     ])
     .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider
@@ -294,7 +306,11 @@ var skApp = angular.module('skApp', [
             .when('/triathlon/registration/team', 'triathlon.registration.team')
             .when('/triathlon/turn', 'triathlon.turn')
             .when('/triathlon/finish', 'triathlon.finish')
+            .when('/triathlon/finish/input', 'triathlon.finish.input')
+            .when('/triathlon/finish/edit', 'triathlon.finish.edit')
             .when('/triathlon/chronometer', 'triathlon.chronometer')
+            .when('/triathlon/chronometer/input', 'triathlon.chronometer.input')
+            .when('/triathlon/chronometer/edit', 'triathlon.chronometer.edit')
             .when('/triathlon/participants', 'triathlon.participants')
             .when('/triathlon/participants/:eventYear', 'triathlon.participants.year')
             .when('/triathlon/participants/:participantId/edit', 'triathlon.participants.edit')
@@ -319,12 +335,28 @@ var skApp = angular.module('skApp', [
                 .segment('turn', {
                     templateUrl: 'triathlon/turn.html'
                 })
-                .segment('finish', {
-                    templateUrl: 'triathlon/finish.html'
-                })
                 .segment('chronometer', {
                     templateUrl: 'triathlon/chronometer.html'
                 })
+                .within()
+                    .segment('input', {
+                        templateUrl: 'triathlon/chronometer-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: 'triathlon/chronometer-edit.html'
+                    })
+                    .up()
+                .segment('finish', {
+                    templateUrl: 'triathlon/finish.html'
+                })
+                .within()
+                    .segment('input', {
+                        templateUrl: 'triathlon/finish-input.html'
+                    })
+                    .segment('edit', {
+                        templateUrl: 'triathlon/finish-edit.html'
+                    })
+                    .up()
                 .segment('participants', {
                     templateUrl: 'triathlon/participants.html'
                 })

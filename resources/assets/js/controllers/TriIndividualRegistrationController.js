@@ -91,7 +91,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
 
             $http({
                 method: 'GET',
-                url: '/mtb',
+                url: '/triathlon/individual',
                 params: {
                     name: self.participation.name,
                     birthYear: self.participation.birthYear,

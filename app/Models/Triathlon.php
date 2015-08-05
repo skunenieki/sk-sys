@@ -16,7 +16,7 @@ class Triathlon extends Model
      */
     protected $table = 'triathlon';
 
-    // protected $appends = ['result', 'group', 'start'];
+    protected $appends = ['group', 'start', 'result'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -35,51 +35,56 @@ class Triathlon extends Model
 
     public function getGroupAttribute($group)
     {
-        return 'GRUPA';
+        static $yearRanges = null;
+        if (true === is_null($yearRanges)) {
+            $yearRanges = require __DIR__.'/../TriathlonGroups.php';
+        }
 
-        // static $yearRanges = null;
-        // if (true === is_null($yearRanges)) {
-        //     $yearRanges = require __DIR__.'/../MtbGroups.php';
-        // }
+        if (null !== $group) {
+            return $group;
+        }
 
-        // if (null !== $group) {
-        //     return $group;
-        // }
+        if (null === $this->gender) {
+            return null;
+        }
 
-        // if (null === $this->gender) {
-        //     return null;
-        // }
+        static $groups = [];
+        if (true === empty($groups)) {
+            foreach ($yearRanges as $yearRange => $ageRanges) {
+                if (false !== strpos($yearRange, '-')) {
+                    $yearRange = explode('-', $yearRange);
+                    for ($year = intval($yearRange[0]); $year <= intval($yearRange[1]); $year++) {
+                        foreach ($ageRanges as $ageRange => $groupRanges) {
+                            $ageRange = explode('-', $ageRange);
+                            for ($age = intval($ageRange[0]); $age <= intval($ageRange[1]); $age++) {
+                                if (false === isset($groups[$year][$age])) {
+                                     $groups[$year][$age] = [];
+                                }
+                                $groups[$year][$age] = array_merge($groups[$year][$age], $groupRanges);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-        // static $groups = [];
-        // if (true === empty($groups)) {
-        //     foreach ($yearRanges as $yearRange => $ageRanges) {
-        //         if (false !== strpos($yearRange, '-')) {
-        //             $yearRange = explode('-', $yearRange);
-        //             for ($year = intval($yearRange[0]); $year <= intval($yearRange[1]); $year++) {
-        //                 foreach ($ageRanges as $ageRange => $groupRanges) {
-        //                     $ageRange = explode('-', $ageRange);
-        //                     for ($age = intval($ageRange[0]); $age <= intval($ageRange[1]); $age++) {
-        //                         if (false === isset($groups[$year][$age])) {
-        //                              $groups[$year][$age] = [];
-        //                         }
-        //                         $groups[$year][$age] = array_merge($groups[$year][$age], $groupRanges);
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // try {
-        //     return $groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->gender)];
-        // } catch (\Exception $e) {
-        //     return 'NaN';
-        // }
+        try {
+            return $groups[$this->eventYear][$this->eventYear-$this->birthYear][strtoupper($this->gender)];
+        } catch (\Exception $e) {
+            return 'NaN';
+        }
     }
 
     public function getStartAttribute()
     {
-        return '0:00:00';
+        // if ($this->group)
+        if (in_array($this->group, ['S1', 'S2'])) {
+            return '0:05:00';
+        } elseif (in_array($this->group, ['V1', 'V2'])) {
+            return '0:09:00';
+        } else {
+            return null;
+        }
     }
 
     public function getResultInSecondsAttribute()

@@ -90,8 +90,16 @@ class TriathlonTeamsController extends Controller
         $team->runnerBirthYear     = $runner->birthYear;
         $team->runnerGender        = $runner->gender;
 
-        $team->finish    = $request->input('finish');
-        $team->penalty   = $request->input('penalty');
+        if ($request->input('finish') === '') {
+            $request->finish = null;
+        }
+
+        if ($request->input('penalty') === '') {
+            $request->penalty = null;
+        }
+
+        $team->finish    = $request->finish;
+        $team->penalty   = $request->penalty;
         $team->eventYear = $request->input('eventYear', 2015);
         $team->comment   = $request->input('comment');
         $team->save();

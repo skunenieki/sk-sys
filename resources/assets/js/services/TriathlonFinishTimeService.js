@@ -1,7 +1,7 @@
-angular.module('skApp.TriathlonService', [])
-.factory('TriathlonService', ['$resource', function($resource) {
+angular.module('skApp.TriathlonFinishTimeService', [])
+.factory('TriathlonFinishTimeService', ['$resource', function($resource) {
     return $resource(
-        '/triathlon/individual/:id',
+        '/triathlon/finishtimes/:id',
         {
             id:'@id',
         },

@@ -1,1 +1,167 @@
-edit
+<div ng-controller="TriathlonIndividualParticipantController as triIPartCtrl">
+    <form class="form-horizontal"
+          name="triIPartCtrl.partForm"
+          ng-submit="triIPartCtrl.updateParticipant()"
+          novalidate>
+        <div class="form-group has-feedback">
+            <label for="inputNumber" class="col-sm-2 control-label">Numurs</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       name="number"
+                       class="form-control"
+                       id="inputNumber"
+                       placeholder="#"
+                       min="1"
+                       max="999"
+                       ng-maxlength="3"
+                       ng-model="triIPartCtrl.participant.number"
+                       tabindex="1"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputName" class="col-sm-2 control-label">Dalībnieks</label>
+            <div class="col-xs-12 col-sm-8">
+                <input type="text"
+                       name="name"
+                       class="form-control"
+                       id="inputName"
+                       placeholder="Vards, Uzvards"
+                       ng-model="triIPartCtrl.participant.name"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{'has-error': false}">
+            <label for="inputBirthYear" class="col-sm-2 control-label">Dz. gads</label>
+            <div class="col-xs-12 col-sm-3">
+                <input type="number"
+                       name="birthYear"
+                       class="form-control"
+                       id="inputBirthYear"
+                       placeholder="2014"
+                       min="1915"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triIPartCtrl.participant.birthYear"
+                       required>
+                <p class="help-block">Vecums: {{ triIPartCtrl.participant.eventYear - triIPartCtrl.participant.birthYear}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dzimums</label>
+            <div class="col-xs-12 col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="inputGender" tabindex="4" id="inputGenderMale" value="V" ng-model="triIPartCtrl.participant.gender" required> Vīrietis
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inputGender" id="inputGenderFemale" value="S" ng-model="triIPartCtrl.participant.gender" required> Sieviete
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputGroup" class="col-sm-2 control-label">Grupa</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="group"
+                       class="form-control"
+                       id="inputGroup"
+                       placeholder="-"
+                       ng-model="triIPartCtrl.participant.group"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputStart" class="col-sm-2 control-label">Starts</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="start"
+                       class="form-control"
+                       id="inputStart"
+                       placeholder="00:00:00"
+                       ng-model="triIPartCtrl.participant.start"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputFinish" class="col-sm-2 control-label">Finiss</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="finish"
+                       class="form-control"
+                       id="inputFinish"
+                       placeholder="00:00:00"
+                       ng-model="triIPartCtrl.participant.finish">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputPenalty" class="col-sm-2 control-label">Sods</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="penalty"
+                       class="form-control"
+                       id="inputPenalty"
+                       placeholder="00:00:00"
+                       ng-model="triIPartCtrl.participant.penalty">
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputResult" class="col-sm-2 control-label">Rezultats</label>
+            <div class="col-xs-12 col-md-2">
+                <input type="text"
+                       name="result"
+                       class="form-control"
+                       id="inputResult"
+                       placeholder="00:00:00"
+                       ng-model="triIPartCtrl.participant.result"
+                       readonly>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputNotes" class="col-sm-2 control-label">Komentārs</label>
+            <div class="col-sm-10">
+                <textarea id="inputNotes" class="form-control" rows="2" ng-model="triIPartCtrl.participant.comment"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="eventYear" class="col-sm-2 control-label">Sacensibu gads</label>
+            <div class="col-xs-12 col-md-3">
+                <input type="number"
+                       class="form-control"
+                       id="eventYear"
+                       placeholder="2015"
+                       min="1996"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triIPartCtrl.participant.eventYear"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-xs-12 col-md-3">
+                <button type="button" class="btn btn-danger" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="triIPartCtrl.delete()">
+                    <span class="glyphicon glyphicon-trash"></span> Dzest dalibnieku
+                </button>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" tabindex="5" ng-disabled="triIPartCtrl.partForm.$invalid">Saglabat</button>
+                <button type="button" class="btn btn-default" ng-click="triIPartCtrl.back()">Atpakal</button>
+            </div>
+        </div>
+    </form>
+</div>
