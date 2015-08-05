@@ -65,10 +65,6 @@ class MtbController extends Controller
 
         $result = $result->get();
 
-        // $result->map(function($item) {
-        //     $item->result = $item->result;
-        // });
-
         return $result;
     }
 
@@ -118,6 +114,7 @@ class MtbController extends Controller
         $ind->eventYear     = $request->eventYear;
         $ind->comment       = $request->comment;
         $ind->participantId = $participant->id;
+        $ind->eventYear     = $request->input('eventYear', 2015);
         $ind->save();
 
         return $ind;

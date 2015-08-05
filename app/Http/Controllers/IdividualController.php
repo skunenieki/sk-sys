@@ -178,8 +178,7 @@ class IdividualController extends Controller
             $individualStart            = new IndividualStart;
             $individualStart->number    = $request->number;
             $individualStart->start     = $request->start;
-            $individualStart->slot      = IndividualStart::where('eventYear', 2015)->count() + 1;
-            $individualStart->eventYear = 2015;
+            $individualStart->eventYear = $request->input('eventYear', 2015);
             $individualStart->save();
         }
 

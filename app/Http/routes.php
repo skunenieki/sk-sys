@@ -69,6 +69,12 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->delete('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@destroy');
     $app->put('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@update');
 
+    $app->get('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@index');
+    $app->post('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@store');
+    $app->get('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@show');
+    $app->put('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@update');
+    $app->delete('triathlon/teams/{id}', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@destroy');
+
     $app->get('teams', 'Skunenieki\System\Http\Controllers\TeamController@index');
 });
 

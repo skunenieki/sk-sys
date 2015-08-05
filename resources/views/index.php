@@ -20,6 +20,7 @@
             AppConfigProvider.set({
                 indActiveEventStart: '<?php echo $indActiveEventStart; ?>',
                 mtbActiveEventStart: '<?php echo $mtbActiveEventStart; ?>',
+                triathlonActiveEventStart: '<?php echo $triathlonActiveEventStart; ?>',
             });
         });
     </script>

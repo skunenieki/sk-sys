@@ -1,1 +1,19 @@
-tri reg
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{ match.model.birthYear }})
+  </a>
+</script>
+
+<br>
+<div ng-controller="TriRegistrationController as triRegCtrl">
+    <ul class="nav nav-tabs">
+        <li ng-class="{active: ('triathlon.registration.individual' | routeSegmentStartsWith)}">
+            <a ng-href="#{{ 'triathlon.registration.individual' | routeSegmentUrl }}">Individuali</a>
+        </li>
+        <li ng-class="{active: ('triathlon.registration.team' | routeSegmentStartsWith)}">
+            <a ng-href="#{{ 'triathlon.registration.team' | routeSegmentUrl }}">Komanda</a>
+        </li>
+    </ul>
+
+    <div app-view-segment="2"></div>
+</div>

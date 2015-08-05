@@ -13,8 +13,9 @@ class MainViewController extends Controller
         $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
 
         $settings = [
-            'indActiveEventStart' => null,
-            'mtbActiveEventStart' => null,
+            'indActiveEventStart'       => null,
+            'mtbActiveEventStart'       => null,
+            'triathlonActiveEventStart' => null,
         ];
 
         if (null !== $activeEvent) {
@@ -23,6 +24,10 @@ class MainViewController extends Controller
 
         if (null !== $activeEvent) {
             $settings['mtbActiveEventStart'] = isset($activeEvent->settings['mtbStartDate']) ? $activeEvent->settings['mtbStartDate'] : null;
+        }
+
+        if (null !== $activeEvent) {
+            $settings['triathlonActiveEventStart'] = isset($activeEvent->settings['triathlonStartDate']) ? $activeEvent->settings['triathlonStartDate'] : null;
         }
 
         return view('index', $settings);

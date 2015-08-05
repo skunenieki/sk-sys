@@ -1,0 +1,35 @@
+<br>
+<div class="row">
+    <div class="col-xs-12" ng-controller="TriathlonTeamsController as triTeamCtrl">
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th>Nosaukums</th>
+                <th>Starts</th>
+                <th>Finiss</th>
+                <th>Sods</th>
+                <th>Rezultats</th>
+                <th>Komentars</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="team in triTeamCtrl.teams">
+                <td>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </td>
+                <td>{{ team.number }}</td>
+                <td>{{ team.name }}</td>
+                <td>{{ team.start }}</td>
+                <td>{{ team.finish }}</td>
+                <td>{{ team.penalty }}</td>
+                <td>{{ team.result }}</td>
+                <td>{{ team.comment }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ 'triathlon.teams' | routeSegmentUrl }}/{{team.id}}/edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

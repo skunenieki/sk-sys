@@ -1,0 +1,259 @@
+<br>
+<div ng-controller="TriTeamRegistrationController as triTRegCtrl">
+    <form class="form-horizontal"
+          name="triTRegCtrl.regForm"
+          ng-submit="triTRegCtrl.registerTeam()"
+          novalidate>
+        <div class="form-group has-feedback" ng-class="{'has-error': triTRegCtrl.regForm.number.$invalid && !triTRegCtrl.regForm.number.$pristine, 'has-success': !triTRegCtrl.regForm.number.$invalid && triTRegCtrl.regForm.number.$touched}">
+            <label for="inputNumber" class="col-sm-2 control-label">Numurs</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       name="number"
+                       class="form-control"
+                       id="inputNumber"
+                       placeholder="#"
+                       min="1"
+                       max="999"
+                       ng-maxlength="3"
+                       ng-model="triTRegCtrl.participation.number"
+                       ng-remote-validate="/mtb?eventYear={{triTRegCtrl.participation.eventYear}}"
+                       required>
+                <span ng-show="!triTRegCtrl.regForm.number.$invalid && triTRegCtrl.regForm.number.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                <span ng-show="triTRegCtrl.regForm.number.$invalid && !triTRegCtrl.regForm.number.$pristine && triTRegCtrl.regForm.number.$touched" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                <span ng-show="!triTRegCtrl.regForm.number.$pristine && triTRegCtrl.regForm.number.$invalid && !triTRegCtrl.regForm.number.unique">
+                    Numurs jau registrets
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="inputTeamName" class="col-sm-2 control-label">Nosaukums</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       id="inputTeamName"
+                       name="teamName"
+                       class="form-control"
+                       ng-model="triTRegCtrl.participation.teamName"
+                       placeholder="..."
+                       autocomplete="off"
+                       required>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group has-feedback">
+            <label for="inputSwimmerName" class="col-sm-2 control-label">Peldētājs</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       id="inputSwimmerName"
+                       name="swimmerName"
+                       class="form-control"
+                       ng-model="triTRegCtrl.participation.swimmer.name"
+                       typeahead="participant as participant.name for participant in triTRegCtrl.getExistingParticipants($viewValue)"
+                       typeahead-loading="loadingSwimmer"
+                       typeahead-on-select="triTRegCtrl.onSelectSwimmer($item)"
+                       typeahead-template-url="customTemplate.html"
+                       typeahead-focus-first="false"
+                       placeholder="Vārds Uzvārds"
+                       ng-blur="triTRegCtrl.checkExistingSwimmer()"
+                       ng-change="triTRegCtrl.capitalizeSwimmerWords()"
+                       autocomplete="off"
+                       required>
+                <span ng-show="loadingSwimmer" class="glyphicon glyphicon-refresh form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error': (!triTRegCtrl.regForm.swimmerBirthYear.$pristine && triTRegCtrl.regForm.swimmerBirthYear.$invalid)}">
+            <label for="inputSwimmerBirthYear" class="col-sm-2 control-label">Dz. gads</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       name="swimmerBirthYear"
+                       class="form-control"
+                       id="inputSwimmerBirthYear"
+                       placeholder="2014"
+                       min="1915"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triTRegCtrl.participation.swimmer.birthYear"
+                       ng-blur="triTRegCtrl.checkExistingSwimmer()"
+                       required>
+                <span ng-show="!triTRegCtrl.regForm.swimmerBirthYear.$pristine && triTRegCtrl.regForm.swimmerBirthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dzimums</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="inputSwimmerGender" id="inputSwimmerGenderMale" value="V" ng-model="triTRegCtrl.participation.swimmer.gender" required> Vīrietis
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inputSwimmerGender" id="inputSwimmerGenderFemale" value="S" ng-model="triTRegCtrl.participation.swimmer.gender" required> Sieviete
+                </label>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group has-feedback">
+            <label for="inputBikerName" class="col-sm-2 control-label">Riteņbraucējs</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       id="inputBikerName"
+                       name="bikerName"
+                       class="form-control"
+                       ng-model="triTRegCtrl.participation.biker.name"
+                       typeahead="participant as participant.name for participant in triTRegCtrl.getExistingParticipants($viewValue)"
+                       typeahead-loading="loadingBiker"
+                       typeahead-on-select="triTRegCtrl.onSelectBiker($item)"
+                       typeahead-template-url="customTemplate.html"
+                       typeahead-focus-first="false"
+                       placeholder="Vārds Uzvārds"
+                       ng-blur="triTRegCtrl.checkExistingBiker()"
+                       ng-change="triTRegCtrl.capitalizeBikerWords()"
+                       autocomplete="off"
+                       required>
+                <span ng-show="loadingBiker" class="glyphicon glyphicon-refresh form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error': (!triTRegCtrl.regForm.bikerBirthYear.$pristine && triTRegCtrl.regForm.bikerBirthYear.$invalid)}">
+            <label for="inputBirthYear" class="col-sm-2 control-label">Dz. gads</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       name="bikerBirthYear"
+                       class="form-control"
+                       id="inputBirthYear"
+                       placeholder="2014"
+                       min="1915"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triTRegCtrl.participation.biker.birthYear"
+                       ng-blur="triTRegCtrl.checkExistingBiker()"
+                       required>
+                <span ng-show="!triTRegCtrl.regForm.bikerBirthYear.$pristine && triTRegCtrl.regForm.bikerBirthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dzimums</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="inputBikerGender" id="inputBikerGenderMale" value="V" ng-model="triTRegCtrl.participation.biker.gender" required> Vīrietis
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inputBikerGender" id="inputBikerGenderFemale" value="S" ng-model="triTRegCtrl.participation.biker.gender" required> Sieviete
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group has-feedback">
+            <label for="inputRunnerName" class="col-sm-2 control-label">Skrējējs</label>
+            <div class="col-sm-8">
+                <input type="text"
+                       id="inputRunnerName"
+                       name="runnerName"
+                       class="form-control"
+                       ng-model="triTRegCtrl.participation.runner.name"
+                       typeahead="participant as participant.name for participant in triTRegCtrl.getExistingParticipants($viewValue)"
+                       typeahead-loading="loadingRunner"
+                       typeahead-on-select="triTRegCtrl.onSelectRunner($item)"
+                       typeahead-template-url="customTemplate.html"
+                       typeahead-focus-first="false"
+                       placeholder="Vārds Uzvārds"
+                       ng-blur="triTRegCtrl.checkExistingRunner()"
+                       ng-change="triTRegCtrl.capitalizeRunnerWords()"
+                       autocomplete="off"
+                       required>
+                <span ng-show="loadingRunner" class="glyphicon glyphicon-refresh form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group has-feedback" ng-class="{'has-error': (!triTRegCtrl.regForm.runnerBirthYear.$pristine && triTRegCtrl.regForm.runnerBirthYear.$invalid)}">
+            <label for="inputRunnerBirthYear" class="col-sm-2 control-label">Dz. gads</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       name="runnerBirthYear"
+                       class="form-control"
+                       id="inputRunnerBirthYear"
+                       placeholder="2014"
+                       min="1915"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triTRegCtrl.participation.runner.birthYear"
+                       ng-blur="triTRegCtrl.checkExistingRunner()"
+                       required>
+                <span ng-show="!triTRegCtrl.regForm.runnerBirthYear.$pristine && triTRegCtrl.regForm.runnerBirthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Dzimums</label>
+            <div class="col-sm-10">
+                <label class="radio-inline">
+                    <input type="radio" name="inputRunnerGender" id="inputRunnerGenderMale" value="V" ng-model="triTRegCtrl.participation.runner.gender" required> Vīrietis
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inputRunnerGender" id="inputRunnerGenderFemale" value="S" ng-model="triTRegCtrl.participation.runner.gender" required> Sieviete
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#advanced">Izverst</button>
+          </div>
+        </div>
+        <div class="collapse" id="advanced">
+          <div class="form-group">
+              <label for="inputNotes" class="col-sm-2 control-label">Komentārs</label>
+              <div class="col-sm-10">
+                  <textarea id="inputNotes" class="form-control" rows="2" ng-model="triTRegCtrl.participation.comment"></textarea>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="eventYear" class="col-sm-2 control-label">Sacensibu gads</label>
+            <div class="col-xs-3">
+                <input type="number"
+                       class="form-control"
+                       id="eventYear"
+                       placeholder="2015"
+                       min="1996"
+                       max="2015"
+                       ng-maxlength="4"
+                       ng-model="triTRegCtrl.participation.eventYear"
+                       required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" ng-disabled="triTRegCtrl.regForm.$invalid">Reģistrēt</button>
+                <button type="button" class="btn btn-default" ng-disabled="!triTRegCtrl.regForm.$dirty" ng-click="triTRegCtrl.reset()">Atcelt</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-hover">
+        <caption>Nesen registretie dalibnieki.</caption>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nosaukums</th>
+                <th>Grupa</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="recReg in triTRegCtrl.recentlyRegistered">
+                <td>{{ recReg.number }}</td>
+                <td>{{ recReg.name }}</td>
+                <td>{{ recReg.group }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" ng-href="#{{ 'triathlon.teams' | routeSegmentUrl }}/{{recReg.id}}/edit">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest komandu?" ng-really-click="triTRegCtrl.delete($index)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary btn-block" ng-click="triTRegCtrl.loadMore()">Vairak..</button>
+</div>
