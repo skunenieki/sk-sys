@@ -46,6 +46,7 @@ class SyncWithAlgolia extends Command
                               ->whereNotNull('finish');
 
             $results = [];
+            $results2 = [];
             foreach ($data->get() as $individual) {
                 $results[$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
             }
