@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'Skunenieki\System\Console\Commands\GetDBSnapshot',
+        'Skunenieki\System\Console\Commands\SyncWithAlgolia',
     ];
 
     /**
