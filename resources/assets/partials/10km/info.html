@@ -1,5 +1,12 @@
 <div ng-controller="IndividualInfoController as indInfoCtrl">
     <div class="row">
+        <div class="col-xs-12">
+            <div class="page-header">
+                <h1>Rezultāti no skunenieki.lv</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -13,13 +20,20 @@
                         <th>Rezultāts</th>
                         <th>Vidējais ātrums</th>
                     </tr>
+                    <tr ng-repeat="finished in indInfoCtrl.summary | filter:{ finish: '' } | orderBy:'-finish' | limitTo: 30">
+                        <td>{{ finished.number }}</td>
+                        <td>{{ finished.name }}</td>
+                        <td>{{ finished.turnResult }}</td>
+                        <th>{{ finished.result }}</th>
+                        <td>{{ 10/(finished.resultInSeconds/3600) | number:2 }} km/h</td>
+                    </tr>
                 </table>
             </div>
         </div>
         <div class="col-xs-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Nesen finišēja</h3>
+                    <h3 class="panel-title">Kopvērtējuma labākie</h3>
                 </div>
                 <table class="table">
                     <tr>
@@ -28,6 +42,57 @@
                         <th>Laiks 5km</th>
                         <th>Rezultāts</th>
                         <th>Vidējais ātrums</th>
+                    </tr>
+                    <tr ng-repeat="bestMale in indInfoCtrl.summary | filter:{ gender: 'V', finish: ''} | orderBy:'resultInSeconds' | limitTo: 3">
+                        <td>{{ bestMale.number }}</td>
+                        <td>{{ bestMale.name }}</td>
+                        <td>{{ bestMale.turnResult }}</td>
+                        <th>{{ bestMale.result }}</th>
+                        <td>{{ 10/(bestMale.resultInSeconds/3600) | number:2 }} km/h</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Kopvērtējuma labākās</h3>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Vārds, Uzvārds</th>
+                        <th>Laiks 5km</th>
+                        <th>Rezultāts</th>
+                        <th>Vidējais ātrums</th>
+                    </tr>
+                    <tr ng-repeat="bestFemale in indInfoCtrl.summary | filter:{ gender: 'S', finish: ''} | orderBy:'resultInSeconds' | limitTo: 3">
+                        <td>{{ bestFemale.number }}</td>
+                        <td>{{ bestFemale.name }}</td>
+                        <td>{{ bestFemale.turnResult }}</td>
+                        <th>{{ bestFemale.result }}</th>
+                        <td>{{ 10/(bestFemale.resultInSeconds/3600) | number:2 }} km/h</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Grupu labākie</h3>
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>Grupa</th>
+                        <th>#</th>
+                        <th>Vārds, Uzvārds</th>
+                        <th>Laiks 5km</th>
+                        <th>Rezultāts</th>
+                        <th>Vidējais ātrums</th>
+                    </tr>
+                    <tr ng-repeat="groupBest in indInfoCtrl.bestInGroups | orderBy: 'group'">
+                        <td>{{ groupBest.group }}</td>
+                        <td>{{ groupBest.number }}</td>
+                        <td>{{ groupBest.name }}</td>
+                        <td>{{ groupBest.turnResult }}</td>
+                        <th>{{ groupBest.result }}</th>
+                        <td>{{ 10/(groupBest.resultInSeconds/3600) | number:2 }} km/h</td>
                     </tr>
                 </table>
             </div>

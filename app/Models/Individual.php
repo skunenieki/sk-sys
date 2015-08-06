@@ -17,7 +17,7 @@ class Individual extends Model
      */
     protected $table = 'individual';
 
-    protected $appends = ['result'];
+    protected $appends = ['result', 'turnResult', 'resultInSeconds'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -119,10 +119,16 @@ class Individual extends Model
     public function getResultInSecondsAttribute($value)
     {
         if (null !== $this->start && null !== $this->finish) {
-            return (new Carbon($this->start))->diffInSeconds(
-                    (new Carbon($this->finish))->addSeconds(
-                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
+            $start = new Carbon($this->start);
+            $finish = new Carbon($this->finish);
+
+            if (null !== $this->penalty) {
+                $finish->addSeconds(
+                    (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00'))
                 );
+            }
+
+            return $start->diffInSeconds($finish);
         }
 
         return null;
@@ -140,7 +146,25 @@ class Individual extends Model
                 );
             }
 
-            return $start->diff($finish)->format('%H:%I:%S');;
+            return $start->diff($finish)->format('%H:%I:%S');
+        }
+
+        return null;
+    }
+
+    public function getTurnResultAttribute($value)
+    {
+        if (null !== $this->start && null !== $this->turn) {
+            $start = new Carbon($this->start);
+            $turn = new Carbon($this->turn);
+
+            if (null !== $this->penalty) {
+                $turn->addSeconds(
+                    (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00'))
+                );
+            }
+
+            return $start->diff($turn)->format('%H:%I:%S');;
         }
 
         return null;

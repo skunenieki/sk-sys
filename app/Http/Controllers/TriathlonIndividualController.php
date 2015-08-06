@@ -17,6 +17,7 @@ class TriathlonIndividualController extends Controller
         $name      = $request->get('name', false);
         $start     = $request->get('start', false);
         $number    = $request->get('number', false);
+        $gender    = $request->get('gender', false);
         $birthYear = $request->get('birthYear', false);
         $eventYear = $request->get('eventYear', false);
 
@@ -40,6 +41,10 @@ class TriathlonIndividualController extends Controller
 
         if (false !== $start) {
             $result->whereIn('start', explode(',', $start));
+        }
+
+        if (false !== $gender) {
+            $result->whereIn('gender', explode(',', $gender));
         }
 
         $result->skip($skip)->take($take);

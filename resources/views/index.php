@@ -10,7 +10,7 @@
     <title>Šķūnenieku Kauss</title>
     <link href="<?php echo elixir('css/app.css'); ?>" rel="stylesheet"  media="screen">
 </head>
-<body ng-controller="MainController as mainCtrl">
+<body ng-controller="MainController as mainCtrl" ng-class="{ 'body': !('10km.info' | routeSegmentStartsWith) }">
     <div ng-include="'header.html'" ng-hide="('10km.info' | routeSegmentStartsWith)"></div>
     <div ng-class="{'container': !('10km.info' | routeSegmentStartsWith), 'container-fluid': ('10km.info' | routeSegmentStartsWith)}"
          app-view-segment="0">

@@ -89,10 +89,16 @@ class Triathlon extends Model
     public function getResultInSecondsAttribute()
     {
         if (null !== $this->start && null !== $this->finish) {
-            return (new Carbon($this->start))->diffInSeconds(
-                    (new Carbon($this->finish))->addSeconds(
-                        (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00')))
+            $start = new Carbon($this->start);
+            $finish = new Carbon($this->finish);
+
+            if (null !== $this->penalty) {
+                $finish->addSeconds(
+                    (new Carbon($this->penalty))->diffInSeconds(new Carbon('0:00:00'))
                 );
+            }
+
+            return $start->diffInSeconds($finish);
         }
 
         return PHP_INT_MAX;
@@ -110,7 +116,7 @@ class Triathlon extends Model
                 );
             }
 
-            return $start->diff($finish)->format('%H:%I:%S');;
+            return $start->diff($finish)->format('%H:%I:%S');
         }
 
         return null;

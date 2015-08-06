@@ -7,6 +7,9 @@ angular.module('skApp.PersistentStateService', [])
     self.turnInterval            = false;
     self.startInterval           = false;
     self.potentialFinishersTimer = false;
+
+    self.bestSummaryTimer        = false;
+
     self.chronoInterval          = false;
 
     self.chronometer = null;
