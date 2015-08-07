@@ -64,9 +64,9 @@ angular.module('skApp.TriathlonFinishNumberController', [])
                     }
                 };
 
-                // self.potentialFinishers.sort(function(a, b) {
-                //     return a.startInSeconds - b.startInSeconds;
-                // });
+                self.potentialFinishers.sort(function(a, b) {
+                    return a.number - b.number;
+                });
             });
     };
 
