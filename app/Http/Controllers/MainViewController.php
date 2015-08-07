@@ -9,7 +9,6 @@ class MainViewController extends Controller
 {
     public function render()
     {
-
         $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
 
         $settings = [
