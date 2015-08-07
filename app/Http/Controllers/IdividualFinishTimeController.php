@@ -22,10 +22,8 @@ class IdividualFinishTimeController extends Controller
 
     public function store(Request $request)
     {
-        $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
-
         $finishTime            = new IndividualFinishTime;
-        $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
+        $finishTime->finish    = $request->input('time');
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2015;
         $finishTime->save();

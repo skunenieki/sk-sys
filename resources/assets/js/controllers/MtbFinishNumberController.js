@@ -53,25 +53,23 @@ angular.module('skApp.MtbFinishNumberController', [])
                     var finisherIndex = _.indexOf(self.potentialFinishers, _.find(self.potentialFinishers, function(finisher) { return finisher.number == response.data[i].number }));
                     if (-1 === finisherIndex) {
                         self.potentialFinishers.push(response.data[i]);
-                    } else {
-                        // self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
                     }
                 }
 
-                for (var i = self.potentialFinishers.length - 1; i >= 0; i--) {
-                    if (typeof _.find(response.data, function(finisher) { return finisher.number == self.potentialFinishers[i].number }) === 'undefined') {
-                        self.potentialFinishers.splice(i, 1);
-                    }
-                };
+                // for (var i = self.potentialFinishers.length - 1; i >= 0; i--) {
+                //     if (typeof _.find(response.data, function(finisher) { return finisher.number == self.potentialFinishers[i].number }) === 'undefined') {
+                //         self.potentialFinishers.splice(i, 1);
+                //     }
+                // };
 
-                // self.potentialFinishers.sort(function(a, b) {
-                //     return a.startInSeconds - b.startInSeconds;
-                // });
+                self.potentialFinishers.sort(function(a, b) {
+                    return a.number - b.number;
+                });
             });
     };
 
     if (false === PersistentStateService.potentialFinishersTimer) {
-        PersistentStateService.potentialFinishersTimer = $interval(self.updatePotentialFinishers, 5000);
+        PersistentStateService.potentialFinishersTimer = $interval(self.updatePotentialFinishers, 1500);
     }
 
     self.updatePotentialFinishers();

@@ -15,6 +15,7 @@ require('ng-tags-input');
 require('./partials');
 
 require('./services/MtbService');
+require('./services/KidsService');
 require('./services/EventService');
 require('./services/OptionService');
 require('./services/TriathlonService');
@@ -50,6 +51,7 @@ require('./controllers/MtbFinishNumberController');
 require('./controllers/MtbRegistrationController');
 require('./controllers/IndividualStartController');
 require('./controllers/TriRegistrationController');
+require('./controllers/KidsRegistrationController');
 require('./controllers/TriTeamParticipantController');
 require('./controllers/IndividualDiplomasController');
 require('./controllers/TriathlonIndividualController');
@@ -91,6 +93,8 @@ var skApp = angular.module('skApp', [
         'skApp.ngRemoteValidate',
 
         // Services
+        'skApp.KidsService',
+
         'skApp.MtbService',
         'skApp.MtbFinishTimeService',
         'skApp.MtbFinishNumberService',
@@ -116,6 +120,8 @@ var skApp = angular.module('skApp', [
         // Controllers
         'skApp.MainController',
         'skApp.EventController',
+
+        'skApp.KidsRegistrationController',
 
         'skApp.MtbController',
         'skApp.MtbFinishTimeController',
@@ -150,6 +156,17 @@ var skApp = angular.module('skApp', [
             .segment('home', {
                 templateUrl: 'home.html',
             })
+
+            .when('/kids', 'kids')
+            .when('/kids/registration', 'kids.registration')
+            .segment('kids', {
+                templateUrl: 'kids/main.html',
+            })
+            .within()
+                .segment('registration', {
+                    templateUrl: 'kids/registration.html',
+                })
+                .up()
 
             .when('/10km', '10km')
             .when('/10km/participants', '10km.participants')

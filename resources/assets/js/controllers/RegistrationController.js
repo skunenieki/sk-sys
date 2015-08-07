@@ -46,6 +46,7 @@ angular.module('skApp.RegistrationController', [])
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
         self.participation.birthYear = $item.birthYear;
+        self.checkExistingParticipant();
     };
 
     self.registerParticipant = function() {
@@ -114,6 +115,20 @@ angular.module('skApp.RegistrationController', [])
                 } else {
                     self.participation.acceptExisting = true;
                     self.regForm.acceptExisting.$setPristine();
+                }
+            });
+
+            $http({
+                method: 'GET',
+                url: '/kids',
+                params: {
+                    name: self.participation.name,
+                    birthYear: self.participation.birthYear,
+                    eventYear: self.participation.eventYear,
+                },
+            }).then(function(response) {
+                if (typeof response.data[0] !== 'undefined') {
+                    self.participation.acceptExisting = false;
                 }
             });
         }

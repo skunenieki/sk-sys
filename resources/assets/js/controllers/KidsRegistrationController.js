@@ -1,5 +1,5 @@
-angular.module('skApp.TriIndividualRegistrationController', [])
-.controller('TriIndividualRegistrationController', ['$http', 'TriathlonService', function($http, TriathlonService) {
+angular.module('skApp.KidsRegistrationController', [])
+.controller('KidsRegistrationController', ['$http', 'KidsService', function($http, KidsService) {
     var self = this;
 
     self.capitalizeWords = function() {
@@ -17,7 +17,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = TriathlonService.query({eventYear: 2015, sort: '-created_at'});
+    self.recentlyRegistered = KidsService.query({eventYear: 2015, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -40,7 +40,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
     };
 
     self.registerParticipant = function() {
-        var res = new TriathlonService(self.participation);
+        var res = new KidsService(self.participation);
 
         var currentNumber = self.participation.number;
 
@@ -64,7 +64,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
     };
 
     self.loadMore = function() {
-        self.recentlyRegistered = TriathlonService.query({
+        self.recentlyRegistered = KidsService.query({
             eventYear: 2015,
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
@@ -72,7 +72,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
     };
 
     self.delete = function(idx) {
-        TriathlonService.delete({id: self.recentlyRegistered[idx].id}, function() {
+        KidsService.delete({id: self.recentlyRegistered[idx].id}, function() {
             self.recentlyRegistered.splice(idx, 1);
         });
     };
@@ -90,9 +90,29 @@ angular.module('skApp.TriIndividualRegistrationController', [])
             self.checkExistingParticipantCache.birthYear = self.participation.birthYear;
             self.checkExistingParticipantCache.eventYear = self.participation.eventYear;
 
+            console.log(self.participation.name);
+
             $http({
                 method: 'GET',
-                url: '/triathlon/individual',
+                url: '/kids',
+                params: {
+                    name: self.participation.name,
+                    birthYear: self.participation.birthYear,
+                    eventYear: self.participation.eventYear,
+                },
+            }).then(function(response) {
+                // In case where element is found mark it as not unique
+                if (typeof response.data[0] !== 'undefined') {
+                    self.participation.acceptExisting = false;
+                } else {
+                    self.participation.acceptExisting = true;
+                    self.regForm.acceptExisting.$setPristine();
+                }
+            });
+
+            $http({
+                method: 'GET',
+                url: '/10km',
                 params: {
                     name: self.participation.name,
                     birthYear: self.participation.birthYear,

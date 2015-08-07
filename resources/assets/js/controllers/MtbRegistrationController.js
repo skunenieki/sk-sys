@@ -36,6 +36,7 @@ angular.module('skApp.MtbRegistrationController', [])
         self.participation.name      = $item.name;
         self.participation.gender    = $item.gender;
         self.participation.birthYear = $item.birthYear;
+        self.checkExistingParticipant();
     };
 
     self.registerParticipant = function() {

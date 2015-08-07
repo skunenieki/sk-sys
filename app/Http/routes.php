@@ -34,6 +34,12 @@ $app->group(['middleware' => 'auth'], function ($app) {
     $app->put('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@update');
     $app->delete('events/{eventYear}', 'Skunenieki\System\Http\Controllers\EventController@destroy');
 
+    $app->get('kids', 'Skunenieki\System\Http\Controllers\KidsController@index');
+    $app->post('kids', 'Skunenieki\System\Http\Controllers\KidsController@store');
+    $app->get('kids/{id}', 'Skunenieki\System\Http\Controllers\KidsController@show');
+    $app->delete('kids/{id}', 'Skunenieki\System\Http\Controllers\KidsController@destroy');
+    $app->put('kids/{id}', 'Skunenieki\System\Http\Controllers\KidsController@update');
+
     $app->get('10km', 'Skunenieki\System\Http\Controllers\IdividualController@index');
     $app->post('10km', 'Skunenieki\System\Http\Controllers\IdividualController@store');
     $app->get('10km/statistics', 'Skunenieki\System\Http\Controllers\IdividualController@statistics');

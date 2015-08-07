@@ -14,24 +14,27 @@ class MtbFinishController extends Controller
     {
         $mtb = Mtb::where('eventYear', 2015)
                   ->whereNull('finish')
+                  ->orderBy('number')
                   ->get();
 
-        $numbers = [];
-        foreach ($mtb as $participant) {
-            $numbers[$participant->lapsDone][$participant->genderWeight][] = $participant;
-        }
+        return $mtb;
 
-        $numbers = array_sort_recursive($numbers);
+        // $numbers = [];
+        // foreach ($mtb as $participant) {
+        //     $numbers[] = $participant;
+        // }
 
-        $expectedFinish = [];
-        foreach ($numbers as $lapsdone) {
-            foreach ($lapsdone as $gender) {
-                foreach ($gender as $participant) {
-                    $expectedFinish[] = $participant;
-                }
-            }
-        }
+        // // $numbers = array_sort_recursive($numbers);
 
-        return $expectedFinish;
+        // $expectedFinish = [];
+        // foreach ($numbers as $lapsdone) {
+        //     foreach ($lapsdone as $gender) {
+        //         foreach ($gender as $participant) {
+        //             $expectedFinish[] = $participant;
+        //         }
+        //     }
+        // }
+
+        // return $expectedFinish;
     }
 }

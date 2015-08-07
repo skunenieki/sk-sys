@@ -1,13 +1,15 @@
 angular.module('skApp.IndividualFinishTimeController', [])
-.controller('IndividualFinishTimeController', ['IndividualFinishTimeService', function(IndividualFinishTimeService) {
+.controller('IndividualFinishTimeController', ['IndividualFinishTimeService', 'PersistentStateService', function(IndividualFinishTimeService, PersistentStateService) {
     var self = this;
 
     self.finishTimes = IndividualFinishTimeService.query({});
 
     self.finish = function () {
-        var turn = new IndividualFinishTimeService();
+        var finish = new IndividualFinishTimeService({
+            time: PersistentStateService.timer()
+        });
 
-        turn.$save()
+        finish.$save()
            .then(function(response) {
                 self.finishTimes.unshift(response);
             }, function(response) {
