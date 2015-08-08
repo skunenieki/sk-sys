@@ -142,7 +142,7 @@ class IndividualResultsController extends Controller
             'SK'                       => 'Sieviešu rezultāti - kopvērtējums',
             'VK'                       => 'Vīriešu rezultāti - kopvērtējums',
             'AK'                       => 'Ārpus Konkurences',
-            'BV'                       => 'zēni, kas dzimušas, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunāki',
+            'BV'                       => 'zēni, kas dzimuši, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunāki',
             'S'                        => '',
             'CV'                       => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['max'].'. gadam; ceļa velosipēdi',
             'CV 1'                     => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV 1')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV 1')['birthYears']['max'].'. gadam; ceļa velosipēdi',
