@@ -5,11 +5,11 @@ angular.module('skApp.MtbFinishTimeController', [])
     self.finishTimes = MtbFinishTimeService.query({});
 
     self.finish = function () {
-        var turn = new MtbFinishTimeService({
+        var finish = new MtbFinishTimeService({
             time: PersistentStateService.timer()
         });
 
-        turn.$save()
+        finish.$save()
            .then(function(response) {
                 self.finishTimes.unshift(response);
             }, function(response) {

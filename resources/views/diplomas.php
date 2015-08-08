@@ -38,7 +38,7 @@
         }
 
         .result h3 {
-            line-height: 13mm;
+            line-height: 11mm;
         }
 
         .description {
