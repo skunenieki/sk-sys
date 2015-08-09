@@ -12,8 +12,13 @@ class TriathlonTeamsController extends Controller
     public function index(Request $request)
     {
         $eventYear = $request->get('eventYear', false);
+        $number = $request->get('eventYear', false);
 
         $result = TriathlonTeam::where('id', '>', '0');
+
+        if (false !== $number) {
+            $result->whereIn('number', explode(',', $number));
+        }
 
         if (false !== $eventYear) {
             $result->whereIn('eventYear', explode(',', $eventYear));
