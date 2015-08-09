@@ -16,7 +16,7 @@
                        max="999"
                        ng-maxlength="3"
                        ng-model="triTRegCtrl.participation.number"
-                       ng-remote-validate="/mtb?eventYear={{triTRegCtrl.participation.eventYear}}"
+                       ng-remote-validate="/triathlon/teams?eventYear={{triTRegCtrl.participation.eventYear}}"
                        required>
                 <span ng-show="!triTRegCtrl.regForm.number.$invalid && triTRegCtrl.regForm.number.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span>
                 <span ng-show="triTRegCtrl.regForm.number.$invalid && !triTRegCtrl.regForm.number.$pristine && triTRegCtrl.regForm.number.$touched" class="glyphicon glyphicon-remove form-control-feedback"></span>
