@@ -12,7 +12,7 @@ class TriathlonTeamsController extends Controller
     public function index(Request $request)
     {
         $eventYear = $request->get('eventYear', false);
-        $number = $request->get('eventYear', false);
+        $number = $request->get('number', false);
 
         $result = TriathlonTeam::where('id', '>', '0');
 
