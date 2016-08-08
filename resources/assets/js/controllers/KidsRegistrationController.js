@@ -17,7 +17,7 @@ angular.module('skApp.KidsRegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = KidsService.query({eventYear: 2015, sort: '-created_at'});
+    self.recentlyRegistered = KidsService.query({eventYear: 2016, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -65,7 +65,7 @@ angular.module('skApp.KidsRegistrationController', [])
 
     self.loadMore = function() {
         self.recentlyRegistered = KidsService.query({
-            eventYear: 2015,
+            eventYear: 2016,
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
         });
