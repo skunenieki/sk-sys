@@ -6,7 +6,7 @@ $app->get('/10km/results/{eventYear}/summary', 'Skunenieki\System\Http\Controlle
 $app->get('/mtb/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\MtbResultsController@resultsByGroups');
 $app->get('/triathlon/results/{eventYear}/groups', 'Skunenieki\System\Http\Controllers\TriathlonResultsController@resultsByGroups');
 
-$app->group(['middleware' => 'auth'], function ($app) {
+$app->group(['middleware' => 'auth:api'], function ($app) {
     $app->get('/', 'Skunenieki\System\Http\Controllers\MainViewController@render');
 
     $app->get('dbdump', 'Skunenieki\System\Http\Controllers\DBDumpController@dump');

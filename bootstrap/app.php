@@ -3,9 +3,8 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
-    $dotenv = new Dotenv\Dotenv(__DIR__.'/../');
-    $dotenv->load();
-} catch (Exception $e) {
+    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+} catch (Dotenv\Exception\InvalidPathException $e) {
     //
 }
 
@@ -23,6 +22,10 @@ try {
 $app = new Laravel\Lumen\Application(
 	realpath(__DIR__.'/../')
 );
+
+// $app->configure('auth');
+// $app->configure('database');
+
 
 $app->withFacades();
 $app->withEloquent();
@@ -72,7 +75,7 @@ $app->middleware([
 ]);
 
 $app->routeMiddleware([
-    'auth' => Skunenieki\System\Http\Middleware\AuthenticateOnceWithBasicAuth::class,
+    'auth' => Skunenieki\System\Http\Middleware\Authenticate::class,
 ]);
 
 /*
@@ -87,7 +90,10 @@ $app->routeMiddleware([
 */
 
 // $app->register('Skunenieki\System\Providers\AppServiceProvider');
+$app->register(Skunenieki\System\Providers\AuthServiceProvider::class);
+$app->register(Arubacao\BasicAuth\BasicGuardServiceProvider::class);
 $app->register(Skunenieki\System\Providers\EventServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
