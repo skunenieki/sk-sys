@@ -3,7 +3,7 @@
 namespace Skunenieki\System\Http\Controllers;
 
 use Carbon\Carbon;
-use Event as LaravelEvent;
+// use Event as LaravelEvent;
 use Illuminate\Http\Request;
 use Skunenieki\System\Models\Event;
 use Skunenieki\System\Models\Option;
@@ -28,7 +28,7 @@ class TriathlonFinishTimeController extends Controller
         $finishTime->eventYear = 2016;
         $finishTime->save();
 
-        LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
+	// LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -39,7 +39,7 @@ class TriathlonFinishTimeController extends Controller
         $finishTime->disabled = $request->disabled;
         $finishTime->save();
 
-        LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
+	// LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -50,7 +50,7 @@ class TriathlonFinishTimeController extends Controller
         $eventYear = $finishTime->eventYear;
         $finishTime->delete();
 
-        LaravelEvent::fire(new UpdateTriathlonFinish($eventYear));
+	// LaravelEvent::fire(new UpdateTriathlonFinish($eventYear));
         return;
     }
 }

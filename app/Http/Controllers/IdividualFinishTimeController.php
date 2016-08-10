@@ -2,8 +2,7 @@
 
 namespace Skunenieki\System\Http\Controllers;
 
-use Event as LaravelEvent;
-use Carbon\Carbon;
+// use Event as LaravelEvent;
 use Illuminate\Http\Request;
 use Skunenieki\System\Models\Event;
 use Skunenieki\System\Models\Option;
@@ -28,7 +27,7 @@ class IdividualFinishTimeController extends Controller
         $finishTime->eventYear = 2016;
         $finishTime->save();
 
-        LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
+	// LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -39,7 +38,7 @@ class IdividualFinishTimeController extends Controller
         $finishTime->disabled = $request->disabled;
         $finishTime->save();
 
-        LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
+	// LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -50,7 +49,7 @@ class IdividualFinishTimeController extends Controller
         $eventYear = $finishTime->eventYear;
         $finishTime->delete();
 
-        LaravelEvent::fire(new UpdateFinish($eventYear));
+	// LaravelEvent::fire(new UpdateFinish($eventYear));
         return;
     }
 }
