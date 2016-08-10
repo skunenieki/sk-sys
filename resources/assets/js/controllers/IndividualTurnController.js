@@ -15,13 +15,12 @@ angular.module('skApp.IndividualTurnController', [])
         });
     };
 
-    self.setTurn = function(idx) {
+    self.setTurn = function(idx, row) {
         var number = null;
         var manual = false;
 
-
-        if (false !== idx) {
-            number = self.turns[idx].number;
+        if (false !== idx && false !== row) {
+            number = self.turns[(row*10)+idx].number;
         } else if (false === idx && self.manualNumber !== null) {
             number = self.manualNumber;
             manual = true;

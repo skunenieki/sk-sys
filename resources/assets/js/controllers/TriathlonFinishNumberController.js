@@ -13,13 +13,13 @@ angular.module('skApp.TriathlonFinishNumberController', [])
         });
     };
 
-    self.markFinish = function(idx) {
+    self.markFinish = function(idx, row) {
         var number = null;
         var manual = false;
 
 
-        if (false !== idx) {
-            number = self.potentialFinishers[idx].number;
+        if (false !== idx && false !== row) {
+            number = self.potentialFinishers[(row*10)+idx].number; // 10 is number of buttons per row
         } else if (false === idx && self.manualNumber !== null) {
             number = self.manualNumber;
             manual = true;
@@ -54,7 +54,7 @@ angular.module('skApp.TriathlonFinishNumberController', [])
                     if (-1 === finisherIndex) {
                         self.potentialFinishers.push(response.data[i]);
                     } else {
-                        // self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
+                        self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
                     }
                 }
 
@@ -64,9 +64,9 @@ angular.module('skApp.TriathlonFinishNumberController', [])
                     }
                 };
 
-                self.potentialFinishers.sort(function(a, b) {
-                    return a.number - b.number;
-                });
+                // self.potentialFinishers.sort(function(a, b) {
+                //     return a.number - b.number;
+                // });
             });
     };
 

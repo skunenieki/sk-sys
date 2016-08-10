@@ -14,9 +14,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Skunenieki\System\Console\Commands\Test::class,
         \Skunenieki\System\Console\Commands\GetDBSnapshot::class,
         \Skunenieki\System\Console\Commands\SyncWithAlgolia::class,
+        \Skunenieki\System\Console\Commands\ProcessIndividual::class,
     ];
 
     /**

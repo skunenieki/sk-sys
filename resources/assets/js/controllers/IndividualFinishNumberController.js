@@ -13,13 +13,14 @@ angular.module('skApp.IndividualFinishNumberController', [])
         });
     };
 
-    self.markFinish = function(idx) {
+    self.markFinish = function(idx, row) {
         var number = null;
         var manual = false;
 
 
-        if (false !== idx) {
-            number = self.potentialFinishers[idx].number;
+        if (false !== idx && false !== row) {
+            number = self.potentialFinishers[(row*6)+idx].number; // 6 is number of buttons per row
+
         } else if (false === idx && self.manualNumber !== null) {
             number = self.manualNumber;
             manual = true;
@@ -48,13 +49,21 @@ angular.module('skApp.IndividualFinishNumberController', [])
 
     self.updatePotentialFinishers = function() {
         return $http.get('/10km/finish', {})
-            .then(function(response){
+            .then(function(response) {
                 for (var i = 0; i < response.data.length; i++) {
-                    var finisherIndex = _.indexOf(self.potentialFinishers, _.find(self.potentialFinishers, function(finisher) { return finisher.number == response.data[i].number }));
+                    var finisherIndex = _.indexOf(
+                        self.potentialFinishers,
+                        _.find(
+                            self.potentialFinishers, function(finisher) {
+                                return finisher.number == response.data[i].number;
+                            }
+                        )
+                    );
+
                     if (-1 === finisherIndex) {
                         self.potentialFinishers.push(response.data[i]);
                     } else {
-                        // self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
+                        self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
                     }
                 }
 
@@ -63,10 +72,6 @@ angular.module('skApp.IndividualFinishNumberController', [])
                         self.potentialFinishers.splice(i, 1);
                     }
                 };
-
-                // self.potentialFinishers.sort(function(a, b) {
-                //     return a.startInSeconds - b.startInSeconds;
-                // });
             });
     };
 
