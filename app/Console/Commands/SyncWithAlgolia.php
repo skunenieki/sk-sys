@@ -42,38 +42,44 @@ class SyncWithAlgolia extends Command
         while (true) {
             $index->clearIndex();
 
-            $data = Individual::where('eventYear', 2016)
-                              ->whereNotNull('finish');
+            // $data = Individual::where('eventYear', 2016)
+            //                   ->whereNotNull('finish');
 
-            $results = [];
+            $data = Individual::whereNotNull('finish');
+
+            $results  = [];
             $results2 = [];
             foreach ($data->get() as $individual) {
-                $results[$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
+                $results[$individual->eventYear][$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
             }
 
             $this->ksortRecursive($results);
 
-            foreach ($results as $genders) {
-                foreach ($genders as $groups) {
-                    $i = 1;
-                    foreach ($groups as $resultsInSec) {
-                        $last = end($resultsInSec);
-                        foreach ($resultsInSec as $individual) {
-                            $results2[$individual->gender][$individual->resultInSeconds][$individual->id] = [
-                                'objectID'      => $individual->id,
-                                'name'          => $individual->name,
-                                'birthYear'     => $individual->birthYear,
-                                'result'        => $individual->result,
-                                'group'         => $individual->group,
-                                'rankInGroup'   => $i,
-                            ];
+            foreach ($results as $eventYears) {
+                foreach ($eventYears as $genders) {
+                    foreach ($genders as $groups) {
+                        $i = 1;
+                        foreach ($groups as $resultsInSec) {
+                            $last = end($resultsInSec);
+                            foreach ($resultsInSec as $individual) {
+                                $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
+                                    // 'objectID'      => $individual->id,
+                                    'participantId' => $individual->participantId,
+                                    'name'          => $individual->name,
+                                    'birthYear'     => $individual->birthYear,
+                                    'result'        => $individual->result,
+                                    'group'         => $individual->group,
+                                    'rankInGroup'   => $i,
+                                    'eventYear'     => $individual->eventYear,
+                                ];
 
-                            if (count($resultsInSec) > 1 && $individual === $last) {
-                                $i += count($resultsInSec);
-                            }
+                                if (count($resultsInSec) > 1 && $individual === $last) {
+                                    $i += count($resultsInSec);
+                                }
 
-                            if (count($resultsInSec) < 2) {
-                                $i++;
+                                if (count($resultsInSec) < 2) {
+                                    $i++;
+                                }
                             }
                         }
                     }
@@ -84,29 +90,55 @@ class SyncWithAlgolia extends Command
 
             $this->output->progressStart($data->count());
 
-            foreach ($results2 as $groups) {
-                $i = 1;
-                foreach ($groups as $resultsInSec) {
-                    $last = end($resultsInSec);
-                    foreach ($resultsInSec as $individual) {
-                        $last['rankInSummary']       = $i;
-                        $individual['rankInSummary'] = $i;
-                        $index->saveObject($individual);
+            $all = [];
+            foreach ($results2 as $eventYear) {
+                foreach ($eventYear as $groups) {
+                    $i = 1;
+                    foreach ($groups as $resultsInSec) {
+                        $last = end($resultsInSec);
+                        foreach ($resultsInSec as $individual) {
+                            $last['rankInSummary']       = $i;
+                            $individual['rankInSummary'] = $i;
 
-                        if (count($resultsInSec) > 1 && $individual === $last) {
-                            $i += count($resultsInSec);
+                            $all[] = $individual;
+
+                            if (count($resultsInSec) > 1 && $individual === $last) {
+                                $i += count($resultsInSec);
+                            }
+
+                            if (count($resultsInSec) < 2) {
+                                $i++;
+                            }
+
+                            $this->output->progressAdvance();
                         }
-
-                        if (count($resultsInSec) < 2) {
-                            $i++;
-                        }
-
-                        $this->output->progressAdvance();
                     }
                 }
             }
-            $this->info('');
-            $this->info("Pushed {$data->count()} records to Algolia.");
+
+            $grouped = [];
+            foreach ($all as $each) {
+                if (false === isset($grouped[$each['participantId']])) {
+                    $grouped[$each['participantId']] = [
+                        'objectID'      => $each['participantId'],
+                        'participantId' => $each['participantId'],
+                        'name'          => $each['name'],
+                        'birthYear'     => $each['birthYear'],
+                        'results'       => [],
+                    ];
+                }
+
+                $grouped[$each['participantId']]['results'][$each['eventYear']] = [
+                    'result'        => $each['result'],
+                    'group'         => $each['group'],
+                    'rankInGroup'   => $each['rankInGroup'],
+                    'rankInSummary' => $each['rankInSummary'],
+                ];
+            }
+
+            $index->addObjects($grouped);
+
+            $this->info("\nPushed {$data->count()} records to Algolia.\n");
 
 
             sleep(30);
