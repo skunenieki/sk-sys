@@ -1,21 +1,49 @@
 <?php
 
-namespace Skunenieki\System\Listeners;
+namespace Skunenieki\System\Console\Commands;
 
-use Illuminate\Queue\InteractsWithQueue;
+use Exception;
+use AlgoliaSearch\Client;
+use Illuminate\Console\Command;
 use Skunenieki\System\Models\Individual;
-use Skunenieki\System\Events\UpdateFinish;
 use Skunenieki\System\Models\IndividualFinishTime;
 use Skunenieki\System\Models\IndividualFinishNumber;
 
-class UpdateFinishListener
+class Test extends Command
 {
+    /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $name = 'test';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Test command';
+
     public function __construct()
     {
+        parent::__construct();
     }
 
-    public function handle(UpdateFinish $event)
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function fire()
     {
+        $event = (object) [
+            'eventYear' => 2015,
+        ];
+
+        // dd($event->eventYear);
+
+
         $numbers = IndividualFinishNumber::where('eventYear', $event->eventYear)->orderBy('id', 'asc')->get();
         $times   = IndividualFinishTime::where('eventYear', $event->eventYear)->where('disabled', false)->orderBy('id', 'asc')->get();
 
