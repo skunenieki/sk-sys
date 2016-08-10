@@ -38,7 +38,7 @@ class Test extends Command
     public function fire()
     {
         $event = (object) [
-            'eventYear' => 2015,
+            'eventYear' => 2016,
         ];
 
         // dd($event->eventYear);

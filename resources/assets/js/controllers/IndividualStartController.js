@@ -115,6 +115,7 @@ angular.module('skApp.IndividualStartController', [])
         IndividualService.query({
             eventYear: 2016,
             start: timeQuery,
+	    limit: 20,
         }, function(response) {
             for (var i = 0; i < self.startTimes.length; i++) {
                 for (var j = 0; j < response.length; j++) {

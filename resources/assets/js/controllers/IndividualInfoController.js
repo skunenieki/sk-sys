@@ -22,11 +22,11 @@ angular.module('skApp.IndividualInfoController', [])
                     })
                 );
 
-                if (idx < 0) {
+		if (data[i].resultInSeconds > 0 && idx < 0) {
                     self.bestInGroups.push(data[i]);
                     continue;
                 } else {
-                    if (data[i].resultInSeconds < self.bestInGroups[idx].resultInSeconds) {
+		    if (data[i].resultInSeconds > 0 && data[i].resultInSeconds < self.bestInGroups[idx].resultInSeconds) {
                         self.bestInGroups[idx] = data[i];
                     }
                 }
