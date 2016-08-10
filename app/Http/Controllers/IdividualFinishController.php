@@ -12,7 +12,7 @@ class IdividualFinishController extends Controller
 {
     public function turn(Request $request)
     {
-        $individual = Individual::where('eventYear', 2015)
+        $individual = Individual::where('eventYear', 2016)
                                 ->whereNotNull('start')
                                 ->whereNull('turn')
                                 ->orderBy('start', 'asc')
@@ -27,7 +27,7 @@ class IdividualFinishController extends Controller
 
     public function finish(Request $request)
     {
-        $individual = Individual::where('eventYear', 2015)
+        $individual = Individual::where('eventYear', 2016)
                                 ->whereNotNull('start')
                                 ->whereNotNull('turn')
                                 ->whereNull('finish')

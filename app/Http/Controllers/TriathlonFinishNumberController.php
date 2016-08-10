@@ -12,7 +12,7 @@ class TriathlonFinishNumberController extends Controller
 {
     public function index()
     {
-        return TriathlonFinishNumber::where('eventYear', 2015)
+        return TriathlonFinishNumber::where('eventYear', 2016)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -23,7 +23,7 @@ class TriathlonFinishNumberController extends Controller
         $finishNumber            = new TriathlonFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
-        $finishNumber->eventYear = 2015;
+        $finishNumber->eventYear = 2016;
         $finishNumber->save();
 
         LaravelEvent::fire(new UpdateTriathlonFinish($finishNumber->eventYear));

@@ -14,7 +14,7 @@ class MtbFinishTimeController extends Controller
 {
     public function index()
     {
-        return MtbFinishTime::where('eventYear', 2015)
+        return MtbFinishTime::where('eventYear', 2016)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -25,7 +25,7 @@ class MtbFinishTimeController extends Controller
         $finishTime            = new MtbFinishTime;
         $finishTime->finish    = $request->input('time');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2015;
+        $finishTime->eventYear = 2016;
         $finishTime->save();
 
         LaravelEvent::fire(new UpdateMtbFinish($finishTime->eventYear));

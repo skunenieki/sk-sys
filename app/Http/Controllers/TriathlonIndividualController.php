@@ -108,7 +108,7 @@ class TriathlonIndividualController extends Controller
         $ind->eventYear     = $request->eventYear;
         $ind->comment       = $request->comment;
         $ind->participantId = $participant->id;
-        $ind->eventYear     = $request->input('eventYear', 2015);
+        $ind->eventYear     = $request->input('eventYear', 2016);
         $ind->save();
 
         return $ind;

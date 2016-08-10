@@ -94,19 +94,19 @@ class MtbResultsController extends Controller
         // dd($this->ageRangesForGroup($eventYear, 'CV 3'));
 
         return [
-            'eventDate'                => '2015. gada 8. augusts',
+            'eventDate'                => '2016. gada 13. augusts', // @todo
             'eventDescription'         => 'Velokrosa sacensību protokols',
             'eventDistanceDescription' => '',
             'SParticipant'             => 'Dalībniece',
             'VParticipant'             => 'Dalībnieks',
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
-            'S1'                       => 'jaunietes, kuras dzimušas 2000. gadā un vēlāk',
-            'S2'                       => 'sievietes, kuras dzimušas no 1971. līdz 1999. gadam',
-            'S3'                       => 'sievietes, kuras dzimušas līdz 1970. gadam',
-            'V1'                       => 'jaunieši, kuri dzimuši 2000. gadā un vēlāk',
-            'V2'                       => 'vīrieši, kuri dzimuši no 1971. līdz 1999. gadam',
-            'V3'                       => 'vīrieši, kuri dzimuši līdz 1970. gadam',
+            'S1'                       => 'jaunietes, kuras dzimušas 2001. gadā un vēlāk', // @todo
+            'S2'                       => 'sievietes, kuras dzimušas no 1972. līdz 2000. gadam', // @todo
+            'S3'                       => 'sievietes, kuras dzimušas līdz 1971. gadam', // @todo
+            'V1'                       => 'jaunieši, kuri dzimuši 2001. gadā un vēlāk', // @todo
+            'V2'                       => 'vīrieši, kuri dzimuši no 1972. līdz 2000. gadam', // @todo
+            'V3'                       => 'vīrieši, kuri dzimuši līdz 1971. gadam', // @todo
         ];
     }
 }

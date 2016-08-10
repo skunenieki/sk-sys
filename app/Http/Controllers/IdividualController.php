@@ -119,7 +119,6 @@ class IdividualController extends Controller
             return response(['error' => 'Participant with such name and birth year exists, need approval to proceed'], 400);
         }
 
-
         $participant = Participant::where('name', $request->name)
                                   ->where('birthYear', $request->birthYear)
                                   ->first();
@@ -188,7 +187,7 @@ class IdividualController extends Controller
             $individualStart            = new IndividualStart;
             $individualStart->number    = $request->number;
             $individualStart->start     = $request->start;
-            $individualStart->eventYear = $request->input('eventYear', 2015);
+            $individualStart->eventYear = $request->input('eventYear', 2016);
             $individualStart->save();
         }
 

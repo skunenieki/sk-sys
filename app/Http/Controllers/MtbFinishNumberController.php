@@ -12,7 +12,7 @@ class MtbFinishNumberController extends Controller
 {
     public function index()
     {
-        return MtbFinishNumber::where('eventYear', 2015)
+        return MtbFinishNumber::where('eventYear', 2016)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -23,7 +23,7 @@ class MtbFinishNumberController extends Controller
         $finishNumber            = new MtbFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
-        $finishNumber->eventYear = 2015;
+        $finishNumber->eventYear = 2016;
         $finishNumber->save();
 
         LaravelEvent::fire(new UpdateMtbFinish($finishNumber->eventYear));
