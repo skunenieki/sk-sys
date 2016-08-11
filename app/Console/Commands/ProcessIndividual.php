@@ -16,7 +16,7 @@ class ProcessIndividual extends Command
      *
      * @var string
      */
-    protected $name = 'process:individual';
+    protected $signature = 'process:individual {--once}';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class ProcessIndividual extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $event = (object) [
             'eventYear' => 2016,
@@ -64,6 +64,10 @@ class ProcessIndividual extends Command
                         'finish'   => $time->finish,
                     ];
                 }
+            }
+
+            if ($this->option('once') === true) {
+                break;
             }
 
             sleep(3);

@@ -16,7 +16,7 @@ class ProcessTriathlon extends Command
      *
      * @var string
      */
-    protected $name = 'process:triathlon';
+    protected $signature = 'process:triathlon {--once}';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class ProcessTriathlon extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $event = (object) [
             'eventYear' => 2016,
@@ -71,6 +71,9 @@ class ProcessTriathlon extends Command
                 }
             }
 
+            if ($this->option('once') === true) {
+                break;
+            }
 
             sleep(3);
         }
