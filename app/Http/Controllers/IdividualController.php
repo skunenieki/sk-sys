@@ -94,8 +94,8 @@ class IdividualController extends Controller
 
     public function store(Request $request)
     {
-        if (false !== empty($request->teams)) {
-            $teams = [];
+        $teams = [];
+        if (!empty($request->teams)) {
             foreach ($request->teams as $team) {
                 $team = Team::firstOrCreate(['name' => $team['name']]);
                 $teams[] = $team->id;

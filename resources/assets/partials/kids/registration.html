@@ -50,6 +50,7 @@
                      ng-change="kidsRegCtrl.capitalizeWords()"
                      autofocus
                      tabindex="2"
+                     autocomplete="off"
                      required>
               <span ng-show="loadingLocations" class="glyphicon glyphicon-refresh form-control-feedback"></span>
               <span ng-show="!kidsRegCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
@@ -63,7 +64,7 @@
                      class="form-control"
                      id="inputBirthYear"
                      placeholder="2014"
-                     min="2009"
+                     min="2010"
                      max="2016"
                      ng-maxlength="4"
                      ng-model="kidsRegCtrl.participation.birthYear"
@@ -152,9 +153,6 @@
               <td>{{ recReg.birthYear }}</td>
               <td>{{ recReg.gender }}</td>
               <td>
-                  <!-- <a class="btn btn-primary btn-xs" ng-href="#{{ 'mtb.participants' | routeSegmentUrl }}/{{recReg.id}}/edit">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </a> -->
                   <button type="button" class="btn btn-danger btn-xs" ng-really-message="Vai tiesam dzest dalibnieku?" ng-really-click="kidsRegCtrl.delete($index)">
                     <span class="glyphicon glyphicon-trash"></span>
                   </button>

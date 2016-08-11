@@ -14,7 +14,7 @@ class SyncWithAlgolia extends Command
      *
      * @var string
      */
-    protected $name = 'algolia';
+    protected $signature = 'algolia {--once}';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class SyncWithAlgolia extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $index = $this->algolia->initIndex('skunenieki');
 
@@ -139,6 +139,10 @@ class SyncWithAlgolia extends Command
             $index->addObjects($grouped);
 
             $this->info("\nPushed {$data->count()} records to Algolia.\n");
+
+            if ($this->option('once') === true) {
+                break;
+            }
 
             sleep(120);
         }
