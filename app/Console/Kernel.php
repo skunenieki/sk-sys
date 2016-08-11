@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \Skunenieki\System\Console\Commands\GetDBSnapshot::class,
         \Skunenieki\System\Console\Commands\SyncWithAlgolia::class,
         \Skunenieki\System\Console\Commands\ProcessIndividual::class,
+        \Skunenieki\System\Console\Commands\ProcessTriathlon::class,
     ];
 
     /**

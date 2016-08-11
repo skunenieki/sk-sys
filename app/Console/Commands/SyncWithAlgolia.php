@@ -140,8 +140,7 @@ class SyncWithAlgolia extends Command
 
             $this->info("\nPushed {$data->count()} records to Algolia.\n");
 
-
-            sleep(30);
+            sleep(120);
         }
     }
 
