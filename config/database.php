@@ -1,6 +1,6 @@
 <?php
 
-$url = parse_url(env('CLEARDB_DATABASE_URL'));
+$url = parse_url(env('JAWSDB_MARIA_URL'));
 
 return [
 
