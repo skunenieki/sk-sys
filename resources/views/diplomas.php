@@ -16,7 +16,7 @@
 
         @page
         {
-            margin-top: 144mm;
+            margin-top: 111mm;
             margin-left: 8mm;
         }
 
@@ -33,17 +33,21 @@
             line-height: 11mm;
         }
 
+        .place h3 {
+            line-height: 15mm;
+        }
+
         .group h3 {
-            line-height: 13mm;
+            line-height: 11mm;
         }
 
         .result h3 {
-            line-height: 11mm;
+            line-height: 13mm;
         }
 
         .description {
             font-size: 10px;
-            line-height: 0mm;
+            line-height: 4mm;
         }
     </style>
 </head>
