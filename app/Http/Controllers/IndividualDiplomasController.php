@@ -54,7 +54,6 @@ class IndividualDiplomasController extends Controller
                     }
                     $participant['place'] = $i;
 
-
                     if (null !== $attrs && null !== $attrs['place']) {
                         if ($attrs['place'] == $i) {
                             $diplomas[$group][] = $participant;
