@@ -5,6 +5,7 @@ namespace Skunenieki\System\Http\Controllers;
 use Knp\Snappy\Pdf;
 use Illuminate\Http\Request;
 use Skunenieki\System\Models\Individual;
+use Skunenieki\System\Models\Participant;
 
 class IndividualDiplomasController extends Controller
 {
@@ -34,10 +35,14 @@ class IndividualDiplomasController extends Controller
         $results = [];
         foreach ($individual->get() as $individual) {
             $results[$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
-            $individual->nameInDative = $individual->nameInDative;
         }
 
         $this->ksortRecursive($results);
+
+        $namesInDative = [];
+        foreach (Participant::all() as $participant) {
+            $namesInDative[$participant->id] = $participant->nameInDative;
+        }
 
         $diplomas = [];
         foreach ($results as $group => $resultInSeconds) {
@@ -52,7 +57,9 @@ class IndividualDiplomasController extends Controller
                     if ($i > 3) {
                         break;
                     }
-                    $participant['place'] = $i;
+
+                    $participant->nameInDative = $namesInDative[$participant->participantId];
+                    $participant->place        = $i;
 
                     if (null !== $attrs && null !== $attrs['place']) {
                         if ($attrs['place'] == $i) {
