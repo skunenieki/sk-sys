@@ -170,7 +170,7 @@ class IndividualDiplomasController extends Controller
             'PV 1'                     => '',
             'PV 3'                     => '',
             'BS'                       => 'meitenes, kas dzimušas, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunākas',
-            'CS'                       => 'sievietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['max'].'. gadam; ceļa velosipēdi',
+            // 'CS'                       => 'sievietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['max'].'. gadam; ceļa velosipēdi',
             'CS'                       => 'sievietes, kas dzimušas no 1967. līdz 2003. gadam; ceļa velosipēdi',
             'CS 1'                     => '',
             'CS 2'                     => '',
