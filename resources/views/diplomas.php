@@ -34,7 +34,7 @@
         }
 
         .place h3 {
-            line-height: 15mm;
+            line-height: 14mm;
         }
 
         .group h3 {
@@ -42,12 +42,14 @@
         }
 
         .result h3 {
-            line-height: 13mm;
+            line-height: 0;
+            margin-top: 13mm;
         }
 
         .description {
             font-size: 10px;
-            line-height: 0mm;
+            line-height: 0;
+            margin-top: 7mm;
         }
     </style>
 </head>

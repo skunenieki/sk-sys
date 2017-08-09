@@ -9,7 +9,7 @@
     "postinstall": "cross-env NODE_ENV=production ./node_modules/webpack/bin/webpack.js --progress --hide-modules --config=./node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
-    "angular": "~1.6",
+    "angular": "^1.6",
     "angular-resource": "^1.6",
     "angular-route": "^1.6",
     "angular-route-segment": "^1.5.1",
