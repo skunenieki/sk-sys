@@ -51,7 +51,7 @@
 
         .description {
             font-size: 10px;
-            margin-top: 15px;
+            margin-top: 17px;
         }
     </style>
 </head>
