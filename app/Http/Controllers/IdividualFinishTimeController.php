@@ -3,11 +3,12 @@
 namespace Skunenieki\System\Http\Controllers;
 
 // use Event as LaravelEvent;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Skunenieki\System\Models\Event;
-use Skunenieki\System\Models\Option;
 use Skunenieki\System\Events\UpdateFinish;
+use Skunenieki\System\Models\Event;
 use Skunenieki\System\Models\IndividualFinishTime;
+use Skunenieki\System\Models\Option;
 
 class IdividualFinishTimeController extends Controller
 {
@@ -21,8 +22,11 @@ class IdividualFinishTimeController extends Controller
 
     public function store(Request $request)
     {
+        $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
+
         $finishTime            = new IndividualFinishTime;
-        $finishTime->finish    = $request->input('time');
+        // $finishTime->finish = $request->input('time');
+        $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2017;
         $finishTime->save();
