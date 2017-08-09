@@ -94,7 +94,7 @@ class MtbResultsController extends Controller
         // dd($this->ageRangesForGroup($eventYear, 'CV 3'));
 
         return [
-            'eventDate'                => '2016. gada 13. augusts', // @todo
+            'eventDate'                => '2017. gada 12. augusts', // @todo
             'eventDescription'         => 'Velokrosa sacensību protokols',
             'eventDistanceDescription' => '',
             'SParticipant'             => 'Dalībniece',

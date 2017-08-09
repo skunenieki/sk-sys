@@ -13,7 +13,7 @@ class IdividualFinishTimeController extends Controller
 {
     public function index()
     {
-        return IndividualFinishTime::where('eventYear', 2016)
+        return IndividualFinishTime::where('eventYear', 2017)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -24,7 +24,7 @@ class IdividualFinishTimeController extends Controller
         $finishTime            = new IndividualFinishTime;
         $finishTime->finish    = $request->input('time');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2016;
+        $finishTime->eventYear = 2017;
         $finishTime->save();
 
 	// LaravelEvent::fire(new UpdateFinish($finishTime->eventYear));

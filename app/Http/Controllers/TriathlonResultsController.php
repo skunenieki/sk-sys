@@ -67,7 +67,7 @@ class TriathlonResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2016. gada 14. augusts', // @todo
+            'eventDate'                => '2017. gada 13. augusts', // @todo
             'eventDescription'         => 'Triatlona sacensību protokols',
             'eventDistanceDescription' => 'Peldēšana 250m + velo 7km + skriešana 2km',
             'SParticipant'             => 'Dalībniece',

@@ -9,7 +9,7 @@ angular.module('skApp.IndividualInfoController', [])
 
     self.updateSummary = function() {
         IndividualService.query({
-            eventYear: 2016,
+            eventYear: 2017,
             limit: 100000,
         }, function(data) {
             self.summary = data;

@@ -2,17 +2,16 @@ var $         = require('jquery');
 window.jQuery = $;
 window.$      = $;
 
-require('angular/angular.min');
-require('angular/angular.min');
-require('angular-resource/angular-resource.min');
-require('angular-route/angular-route.min');
-require('angular-bootstrap/ui-bootstrap');
-require('./vendor/angular-route-segment');
+require('angular');
+require('angular-resource');
+require('angular-route');
+require('angular-ui-bootstrap');
+require('angular-route-segment');
 require('bootstrap/js/dropdown');
 require('bootstrap/js/transition');
 require('bootstrap/js/collapse');
 require('ng-tags-input');
-require('./partials');
+// require('./partials');
 
 require('./services/MtbService');
 require('./services/KidsService');
@@ -81,7 +80,7 @@ var skApp = angular.module('skApp', [
         'ngRoute',
         'ngResource',
         'AppConfig',
-        'partialsModule',
+        // 'partialsModule',
 
         'ui.bootstrap',
         'route-segment',
@@ -150,21 +149,24 @@ var skApp = angular.module('skApp', [
         'skApp.TriIndividualRegistrationController',
         'skApp.TriathlonIndividualParticipantController',
     ])
-    .config(['$routeSegmentProvider', '$routeProvider', function($routeSegmentProvider, $routeProvider) {
+    .config(['$routeSegmentProvider', '$routeProvider', '$locationProvider', function($routeSegmentProvider, $routeProvider, $locationProvider) {
+
+        $locationProvider.hashPrefix('');
+
         $routeSegmentProvider
             .when('/', 'home')
             .segment('home', {
-                templateUrl: 'home.html',
+                templateUrl: 'partials/home.html',
             })
 
             .when('/kids', 'kids')
             .when('/kids/registration', 'kids.registration')
             .segment('kids', {
-                templateUrl: 'kids/main.html',
+                templateUrl: 'partials/kids/main.html',
             })
             .within()
                 .segment('registration', {
-                    templateUrl: 'kids/registration.html',
+                    templateUrl: 'partials/kids/registration.html',
                 })
                 .up()
 
@@ -188,75 +190,75 @@ var skApp = angular.module('skApp', [
             .when('/10km/diplomas/:eventYear', '10km.diplomas.year')
             .when('/10km/info', '10km.info')
             .segment('10km', {
-                templateUrl: '10km/main.html',
+                templateUrl: 'partials/10km/main.html',
             })
             .within()
                 .segment('participants', {
-                    templateUrl: '10km/participants.html',
+                    templateUrl: 'partials/10km/participants.html',
                 })
                 .within()
                     .segment('year', {
-                        templateUrl: '10km/participant-table.html',
+                        templateUrl: 'partials/10km/participant-table.html',
                         dependencies: ['eventYear']
                     })
                     .segment('edit', {
-                        templateUrl: '10km/participant-edit.html',
+                        templateUrl: 'partials/10km/participant-edit.html',
                         dependencies: ['participantId']
                     })
                     .up()
                 .segment('registration', {
-                    templateUrl: '10km/registration.html'
+                    templateUrl: 'partials/10km/registration.html'
                 })
                 .segment('start', {
-                    templateUrl: '10km/start.html'
+                    templateUrl: 'partials/10km/start.html'
                 })
                 .segment('turn', {
-                    templateUrl: '10km/turn.html'
+                    templateUrl: 'partials/10km/turn.html'
                 })
                 .within()
                     .segment('grid', {
-                        templateUrl: '10km/turnGrid.html'
+                        templateUrl: 'partials/10km/turnGrid.html'
                     })
                     .segment('table', {
-                        templateUrl: '10km/turnTable.html'
+                        templateUrl: 'partials/10km/turnTable.html'
                     })
                     .up()
                 .segment('finish', {
-                    templateUrl: '10km/finish.html'
+                    templateUrl: 'partials/10km/finish.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: '10km/finish-input.html'
+                        templateUrl: 'partials/10km/finish-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: '10km/finish-edit.html'
+                        templateUrl: 'partials/10km/finish-edit.html'
                     })
                     .up()
                 .segment('chronometer', {
-                    templateUrl: '10km/chronometer.html'
+                    templateUrl: 'partials/10km/chronometer.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: '10km/chronometer-input.html'
+                        templateUrl: 'partials/10km/chronometer-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: '10km/chronometer-edit.html'
+                        templateUrl: 'partials/10km/chronometer-edit.html'
                     })
                     .up()
                 .segment('results', {
-                    templateUrl: '10km/results.html'
+                    templateUrl: 'partials/10km/results.html'
                 })
                 .segment('diplomas', {
-                    templateUrl: '10km/diplomas.html'
+                    templateUrl: 'partials/10km/diplomas.html'
                 })
                 .within()
                     .segment('year', {
-                        templateUrl: '10km/diplomas-year.html',
+                        templateUrl: 'partials/10km/diplomas-year.html',
                         dependencies: ['eventYear']
                     })
                     .up()
                 .segment('info', {
-                    templateUrl: '10km/info.html'
+                    templateUrl: 'partials/10km/info.html'
                 })
                 .up()
 
@@ -274,52 +276,52 @@ var skApp = angular.module('skApp', [
             .when('/mtb/results', 'mtb.results')
             .when('/mtb/diplomas', 'mtb.diplomas')
             .segment('mtb', {
-                templateUrl: 'mtb/main.html',
+                templateUrl: 'partials/mtb/main.html',
             })
             .within()
                 .segment('registration', {
-                    templateUrl: 'mtb/registration.html'
+                    templateUrl: 'partials/mtb/registration.html'
                 })
                 .segment('participants', {
-                    templateUrl: 'mtb/participants.html',
+                    templateUrl: 'partials/mtb/participants.html',
                 })
                 .within()
                     .segment('year', {
-                        templateUrl: 'mtb/participant-table.html',
+                        templateUrl: 'partials/mtb/participant-table.html',
                         dependencies: ['eventYear']
                     })
                     .segment('edit', {
-                        templateUrl: 'mtb/participant-edit.html',
+                        templateUrl: 'partials/mtb/participant-edit.html',
                         dependencies: ['participantId']
                     })
                     .up()
                 .segment('chronometer', {
-                    templateUrl: 'mtb/chronometer.html'
+                    templateUrl: 'partials/mtb/chronometer.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: 'mtb/chronometer-input.html'
+                        templateUrl: 'partials/mtb/chronometer-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: 'mtb/chronometer-edit.html'
+                        templateUrl: 'partials/mtb/chronometer-edit.html'
                     })
                     .up()
                 .segment('finish', {
-                    templateUrl: 'mtb/finish.html'
+                    templateUrl: 'partials/mtb/finish.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: 'mtb/finish-input.html'
+                        templateUrl: 'partials/mtb/finish-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: 'mtb/finish-edit.html'
+                        templateUrl: 'partials/mtb/finish-edit.html'
                     })
                     .up()
                 .segment('results', {
-                    templateUrl: 'mtb/results.html'
+                    templateUrl: 'partials/mtb/results.html'
                 })
                 .segment('diplomas', {
-                    templateUrl: 'mtb/diplomas.html',
+                    templateUrl: 'partials/mtb/diplomas.html',
                 })
                 .up()
 
@@ -342,95 +344,95 @@ var skApp = angular.module('skApp', [
             .when('/triathlon/teams/:participantId/edit', 'triathlon.teams.edit')
             .when('/triathlon/results', 'triathlon.results')
             .segment('triathlon', {
-                templateUrl: 'triathlon/main.html',
+                templateUrl: 'partials/triathlon/main.html',
             })
             .within()
                 .segment('registration', {
-                    templateUrl: 'triathlon/registration.html'
+                    templateUrl: 'partials/triathlon/registration.html'
                 })
                 .within()
                     .segment('individual', {
-                        templateUrl: 'triathlon/registration-individual.html'
+                        templateUrl: 'partials/triathlon/registration-individual.html'
                     })
                     .segment('team', {
-                        templateUrl: 'triathlon/registration-team.html'
+                        templateUrl: 'partials/triathlon/registration-team.html'
                     })
                     .up()
                 .segment('turn', {
-                    templateUrl: 'triathlon/turn.html'
+                    templateUrl: 'partials/triathlon/turn.html'
                 })
                 .segment('chronometer', {
-                    templateUrl: 'triathlon/chronometer.html'
+                    templateUrl: 'partials/triathlon/chronometer.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: 'triathlon/chronometer-input.html'
+                        templateUrl: 'partials/triathlon/chronometer-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: 'triathlon/chronometer-edit.html'
+                        templateUrl: 'partials/triathlon/chronometer-edit.html'
                     })
                     .up()
                 .segment('finish', {
-                    templateUrl: 'triathlon/finish.html'
+                    templateUrl: 'partials/triathlon/finish.html'
                 })
                 .within()
                     .segment('input', {
-                        templateUrl: 'triathlon/finish-input.html'
+                        templateUrl: 'partials/triathlon/finish-input.html'
                     })
                     .segment('edit', {
-                        templateUrl: 'triathlon/finish-edit.html'
+                        templateUrl: 'partials/triathlon/finish-edit.html'
                     })
                     .up()
                 .segment('participants', {
-                    templateUrl: 'triathlon/participants.html'
+                    templateUrl: 'partials/triathlon/participants.html'
                 })
                 .within()
                     .segment('year', {
-                        templateUrl: 'triathlon/participant-table.html',
+                        templateUrl: 'partials/triathlon/participant-table.html',
                         dependencies: ['eventYear']
                     })
                     .segment('edit', {
-                        templateUrl: 'triathlon/participant-edit.html',
+                        templateUrl: 'partials/triathlon/participant-edit.html',
                         dependencies: ['participantId']
                     })
                     .up()
                 .segment('teams', {
-                    templateUrl: 'triathlon/teams.html'
+                    templateUrl: 'partials/triathlon/teams.html'
                 })
                 .within()
                     .segment('year', {
-                        templateUrl: 'triathlon/team-table.html',
+                        templateUrl: 'partials/triathlon/team-table.html',
                         dependencies: ['eventYear']
                     })
                     .segment('edit', {
-                        templateUrl: 'triathlon/teams-edit.html',
+                        templateUrl: 'partials/triathlon/teams-edit.html',
                         dependencies: ['participantId']
                     })
                     .up()
                 .segment('results', {
-                    templateUrl: 'triathlon/results.html'
+                    templateUrl: 'partials/triathlon/results.html'
                 })
                 .up()
 
             .when('/football', 'football')
             .when('/football/registration', 'football.registration')
             .segment('football', {
-                templateUrl: 'football/main.html',
+                templateUrl: 'partials/football/main.html',
             })
             .within()
                 .segment('registration', {
-                    templateUrl: 'football/registration.html'
+                    templateUrl: 'partials/football/registration.html'
                 })
                 .up()
 
             .when('/archive', 'archive')
             .when('/archive/10km', 'archive.10km')
             .segment('archive', {
-                templateUrl: 'archive/main.html',
+                templateUrl: 'partials/archive/main.html',
             })
             .within()
                 .segment('10km', {
-                    templateUrl: 'archive/10km.html'
+                    templateUrl: 'partials/archive/10km.html'
                 })
                 .up()
             .when('/settings', 'settings')
@@ -441,28 +443,28 @@ var skApp = angular.module('skApp', [
             .when('/settings/:eventYear/triathlon', 'settings.eventyear.triathlon')
             .when('/settings/:eventYear/football', 'settings.eventyear.football')
             .segment('settings', {
-                templateUrl: 'settings/settings.html',
+                templateUrl: 'partials/settings/settings.html',
             })
             .within()
                 .segment('new', {
-                     templateUrl: 'settings/new.html',
+                     templateUrl: 'partials/settings/new.html',
                 })
                 .segment('eventyear', {
-                    templateUrl: 'settings/settingsYear.html',
+                    templateUrl: 'partials/settings/settingsYear.html',
                     dependencies: ['eventYear']
                 })
                 .within()
                     .segment('10km', {
-                        templateUrl: 'settings/10km.html',
+                        templateUrl: 'partials/settings/10km.html',
                     })
                     .segment('mtb', {
-                         templateUrl: 'settings/mtb.html',
+                         templateUrl: 'partials/settings/mtb.html',
                     })
                     .segment('triathlon', {
-                         templateUrl: 'settings/triathlon.html',
+                         templateUrl: 'partials/settings/triathlon.html',
                     })
                     .segment('football', {
-                         templateUrl: 'settings/football.html',
+                         templateUrl: 'partials/settings/football.html',
                     })
                     .up()
                 .up()

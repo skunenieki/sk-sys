@@ -2,8 +2,10 @@
 /node_modules
 .env
 resources/assets/js/partials.js
-/public/css/
-/public/js/
+/public/mix-manifest.json
 /public/build/
+/public/css/
 /public/fonts/
+/public/js/
+/public/partials/
 .DS_Store

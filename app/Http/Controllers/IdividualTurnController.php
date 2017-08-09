@@ -13,7 +13,7 @@ class IdividualTurnController extends Controller
 {
     public function index()
     {
-        return IndividualTurn::where('eventYear', 2016)
+        return IndividualTurn::where('eventYear', 2017)
                              ->orderBy('slot', 'desc')
                              ->take(20)
                              ->get();
@@ -28,13 +28,13 @@ class IdividualTurnController extends Controller
         $turn = new IndividualTurn;
         $turn->number    = $number;
         $turn->turn      = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
-        $turn->slot      = IndividualTurn::where('eventYear', 2016)->count() + 1;
+        $turn->slot      = IndividualTurn::where('eventYear', 2017)->count() + 1;
         $turn->manual    = $request->input('manual', false);
-        $turn->eventYear = 2016;
+        $turn->eventYear = 2017;
         $turn->save();
 
         if ($number !== null) {
-            $individual = Individual::where('eventYear', 2016)->where('number', $number)->first();
+            $individual = Individual::where('eventYear', 2017)->where('number', $number)->first();
             if ($individual->turn === null || ($individual->turn !== null && $turn->manual === true)) {
                 $individual->turn = $turn->turn;
             }

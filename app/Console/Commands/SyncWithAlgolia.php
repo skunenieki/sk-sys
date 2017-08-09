@@ -42,7 +42,7 @@ class SyncWithAlgolia extends Command
         while (true) {
             $index->clearIndex();
 
-            // $data = Individual::where('eventYear', 2016)
+            // $data = Individual::where('eventYear', 2017)
             //                   ->whereNotNull('finish');
 
             $data = Individual::whereNotNull('finish');

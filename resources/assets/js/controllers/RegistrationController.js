@@ -17,7 +17,7 @@ angular.module('skApp.RegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = IndividualService.query({eventYear: 2016, sort: '-created_at'});
+    self.recentlyRegistered = IndividualService.query({eventYear: 2017, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -25,8 +25,8 @@ angular.module('skApp.RegistrationController', [])
             params: {
                 name: val,
             }
-        }).then(function(response){
-            return response.data.map(function(item){
+        }).then(function(response) {
+            return response.data.map(function(item) {
                 return item;
             });
         });
@@ -75,7 +75,7 @@ angular.module('skApp.RegistrationController', [])
 
     self.loadMore = function() {
         self.recentlyRegistered = IndividualService.query({
-            eventYear: 2016,
+            eventYear: 2017,
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
         });

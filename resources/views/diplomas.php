@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <title>Šķūnenieku Kauss</title>
     <style type="text/css">
-        <?php echo file_get_contents(base_path().'/public'.elixir('css/app.css')); ?>
+        <?php echo file_get_contents(base_path().'/public/css/app.css'); ?>
 
         .break {
             page-break-after: always;
@@ -16,7 +16,7 @@
 
         @page
         {
-            margin-top: 113mm;
+            margin-top: 53mm;
             margin-left: 8mm;
         }
 
@@ -47,7 +47,7 @@
 
         .description {
             font-size: 10px;
-            line-height: 4mm;
+            line-height: 0mm;
         }
     </style>
 </head>

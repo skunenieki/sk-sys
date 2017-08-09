@@ -38,7 +38,7 @@ class ProcessIndividual extends Command
     public function handle()
     {
         $event = (object) [
-            'eventYear' => 2016,
+            'eventYear' => 2017,
         ];
 
         while (true) {

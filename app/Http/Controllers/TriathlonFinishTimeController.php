@@ -14,7 +14,7 @@ class TriathlonFinishTimeController extends Controller
 {
     public function index()
     {
-        return TriathlonFinishTime::where('eventYear', 2016)
+        return TriathlonFinishTime::where('eventYear', 2017)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -25,7 +25,7 @@ class TriathlonFinishTimeController extends Controller
         $finishTime            = new TriathlonFinishTime;
         $finishTime->finish    = $request->input('time');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2016;
+        $finishTime->eventYear = 2017;
         $finishTime->save();
 
 	// LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));

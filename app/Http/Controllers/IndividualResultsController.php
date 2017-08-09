@@ -132,7 +132,7 @@ class IndividualResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2016. gada 13. augusts',
+            'eventDate'                => '2017. gada 12. augusts',
             'eventDescription'         => 'Riteņbraukšnas sacensību protokols',
             'eventDistanceDescription' => 'Distance: Lejasciems-Sinole-Lejasciems (10km)',
             'SParticipant'             => 'Dalībniece',
