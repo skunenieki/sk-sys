@@ -30,26 +30,28 @@
 
         h3 {
             font-weight: 400;
-            line-height: 11mm;
+            line-height: 0;
+        }
+
+        .name h3 {
+            margin-top: 40px;
         }
 
         .place h3 {
-            line-height: 14mm;
+            margin-top: 67px;
         }
 
         .group h3 {
-            line-height: 11mm;
+            margin-top: 66px;
         }
 
         .result h3 {
-            line-height: 0;
-            margin-top: 13mm;
+            margin-top: 70px;
         }
 
         .description {
             font-size: 10px;
-            line-height: 0;
-            margin-top: 7mm;
+            margin-top: 15px;
         }
     </style>
 </head>
