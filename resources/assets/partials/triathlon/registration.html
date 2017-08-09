@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="customTemplate.html">
   <a>
-      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span> ({{ match.model.birthYear }})
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span> ({{ match.model.birthYear }})
   </a>
 </script>
 
