@@ -49,7 +49,7 @@
         ],
         "compile": [
             "php artisan migrate --force",
-            "./node_modules/.bin/gulp"
+            "yarn prod"
         ]
     },
     "config": {
