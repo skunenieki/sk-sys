@@ -75,10 +75,6 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-bootstrap@^0.12.2:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/angular-bootstrap/-/angular-bootstrap-0.12.2.tgz#de9900a7db087a7e9da47304a9c2f77f9c069827"
-
 angular-resource@^1.6:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.6.5.tgz#d1e712ab01afa5d2ec649f5e471673a704f2be40"
@@ -95,7 +91,7 @@ angular-ui-bootstrap@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"
 
-angular@~1.6:
+angular@^1.6:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.5.tgz#37f788eebec5ce2e3fa02b17bbcb2a231576a0d6"
 
@@ -6013,8 +6009,8 @@ webpack-sources@^1.0.1:
     source-map "~0.5.3"
 
 webpack@^3.4.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.5.1.tgz#b749ee3d2b5a118dad53e8e41585b3f71e75499a"
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-3.5.2.tgz#a9601066e23af3c80f3bf9758fd794ca9778f251"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^2.0.0"
