@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <title>Šķūnenieku Kauss</title>
     <style type="text/css">
-        <?php echo file_get_contents(base_path().'/public'.elixir('css/app.css')); ?>
+        <?php echo file_get_contents(base_path().'/public/css/app.css'); ?>
 
         .header {
             background-color: #C0C0C0;
