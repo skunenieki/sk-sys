@@ -15,9 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Skunenieki\System\Console\Commands\GetDBSnapshot::class,
-        \Skunenieki\System\Console\Commands\SyncWithAlgolia::class,
         \Skunenieki\System\Console\Commands\ProcessIndividual::class,
+        \Skunenieki\System\Console\Commands\ProcessMtb::class,
         \Skunenieki\System\Console\Commands\ProcessTriathlon::class,
+        \Skunenieki\System\Console\Commands\SyncWithAlgolia::class,
     ];
 
     /**
