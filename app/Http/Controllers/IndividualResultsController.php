@@ -144,6 +144,7 @@ class IndividualResultsController extends Controller
             'VK'                       => 'Vīriešu rezultāti - kopvērtējums',
             'AK'                       => 'Ārpus Konkurences',
             'AKG'                      => 'Ārpus Konkurences',
+            'AKK'                      => 'Ārpus Konkurences',
             'BV'                       => 'zēni, kas dzimuši, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunāki',
             'S'                        => '',
             // 'CV'                       => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['max'].'. gadam; ceļa velosipēdi',
