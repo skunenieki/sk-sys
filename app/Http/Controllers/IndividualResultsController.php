@@ -137,6 +137,7 @@ class IndividualResultsController extends Controller
             'eventDistanceDescription' => 'Distance: Lejasciems-Sinole-Lejasciems (10km)',
             'SParticipant'             => 'Dalībniece',
             'VParticipant'             => 'Dalībnieks',
+            'AKParticipant'            => 'Nosaukums',
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
             'SK'                       => 'Sieviešu rezultāti - kopvērtējums',
