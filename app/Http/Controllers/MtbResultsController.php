@@ -101,12 +101,12 @@ class MtbResultsController extends Controller
             'VParticipant'             => 'Dalībnieks',
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
-            'S1'                       => 'jaunietes, kuras dzimušas 2001. gadā un vēlāk', // @todo
-            'S2'                       => 'sievietes, kuras dzimušas no 1972. līdz 2000. gadam', // @todo
-            'S3'                       => 'sievietes, kuras dzimušas līdz 1971. gadam', // @todo
-            'V1'                       => 'jaunieši, kuri dzimuši 2001. gadā un vēlāk', // @todo
-            'V2'                       => 'vīrieši, kuri dzimuši no 1972. līdz 2000. gadam', // @todo
-            'V3'                       => 'vīrieši, kuri dzimuši līdz 1971. gadam', // @todo
+            'S1'                       => 'jaunietes, kuras dzimušas 2002. gadā un vēlāk', // @todo
+            'S2'                       => 'sievietes, kuras dzimušas no 1973. līdz 2000. gadam', // @todo
+            'S3'                       => 'sievietes, kuras dzimušas līdz 1972. gadam', // @todo
+            'V1'                       => 'jaunieši, kuri dzimuši 2002. gadā un vēlāk', // @todo
+            'V2'                       => 'vīrieši, kuri dzimuši no 1973. līdz 2000. gadam', // @todo
+            'V3'                       => 'vīrieši, kuri dzimuši līdz 1972. gadam', // @todo
         ];
     }
 }

@@ -76,10 +76,10 @@ class TriathlonResultsController extends Controller
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
             'G'                        => 'Komandu rezultāti',
-            'S1'                       => 'jaunietes, kuras dzimušas 2001. gadā un vēlāk', // @todo
-            'S2'                       => 'sievietes, kuras dzimušas līdz 2000. gadam', // @todo
-            'V1'                       => 'jaunieši, kuri dzimuši 2001. gadā un vēlāk', // @todo
-            'V2'                       => 'vīrieši, kuri dzimuši līdz 2000. gadam', // @todo
+            'S1'                       => 'jaunietes, kuras dzimušas 2002. gadā un vēlāk', // @todo
+            'S2'                       => 'sievietes, kuras dzimušas līdz 2001. gadam', // @todo
+            'V1'                       => 'jaunieši, kuri dzimuši 2002. gadā un vēlāk', // @todo
+            'V2'                       => 'vīrieši, kuri dzimuši līdz 2001. gadam', // @todo
             'K'                        => 'komandas',
         ];
     }
