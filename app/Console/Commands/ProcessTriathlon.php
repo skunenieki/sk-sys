@@ -6,6 +6,7 @@ use Exception;
 use AlgoliaSearch\Client;
 use Illuminate\Console\Command;
 use Skunenieki\System\Models\Triathlon;
+use Skunenieki\System\Models\TriathlonTeam;
 use Skunenieki\System\Models\TriathlonFinishTime;
 use Skunenieki\System\Models\TriathlonFinishNumber;
 
@@ -50,7 +51,7 @@ class ProcessTriathlon extends Command
                 if (true === isset($numbers[$order])) {
                     $matches[] = [
                         'number' => $numbers[$order]->number,
-                        'finish'   => $time->finish,
+                        'finish' => $time->finish,
                     ];
 
                     $tri = Triathlon::where('eventYear', $event->eventYear)->where('number', $numbers[$order]->number)->first();
