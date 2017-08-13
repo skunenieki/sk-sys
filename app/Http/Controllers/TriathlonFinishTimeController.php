@@ -26,12 +26,9 @@ class TriathlonFinishTimeController extends Controller
 
         $finishTime            = new TriathlonFinishTime;
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['triathlonStartDate']))->format('%H:%I:%S');
-        // $finishTime->finish = $request->input('time');
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2017;
         $finishTime->save();
-
-	// LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -41,8 +38,6 @@ class TriathlonFinishTimeController extends Controller
         $finishTime = TriathlonFinishTime::find($id);
         $finishTime->disabled = $request->disabled;
         $finishTime->save();
-
-	// LaravelEvent::fire(new UpdateTriathlonFinish($finishTime->eventYear));
 
         return $finishTime;
     }
