@@ -69,7 +69,7 @@ class TriathlonResultsController extends Controller
         return [
             'eventDate'                => '2017. gada 13. augusts', // @todo
             'eventDescription'         => 'Triatlona sacensību protokols',
-            'eventDistanceDescription' => 'Peldēšana 250m + velo 7km + skriešana 2km',
+            'eventDistanceDescription' => 'Peldēšana 200m + velo 7km + skriešana 2km',
             'SParticipant'             => 'Dalībniece',
             'VParticipant'             => 'Dalībnieks',
             'Participant'              => 'Komanda',
