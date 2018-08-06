@@ -39,7 +39,7 @@ class ProcessTriathlon extends Command
     public function handle()
     {
         $event = (object) [
-            'eventYear' => 2017,
+            'eventYear' => 2018,
         ];
 
         while (true) {

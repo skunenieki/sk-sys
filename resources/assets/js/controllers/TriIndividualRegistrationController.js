@@ -17,7 +17,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = TriathlonService.query({eventYear: 2017, sort: '-created_at'});
+    self.recentlyRegistered = TriathlonService.query({eventYear: 2018, sort: '-created_at'});
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -65,7 +65,7 @@ angular.module('skApp.TriIndividualRegistrationController', [])
 
     self.loadMore = function() {
         self.recentlyRegistered = TriathlonService.query({
-            eventYear: 2017,
+            eventYear: 2018,
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
         });

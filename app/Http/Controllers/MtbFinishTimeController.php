@@ -13,7 +13,7 @@ class MtbFinishTimeController extends Controller
 {
     public function index()
     {
-        return MtbFinishTime::where('eventYear', 2017)
+        return MtbFinishTime::where('eventYear', 2018)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -27,7 +27,7 @@ class MtbFinishTimeController extends Controller
         $finishTime->finish    = $request->input('time');
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['mtbStartDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2017;
+        $finishTime->eventYear = 2018;
         $finishTime->save();
 
         return $finishTime;

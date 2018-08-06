@@ -14,7 +14,7 @@ class TriathlonFinishTimeController extends Controller
 {
     public function index()
     {
-        return TriathlonFinishTime::where('eventYear', 2017)
+        return TriathlonFinishTime::where('eventYear', 2018)
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -27,7 +27,7 @@ class TriathlonFinishTimeController extends Controller
         $finishTime            = new TriathlonFinishTime;
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['triathlonStartDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2017;
+        $finishTime->eventYear = 2018;
         $finishTime->save();
 
         return $finishTime;

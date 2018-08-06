@@ -67,7 +67,7 @@ class TriathlonResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2017. gada 13. augusts', // @todo
+            'eventDate'                => '2018. gada 12. augusts', // @todo
             'eventDescription'         => 'Triatlona sacensību protokols',
             'eventDistanceDescription' => 'Peldēšana 200m + velo 7km + skriešana 2km',
             'SParticipant'             => 'Dalībniece',
@@ -76,10 +76,10 @@ class TriathlonResultsController extends Controller
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
             'G'                        => 'Komandu rezultāti',
-            'S1'                       => 'jaunietes, kuras dzimušas 2002. gadā un vēlāk', // @todo
-            'S2'                       => 'sievietes, kuras dzimušas līdz 2001. gadam', // @todo
-            'V1'                       => 'jaunieši, kuri dzimuši 2002. gadā un vēlāk', // @todo
-            'V2'                       => 'vīrieši, kuri dzimuši līdz 2001. gadam', // @todo
+            'V1'                       => 'jaunieši, kuri dzimuši 2003. gadā un vēlāk', // @todo
+            'V2'                       => 'vīrieši, kuri dzimuši līdz 2002. gadam', // @todo
+            'S1'                       => 'jaunietes, kuras dzimušas 2003. gadā un vēlāk', // @todo
+            'S2'                       => 'sievietes, kuras dzimušas līdz 2002. gadam', // @todo
             'K'                        => 'komandas',
         ];
     }
