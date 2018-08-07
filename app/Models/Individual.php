@@ -44,7 +44,6 @@ class Individual extends Model
 
     public function getNameInDativeAttribute()
     {
-        \Log::info('getnameindative', [$this->participantId]);
         return Participant::find($this->participantId)->nameInDative;
     }
 

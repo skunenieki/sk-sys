@@ -7,21 +7,21 @@ use AlgoliaSearch\Client;
 use Illuminate\Console\Command;
 use Skunenieki\System\Models\Individual;
 
-class SyncWithAlgolia extends Command
+class AlgoliaRebuild extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $signature = 'algolia {--once}';
+    protected $signature = 'algolia:rebuild {--once}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Synchoronize with Algolia service';
+    protected $description = 'This command wipes Algolia index and rewrites it from scratch.';
 
     public function __construct()
     {
