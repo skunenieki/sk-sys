@@ -53,7 +53,7 @@ class UpdateTriathlonFinishListener
             } else {
                 $matches[] = [
                     'number' => false,
-                    'finish'   => $time->finish,
+                    'finish' => $time->finish,
                 ];
             }
         }

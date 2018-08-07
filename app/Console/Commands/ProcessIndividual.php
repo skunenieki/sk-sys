@@ -61,7 +61,7 @@ class ProcessIndividual extends Command
                 } else {
                     $matches[] = [
                         'number' => false,
-                        'finish'   => $time->finish,
+                        'finish' => $time->finish,
                     ];
                 }
             }
