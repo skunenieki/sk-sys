@@ -14,7 +14,7 @@ class AlgoliaRebuild extends Command
      *
      * @var string
      */
-    protected $signature = 'algolia:rebuild {--once}';
+    protected $signature = 'algolia:rebuild';
 
     /**
      * The console command description.
@@ -39,68 +39,38 @@ class AlgoliaRebuild extends Command
     {
         $index = $this->algolia->initIndex('skunenieki');
 
-        while (true) {
-            $index->clearIndex();
+        $index->clearIndex();
 
-            // $data = Individual::where('eventYear', 2018)
-            //                   ->whereNotNull('finish');
+        // $data = Individual::where('eventYear', 2018)
+        //                   ->whereNotNull('finish');
 
-            $data = Individual::whereNotNull('finish');
+        $data = Individual::whereNotNull('finish');
 
-            $results  = [];
-            $results2 = [];
-            foreach ($data->get() as $individual) {
-                $results[$individual->eventYear][$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
-            }
+        $results  = [];
+        $results2 = [];
+        foreach ($data->get() as $individual) {
+            $results[$individual->eventYear][$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
+        }
 
-            $this->ksortRecursive($results);
+        $this->ksortRecursive($results);
 
-            foreach ($results as $eventYears) {
-                foreach ($eventYears as $genders) {
-                    foreach ($genders as $groups) {
-                        $i = 1;
-                        foreach ($groups as $resultsInSec) {
-                            $last = end($resultsInSec);
-                            foreach ($resultsInSec as $individual) {
-                                $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
-                                    // 'objectID'      => $individual->id,
-                                    'participantId' => $individual->participantId,
-                                    'name'          => $individual->name,
-                                    'birthYear'     => $individual->birthYear,
-                                    'result'        => $individual->result,
-                                    'group'         => $individual->group,
-                                    'rankInGroup'   => $i,
-                                    'eventYear'     => $individual->eventYear,
-                                ];
-
-                                if (count($resultsInSec) > 1 && $individual === $last) {
-                                    $i += count($resultsInSec);
-                                }
-
-                                if (count($resultsInSec) < 2) {
-                                    $i++;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            $this->ksortRecursive($results2);
-
-            $this->output->progressStart($data->count());
-
-            $all = [];
-            foreach ($results2 as $eventYear) {
-                foreach ($eventYear as $groups) {
+        foreach ($results as $eventYears) {
+            foreach ($eventYears as $genders) {
+                foreach ($genders as $groups) {
                     $i = 1;
                     foreach ($groups as $resultsInSec) {
                         $last = end($resultsInSec);
                         foreach ($resultsInSec as $individual) {
-                            $last['rankInSummary']       = $i;
-                            $individual['rankInSummary'] = $i;
-
-                            $all[] = $individual;
+                            $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
+                                // 'objectID'      => $individual->id,
+                                'participantId' => $individual->participantId,
+                                'name'          => $individual->name,
+                                'birthYear'     => $individual->birthYear,
+                                'result'        => $individual->result,
+                                'group'         => $individual->group,
+                                'rankInGroup'   => $i,
+                                'eventYear'     => $individual->eventYear,
+                            ];
 
                             if (count($resultsInSec) > 1 && $individual === $last) {
                                 $i += count($resultsInSec);
@@ -109,43 +79,66 @@ class AlgoliaRebuild extends Command
                             if (count($resultsInSec) < 2) {
                                 $i++;
                             }
-
-                            $this->output->progressAdvance();
                         }
                     }
                 }
             }
+        }
 
-            $grouped = [];
-            foreach ($all as $each) {
-                if (false === isset($grouped[$each['participantId']])) {
-                    $grouped[$each['participantId']] = [
-                        'objectID'      => $each['participantId'],
-                        'participantId' => $each['participantId'],
-                        'name'          => $each['name'],
-                        'birthYear'     => $each['birthYear'],
-                        'results'       => [],
-                    ];
+        $this->ksortRecursive($results2);
+
+        $this->output->progressStart($data->count());
+
+        $all = [];
+        foreach ($results2 as $eventYear) {
+            foreach ($eventYear as $groups) {
+                $i = 1;
+                foreach ($groups as $resultsInSec) {
+                    $last = end($resultsInSec);
+                    foreach ($resultsInSec as $individual) {
+                        $last['rankInSummary']       = $i;
+                        $individual['rankInSummary'] = $i;
+
+                        $all[] = $individual;
+
+                        if (count($resultsInSec) > 1 && $individual === $last) {
+                            $i += count($resultsInSec);
+                        }
+
+                        if (count($resultsInSec) < 2) {
+                            $i++;
+                        }
+
+                        $this->output->progressAdvance();
+                    }
                 }
+            }
+        }
 
-                $grouped[$each['participantId']]['results'][$each['eventYear']] = [
-                    'result'        => $each['result'],
-                    'group'         => $each['group'],
-                    'rankInGroup'   => $each['rankInGroup'],
-                    'rankInSummary' => $each['rankInSummary'],
+        $grouped = [];
+        foreach ($all as $each) {
+            if (false === isset($grouped[$each['participantId']])) {
+                $grouped[$each['participantId']] = [
+                    'objectID'      => $each['participantId'],
+                    'participantId' => $each['participantId'],
+                    'name'          => $each['name'],
+                    'birthYear'     => $each['birthYear'],
+                    'results'       => [],
                 ];
             }
 
-            $index->addObjects($grouped);
-
-            $this->info("\nPushed {$data->count()} records to Algolia.\n");
-
-            if ($this->option('once') === true) {
-                break;
-            }
-
-            sleep(120);
+            $grouped[$each['participantId']]['results'][$each['eventYear']] = [
+                'result'        => $each['result'],
+                'group'         => $each['group'],
+                'rankInGroup'   => $each['rankInGroup'],
+                'rankInSummary' => $each['rankInSummary'],
+            ];
         }
+
+        $index->addObjects($grouped);
+
+        $this->info("\nPushed {$data->count()} records to Algolia.\n");
+
     }
 
     protected function ksortRecursive(&$array, $sort_flags = SORT_REGULAR) {

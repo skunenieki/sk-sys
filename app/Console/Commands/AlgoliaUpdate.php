@@ -14,7 +14,7 @@ class AlgoliaUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'algolia:update {--once}';
+    protected $signature = 'algolia:update {--sleep=60} {--once}';
 
     /**
      * The console command description.
@@ -146,7 +146,7 @@ class AlgoliaUpdate extends Command
                 break;
             }
 
-            sleep(120);
+            sleep((int) $this->option('sleep'));
         }
     }
 
