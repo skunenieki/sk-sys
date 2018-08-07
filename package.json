@@ -16,7 +16,7 @@
     "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3",
     "cross-env": "^5.0.3",
-    "jquery": "^2.1.4",
+    "jquery": "^3.0",
     "laravel-mix": "^1.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
