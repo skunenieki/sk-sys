@@ -40,7 +40,7 @@ class AlgoliaUpdate extends Command
         $index = $this->algolia->initIndex('skunenieki');
 
         while (true) {
-            $data = Individual::where('eventYear', 2017) // @todo
+            $data = Individual::where('eventYear', 2018) // @todo
                               ->whereNotNull('finish');
 
             $results  = [];
