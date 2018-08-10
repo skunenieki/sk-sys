@@ -38,8 +38,6 @@ class Authenticate
         if ($this->auth->guard($guard)->guest()) {
             $response = response('Unauthorized.', 401);
 
-            // dd($response);
-
             $response->header('WWW-Authenticate', 'Basic realm=""');
             $response->setStatusCode(401);
             $response->setContent('401: You are not authorised');
