@@ -24,7 +24,6 @@ class MtbFinishTimeController extends Controller
         $activeEvent = Event::where('eventYear', Option::where('key', 'activeEventYear')->first()['value'])->first();
 
         $finishTime            = new MtbFinishTime;
-        $finishTime->finish    = $request->input('time');
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['mtbStartDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2018;
@@ -35,11 +34,9 @@ class MtbFinishTimeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $finishTime = MtbFinishTime::find($id);
+        $finishTime           = MtbFinishTime::find($id);
         $finishTime->disabled = $request->disabled;
         $finishTime->save();
-
-	// LaravelEvent::fire(new UpdateMtbFinish($finishTime->eventYear));
 
         return $finishTime;
     }
@@ -47,10 +44,9 @@ class MtbFinishTimeController extends Controller
     public function destroy($id)
     {
         $finishTime = MtbFinishTime::find($id);
-        $eventYear = $finishTime->eventYear;
+        $eventYear  = $finishTime->eventYear;
         $finishTime->delete();
 
-	// LaravelEvent::fire(new UpdateMtbFinish($eventYear));
         return;
     }
 }

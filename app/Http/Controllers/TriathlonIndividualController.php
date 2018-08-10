@@ -100,7 +100,7 @@ class TriathlonIndividualController extends Controller
             $participant->save();
         }
 
-        $ind = new Triathlon;
+        $ind                = new Triathlon;
         $ind->number        = $request->number;
         $ind->name          = $request->name;
         $ind->birthYear     = $request->birthYear;

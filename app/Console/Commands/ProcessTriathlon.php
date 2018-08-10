@@ -67,7 +67,7 @@ class ProcessTriathlon extends Command
                 } else {
                     $matches[] = [
                         'number' => false,
-                        'finish'   => $time->finish,
+                        'finish' => $time->finish,
                     ];
                 }
             }
