@@ -92,19 +92,19 @@ class MtbResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2018. gada 11. augusts', // @todo
+            'eventDate'                => '2018. gada 10. augusts', // @todo 2019
             'eventDescription'         => 'Velokrosa sacensību protokols',
             'eventDistanceDescription' => '',
             'SParticipant'             => 'Dalībniece',
             'VParticipant'             => 'Dalībnieks',
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
-            'V1'                       => 'jaunieši, kuri dzimuši 2003. gadā un vēlāk', // @todo
-            'V2'                       => 'vīrieši, kuri dzimuši no 1974. līdz 2002. gadam', // @todo
-            'V3'                       => 'vīrieši, kuri dzimuši līdz 1973. gadam', // @todo
-            'S1'                       => 'jaunietes, kuras dzimušas 2003. gadā un vēlāk', // @todo
-            'S2'                       => 'sievietes, kuras dzimušas no 1974. līdz 2002. gadam', // @todo
-            'S3'                       => 'sievietes, kuras dzimušas līdz 1973. gadam', // @todo
+            'V1'                       => 'jaunieši, kuri dzimuši 2004. gadā un vēlāk', // @todo 2019
+            'V2'                       => 'vīrieši, kuri dzimuši no 1975. līdz 2003. gadam', // @todo 2019
+            'V3'                       => 'vīrieši, kuri dzimuši līdz 1974. gadam', // @todo 2019
+            'S1'                       => 'jaunietes, kuras dzimušas 2004. gadā un vēlāk', // @todo 2019
+            'S2'                       => 'sievietes, kuras dzimušas no 1975. līdz 2003. gadam', // @todo 2019
+            'S3'                       => 'sievietes, kuras dzimušas līdz 1974. gadam', // @todo 2019
         ];
     }
 }

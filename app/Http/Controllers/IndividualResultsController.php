@@ -132,7 +132,7 @@ class IndividualResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2018. gada 11. augusts', // @todo
+            'eventDate'                => '2019. gada 10. augusts', // @todo 2019
             'eventDescription'         => 'Riteņbraukšnas sacensību protokols',
             'eventDistanceDescription' => 'Distance: Lejasciems-Sinole-Lejasciems (10km)',
             'SParticipant'             => 'Dalībniece',
@@ -148,7 +148,7 @@ class IndividualResultsController extends Controller
             'BV'                       => 'zēni, kas dzimuši, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunāki',
             'S'                        => '',
             // 'CV'                       => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['max'].'. gadam; ceļa velosipēdi',
-            'CV'                       => 'vīrieši, kas dzimuši no 1969. līdz 2005. gadam; ceļa velosipēdi', // @todo
+            'CV'                       => 'vīrieši, kas dzimuši no 1970. līdz 2006. gadam; ceļa velosipēdi', // @todo 2019
             'CV 1'                     => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV 1')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV 1')['birthYears']['max'].'. gadam; ceļa velosipēdi',
             'CV 2'                     => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV 2')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV 2')['birthYears']['max'].'. gadam; ceļa velosipēdi',
             'CV 3'                     => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV 3')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV 3')['birthYears']['max'].'. gadam; ceļa velosipēdi',
@@ -179,7 +179,7 @@ class IndividualResultsController extends Controller
             'PV 3'                     => '',
             'BS'                       => 'meitenes, kas dzimušas, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunākas',
             // 'CS'                       => 'sievietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CS')['birthYears']['max'].'. gadam; ceļa velosipēdi',
-            'CS'                       => 'sievietes, kas dzimušas no 1969. līdz 2005. gadam; ceļa velosipēdi', // @todo
+            'CS'                       => 'sievietes, kas dzimušas no 1970. līdz 2006. gadam; ceļa velosipēdi', // @todo 2019
             'CS 1'                     => '',
             'CS 2'                     => '',
             'CS 3'                     => '',
@@ -191,9 +191,9 @@ class IndividualResultsController extends Controller
             'CS 14'                    => '',
             'SS 1'                     => 'meitenes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'SS 1')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'SS 1')['birthYears']['max'].'. gadam; sporta velosipēdi',
             // 'SS 3'                     => 'sievietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'SS 3')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'SS 3')['birthYears']['max'].'. gadam; sporta velosipēdi',
-            'SS 3'                     => 'sievietes, kas dzimušas no 1979. līdz 2005. gadam; sporta velosipēdi', // @todo
+            'SS 3'                     => 'sievietes, kas dzimušas no 1980. līdz 2006. gadam; sporta velosipēdi', // @todo 2019
             // 'SS 5'                     => 'sievietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'SS 5')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'SS 5')['birthYears']['max'].'. gadam; sporta velosipēdi',
-            'SS 5'                     => 'sievietes, kas dzimušas līdz 1978. gadam; sporta velosipēdi', // @todo
+            'SS 5'                     => 'sievietes, kas dzimušas līdz 1979. gadam; sporta velosipēdi', // @todo 2019
             'SS 6'                     => '',
             'TS 1'                     => 'meitenes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'TS 1')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'TS 1')['birthYears']['max'].'. gadam; tūristu, kalnu un ceļa velosipēdi',
             'TS 2'                     => 'jaunietes, kas dzimušas no '.$this->ageRangesForGroup($eventYear, 'TS 2')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'TS 2')['birthYears']['max'].'. gadam; tūristu un kalnu velosipēdi',

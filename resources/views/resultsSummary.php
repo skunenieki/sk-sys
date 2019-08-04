@@ -62,7 +62,7 @@
                 <h1>Šķūnenieku Kauss <?=$eventYear?></h1>
             </div>
             <div class="col-xs-6">
-                <p><?=$eventYear?>. gada 11. augusts</p> <!-- todo -->
+                <p><?=$eventYear?>. gada 10. augusts</p> <!-- todo 2019 -->
                 <p>Riteņbraukšnas sacensību protokols</p>
                 <p>Distance: Lejasciems-Sinole-Lejasciems (10km)</p>
             </div>

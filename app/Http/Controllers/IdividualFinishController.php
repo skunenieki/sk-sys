@@ -1,7 +1,5 @@
 <?php
 
-// TODO: Rename to provisory controller
-
 namespace Skunenieki\System\Http\Controllers;
 
 use Carbon\Carbon;
