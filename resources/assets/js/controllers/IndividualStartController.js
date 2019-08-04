@@ -18,7 +18,7 @@ angular.module('skApp.IndividualStartController', [])
             }
 
             IndividualService.query({
-                eventYear: 2018,
+                eventYear: 2019, // @todo 2019
                 number: self.startTimes[idx].number,
                 limit: 1
             }, function(response) {
@@ -113,7 +113,7 @@ angular.module('skApp.IndividualStartController', [])
         }
 
         IndividualService.query({
-            eventYear: 2018,
+            eventYear: 2019, // @todo 2019
             start: timeQuery,
 	    limit: 20,
         }, function(response) {

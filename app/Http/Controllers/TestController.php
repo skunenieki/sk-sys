@@ -11,7 +11,7 @@ class TestController extends Controller
     public function test()
     {
         $event = new \StdClass;
-        $event->eventYear = 2018;
+        $event->eventYear = 2019; // @todo 2019
 
         $numbers = MtbFinishNumber::where('eventYear', $event->eventYear)->orderBy('id', 'asc')->get();
         $times   = MtbFinishTime::where('eventYear', $event->eventYear)->where('disabled', false)->orderBy('id', 'asc')->get();

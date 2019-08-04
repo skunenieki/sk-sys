@@ -11,11 +11,11 @@ class TriathlonFinishController extends Controller
 {
     public function finish(Request $request)
     {
-        $ind = Triathlon::where('eventYear', 2018)
+        $ind = Triathlon::where('eventYear', 2019) // @todo 2019
                   ->whereNull('finish')
                   ->get();
 
-        $team = TriathlonTeam::where('eventYear', 2018)
+        $team = TriathlonTeam::where('eventYear', 2019) // @todo 2019
                   ->whereNull('finish')
                   ->get();
 

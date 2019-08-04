@@ -65,12 +65,12 @@
                      id="inputBirthYear"
                      placeholder="2014"
                      min="2011"
-                     max="2018"
+                     max="2019"
                      ng-maxlength="4"
                      ng-model="kidsRegCtrl.participation.birthYear"
                      ng-blur="kidsRegCtrl.checkExistingParticipant()"
                      tabindex="3"
-                     required>
+                     required> <!-- todo 2019 -->
               <span ng-show="!kidsRegCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
               <span ng-show="!kidsRegCtrl.regForm.birthYear.$pristine && kidsRegCtrl.regForm.birthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
@@ -116,13 +116,13 @@
               <input type="number"
                      class="form-control"
                      id="eventYear"
-                     placeholder="2018"
+                     placeholder="2019"
                      min="1996"
-                     max="2018"
+                     max="2019"
                      ng-maxlength="4"
                      ng-model="kidsRegCtrl.participation.eventYear"
                      ng-blur="kidsRegCtrl.checkExistingParticipant()"
-                     required>
+                     required> <!-- todo 2019 -->
           </div>
         </div>
       </div>

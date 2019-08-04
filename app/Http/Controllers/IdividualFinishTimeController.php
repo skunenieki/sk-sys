@@ -13,7 +13,7 @@ class IdividualFinishTimeController extends Controller
 {
     public function index()
     {
-        return IndividualFinishTime::where('eventYear', 2018)
+        return IndividualFinishTime::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -26,7 +26,7 @@ class IdividualFinishTimeController extends Controller
         $finishTime            = new IndividualFinishTime;
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2018;
+        $finishTime->eventYear = 2019; // @todo 2019
         $finishTime->save();
 
         return $finishTime;

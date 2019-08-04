@@ -12,7 +12,7 @@ class MtbFinishController extends Controller
 {
     public function finish(Request $request)
     {
-        $mtb = Mtb::where('eventYear', 2018)
+        $mtb = Mtb::where('eventYear', 2019) // @todo 2019
                   ->whereNull('finish')
                   ->orderBy('number')
                   ->get();

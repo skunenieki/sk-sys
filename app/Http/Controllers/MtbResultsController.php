@@ -92,7 +92,7 @@ class MtbResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2018. gada 10. augusts', // @todo 2019
+            'eventDate'                => '2019. gada 10. augusts', // @todo 2019
             'eventDescription'         => 'Velokrosa sacensību protokols',
             'eventDistanceDescription' => '',
             'SParticipant'             => 'Dalībniece',

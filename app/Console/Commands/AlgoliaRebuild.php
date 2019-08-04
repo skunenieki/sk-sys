@@ -41,7 +41,7 @@ class AlgoliaRebuild extends Command
 
         $index->clearIndex();
 
-        // $data = Individual::where('eventYear', 2018)
+        // $data = Individual::where('eventYear', 2019) // @todo 2019
         //                   ->whereNotNull('finish');
 
         $data = Individual::whereNotNull('finish');

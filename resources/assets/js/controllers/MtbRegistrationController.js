@@ -17,7 +17,7 @@ angular.module('skApp.MtbRegistrationController', [])
 
     self.checkExistingParticipantCache = {};
 
-    self.recentlyRegistered = MtbService.query({eventYear: 2018, sort: '-created_at'});
+    self.recentlyRegistered = MtbService.query({eventYear: 2019, sort: '-created_at'}); // @todo 2019
     self.participation = angular.copy(defaultModelValues);
 
     self.getExistingParticipants = function(val) {
@@ -65,7 +65,7 @@ angular.module('skApp.MtbRegistrationController', [])
 
     self.loadMore = function() {
         self.recentlyRegistered = MtbService.query({
-            eventYear: 2018,
+            eventYear: 2019, // @todo 2019
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
         });

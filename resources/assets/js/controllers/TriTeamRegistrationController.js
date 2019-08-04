@@ -3,7 +3,7 @@ angular.module('skApp.TriTeamRegistrationController', [])
     var self = this;
 
     self.isTeam = true;
-    self.recentlyRegistered = TriathlonTeamService.query({eventYear: 2018, sort: '-created_at'});
+    self.recentlyRegistered = TriathlonTeamService.query({eventYear: 2019, sort: '-created_at'}); // @todo 2019
 
     self.capitalizeSwimmerWords = function() {
         self.participation.swimmer.name = self.participation.swimmer.name.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g, function(firstLetter) {
@@ -88,7 +88,7 @@ angular.module('skApp.TriTeamRegistrationController', [])
 
     self.loadMore = function() {
         self.recentlyRegistered = TriathlonTeamService.query({
-            eventYear: 2018,
+            eventYear: 2019, // @todo 2019
             sort: '-created_at',
             limit: self.recentlyRegistered.length+10
         });

@@ -12,7 +12,7 @@ class IdividualFinishNumberController extends Controller
 {
     public function index()
     {
-        return IndividualFinishNumber::where('eventYear', 2018)
+        return IndividualFinishNumber::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
@@ -23,7 +23,7 @@ class IdividualFinishNumberController extends Controller
         $finishNumber            = new IndividualFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
-        $finishNumber->eventYear = 2018;
+        $finishNumber->eventYear = 2019; // @todo 2019
         $finishNumber->save();
 
 	// LaravelEvent::fire(new UpdateFinish($finishNumber->eventYear));
