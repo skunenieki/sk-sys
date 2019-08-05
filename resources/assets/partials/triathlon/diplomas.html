@@ -1,0 +1,13 @@
+<br>
+<div class="row">
+    <div class="col-md-1">
+        <ul class="nav nav-pills nav-stacked" ng-controller="EventController as evtCtrl">
+            <li ng-repeat="eventYear in evtCtrl.events | orderBy: '-eventYear'"
+                ng-class="{active: ('triathlon.diplomas' | routeSegmentStartsWith) && ('eventYear' | routeSegmentParam) == eventYear.eventYear}">
+                <a href="#{{ 'triathlon.diplomas' | routeSegmentUrl }}/{{ eventYear.eventYear }}">{{ eventYear.eventYear }}</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-11" app-view-segment="2"></div>
+</div>

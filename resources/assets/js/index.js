@@ -38,6 +38,7 @@ require('./directives/ngReallyClick');
 require('./controllers/MtbController');
 require('./controllers/MainController');
 require('./controllers/EventController');
+require('./controllers/TriDiplomasController');
 require('./controllers/IndividualController');
 require('./controllers/MtbDiplomasController');
 require('./controllers/ParticipantController');
@@ -141,6 +142,7 @@ var skApp = angular.module('skApp', [
         'skApp.ParticipantController',
         'skApp.RegistrationController',
 
+        'skApp.TriDiplomasController',
         'skApp.TriathlonTeamsController',
         'skApp.TriRegistrationController',
         'skApp.TriTeamParticipantController',
@@ -352,6 +354,8 @@ var skApp = angular.module('skApp', [
             .when('/triathlon/teams/:eventYear', 'triathlon.teams.year')
             .when('/triathlon/teams/:participantId/edit', 'triathlon.teams.edit')
             .when('/triathlon/results', 'triathlon.results')
+            .when('/triathlon/diplomas', 'triathlon.diplomas')
+            .when('/triathlon/diplomas/:eventYear', 'triathlon.diplomas.year')
             .segment('triathlon', {
                 templateUrl: 'partials/triathlon/main.html',
             })
@@ -421,6 +425,15 @@ var skApp = angular.module('skApp', [
                 .segment('results', {
                     templateUrl: 'partials/triathlon/results.html'
                 })
+                .segment('diplomas', {
+                    templateUrl: 'partials/triathlon/diplomas.html'
+                })
+                .within()
+                    .segment('year', {
+                        templateUrl: 'partials/triathlon/diplomas-year.html',
+                        dependencies: ['eventYear']
+                    })
+                    .up()
                 .up()
 
             .when('/football', 'football')

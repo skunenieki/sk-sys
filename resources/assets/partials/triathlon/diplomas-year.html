@@ -1,0 +1,57 @@
+<br>
+<div class="row">
+    <div class="col-xs-12" ng-controller="TriDiplomasController as indDipCtrl">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Drukat</h3></div>
+            <table class="table">
+                <tr>
+                    <td>
+                        <a class="btn btn-primary" traget="_blank" ng-href="/triathlon/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=1" role="button">
+                            <span class="glyphicon glyphicon-print"></span> 1 vietu diplomi
+                        </a>
+                        <a class="btn btn-primary" traget="_blank" ng-href="/triathlon/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=2" role="button">
+                            <span class="glyphicon glyphicon-print"></span> 2 vietu diplomi
+                        </a>
+                        <a class="btn btn-primary" traget="_blank" ng-href="/triathlon/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?place=3" role="button">
+                            <span class="glyphicon glyphicon-print"></span> 3 vietu diplomi
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default" ng-repeat="(group, participants) in indDipCtrl.diplomas">
+            <div class="panel-heading"><h3 class="panel-title">{{ group }}</h3></div>
+            <table class="table">
+                <tr>
+                    <th>Vieta</th>
+                    <th>#</th>
+                    <th>Vards, Uzvards</th>
+                    <th>Kam?</th>
+                    <th>Rezultats</th>
+                    <th>Komentars</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="participant in participants">
+                    <td>{{ participant.place }}</td>
+                    <td>{{ participant.number }}</td>
+                    <td>{{ participant.name }}</td>
+                    <td>
+                        <form ng-submit="indDipCtrl.updateDative(group, $index)" name="dativeForm">
+                            <div ng-class="{ 'has-feedback has-warning': !dativeForm.$pristine && !dativeForm.$submitted }">
+                                <input type="text" class="form-control" ng-model="participant.nameInDative" placeholder="Vārds datīvā">
+                                <span ng-show="!dativeForm.$pristine && !dativeForm.$submitted" class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                        </form>
+                    </td>
+                    <th>{{ participant.result }}</th>
+                    <td>{{ participant.comment }}</td>
+                    <td>
+                        <a class="btn btn-primary" target="_blank" ng-href="/triathlon/diplomas/{{ ('eventYear' | routeSegmentParam) }}/print?number={{ participant.number }}" role="button">
+                            <span class="glyphicon glyphicon-print"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

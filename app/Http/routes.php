@@ -87,6 +87,8 @@ $app->group(['middleware' => 'auth:api'], function ($app) {
     $app->post('triathlon/finishtimes', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@store');
     $app->put('triathlon/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@update');
     $app->delete('triathlon/finishtimes/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishTimeController@destroy');
+    $app->get('triathlon/diplomas/{eventYear}', 'Skunenieki\System\Http\Controllers\TriathlonDiplomasController@diplomas');
+    $app->get('triathlon/diplomas/{eventYear}/print', 'Skunenieki\System\Http\Controllers\TriathlonDiplomasController@prepare');
 
     $app->get('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@index');
     $app->post('triathlon/teams', 'Skunenieki\System\Http\Controllers\TriathlonTeamsController@store');
