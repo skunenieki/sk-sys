@@ -75,6 +75,8 @@ $app->group(['middleware' => 'auth:api'], function ($app) {
     $app->get('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@show');
     $app->delete('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@destroy');
     $app->put('mtb/{id}', 'Skunenieki\System\Http\Controllers\MtbController@update');
+    $app->get('mtb/diplomas/{eventYear}', 'Skunenieki\System\Http\Controllers\MtbDiplomasController@diplomas');
+    $app->get('mtb/diplomas/{eventYear}/print', 'Skunenieki\System\Http\Controllers\MtbDiplomasController@prepare');
 
 
     $app->get('triathlon/finish', 'Skunenieki\System\Http\Controllers\TriathlonFinishController@finish');
