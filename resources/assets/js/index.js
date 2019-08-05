@@ -39,6 +39,7 @@ require('./controllers/MtbController');
 require('./controllers/MainController');
 require('./controllers/EventController');
 require('./controllers/IndividualController');
+require('./controllers/MtbDiplomasController');
 require('./controllers/ParticipantController');
 require('./controllers/RegistrationController');
 require('./controllers/MtbFinishTimeController');
@@ -123,6 +124,7 @@ var skApp = angular.module('skApp', [
         'skApp.KidsRegistrationController',
 
         'skApp.MtbController',
+        'skApp.MtbDiplomasController',
         'skApp.MtbFinishTimeController',
         'skApp.MtbParticipantController',
         'skApp.MtbRegistrationController',
@@ -275,6 +277,7 @@ var skApp = angular.module('skApp', [
             .when('/mtb/participants/:participantId/edit', 'mtb.participants.edit')
             .when('/mtb/results', 'mtb.results')
             .when('/mtb/diplomas', 'mtb.diplomas')
+            .when('/mtb/diplomas/:eventYear', 'mtb.diplomas.year')
             .segment('mtb', {
                 templateUrl: 'partials/mtb/main.html',
             })
@@ -321,8 +324,14 @@ var skApp = angular.module('skApp', [
                     templateUrl: 'partials/mtb/results.html'
                 })
                 .segment('diplomas', {
-                    templateUrl: 'partials/mtb/diplomas.html',
+                    templateUrl: 'partials/mtb/diplomas.html'
                 })
+                .within()
+                    .segment('year', {
+                        templateUrl: 'partials/mtb/diplomas-year.html',
+                        dependencies: ['eventYear']
+                    })
+                    .up()
                 .up()
 
             .when('/triathlon', 'triathlon')
