@@ -1,5 +1,5 @@
 angular.module('skApp.IndividualFinishNumberController', [])
-.controller('IndividualFinishNumberController', ['$interval', '$http', 'IndividualFinishNumberService', 'PersistentStateService', function($interval, $http, IndividualFinishNumberService, PersistentStateService) {
+.controller('IndividualFinishNumberController', ['$http', 'IndividualFinishNumberService', function($http, IndividualFinishNumberService) {
     var self = this;
     var _ = require('underscore');
 

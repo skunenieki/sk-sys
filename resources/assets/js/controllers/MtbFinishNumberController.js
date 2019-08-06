@@ -1,5 +1,5 @@
 angular.module('skApp.MtbFinishNumberController', [])
-.controller('MtbFinishNumberController', ['$interval', '$http', 'MtbFinishNumberService', 'PersistentStateService', function($interval, $http, MtbFinishNumberService, PersistentStateService) {
+.controller('MtbFinishNumberController', ['$http', 'MtbFinishNumberService', function($http, MtbFinishNumberService) {
     var self = this;
     var _ = require('underscore');
 
