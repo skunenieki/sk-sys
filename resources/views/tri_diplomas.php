@@ -75,6 +75,7 @@
                         <h3>triatlona stafetē (0.2+7+2)</h3>
                     </div>
                     <div class="description">
+                        &nbsp;
                     </div>
                 </div>
             <?php } else { ?>
