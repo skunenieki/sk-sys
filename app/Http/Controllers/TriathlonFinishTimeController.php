@@ -13,10 +13,18 @@ class TriathlonFinishTimeController extends Controller
 {
     public function index()
     {
-        return TriathlonFinishTime::where('eventYear', 2019) // @todo 2019
+        $finishTimes = TriathlonFinishTime::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
+
+        $count = TriathlonFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+
+        foreach ($finishTimes as $finishTime) {
+            $finishTime->sequence = $count--;
+        }
+
+        return $finishTimes;
     }
 
     public function store(Request $request)
@@ -28,6 +36,10 @@ class TriathlonFinishTimeController extends Controller
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2019; // @todo 2019
         $finishTime->save();
+
+        $count = TriathlonFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+
+        $finishTime->sequence = $count;
 
         return $finishTime;
     }

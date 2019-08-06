@@ -12,10 +12,18 @@ class TriathlonFinishNumberController extends Controller
 {
     public function index()
     {
-        return TriathlonFinishNumber::where('eventYear', 2019) // @todo 2019
+        $numbers = TriathlonFinishNumber::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
+
+        $count = TriathlonFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+
+        foreach ($numbers as $number) {
+            $number->sequence = $count--;
+        }
+
+        return $numbers;
     }
 
     public function store(Request $request)
@@ -26,7 +34,9 @@ class TriathlonFinishNumberController extends Controller
         $finishNumber->eventYear = 2019; // @todo 2019
         $finishNumber->save();
 
-	// LaravelEvent::fire(new UpdateTriathlonFinish($finishNumber->eventYear));
+        $count = TriathlonFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+
+        $finishNumber->sequence = $count;
 
         return $finishNumber;
     }
@@ -37,7 +47,6 @@ class TriathlonFinishNumberController extends Controller
         $eventYear = $finishNumber->eventYear;
         $finishNumber->delete();
 
-	// LaravelEvent::fire(new UpdateFinish($eventYear));
         return;
     }
 }

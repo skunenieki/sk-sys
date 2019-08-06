@@ -12,10 +12,19 @@ class MtbFinishNumberController extends Controller
 {
     public function index()
     {
-        return MtbFinishNumber::where('eventYear', 2019) // @todo 2019
+        $numbers = MtbFinishNumber::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
+
+
+        $count = MtbFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+
+        foreach ($numbers as $number) {
+            $number->sequence = $count--;
+        }
+
+        return $numbers;
     }
 
     public function store(Request $request)
@@ -26,7 +35,9 @@ class MtbFinishNumberController extends Controller
         $finishNumber->eventYear = 2019; // @todo 2019
         $finishNumber->save();
 
-	// LaravelEvent::fire(new UpdateMtbFinish($finishNumber->eventYear));
+        $count = MtbFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+
+        $finishNumber->sequence = $count;
 
         return $finishNumber;
     }
@@ -37,7 +48,6 @@ class MtbFinishNumberController extends Controller
         $eventYear = $finishNumber->eventYear;
         $finishNumber->delete();
 
-	// LaravelEvent::fire(new UpdateFinish($eventYear));
         return;
     }
 }

@@ -9,8 +9,8 @@
     <tbody>
         <tr ng-repeat="finish in indFinTimeCtrl.finishTimes | limitTo: 30" ng-class="{ 'danger': finish.disabled === true }">
             <td>
-                <span ng-if="finish.disabled === false">{{ iindFinTimeCtrl.finishTimes.length - $index }}</span>
-                <del ng-if="finish.disabled === true">{{ iindFinTimeCtrl.finishTimes.length - $index }}</del>
+                <span ng-if="finish.disabled === false">{{ finish.sequence }}</span>
+                <del ng-if="finish.disabled === true">{{ finish.sequence }}</del>
             </td>
             <td>
                 <span ng-if="finish.disabled === false">{{ finish.finish }}</span>

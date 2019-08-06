@@ -13,10 +13,21 @@ class IdividualFinishTimeController extends Controller
 {
     public function index()
     {
-        return IndividualFinishTime::where('eventYear', 2019) // @todo 2019
+        $times = [];
+
+        $finishTimes = IndividualFinishTime::where('eventYear', 2019) // @todo 2019
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
+
+        $count = IndividualFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+
+        foreach ($finishTimes as $finishTime) {
+            $finishTime->sequence = $count--;
+            $times[] = $finishTime;
+        }
+
+        return $times;
     }
 
     public function store(Request $request)
@@ -28,6 +39,10 @@ class IdividualFinishTimeController extends Controller
         $finishTime->disabled  = false;
         $finishTime->eventYear = 2019; // @todo 2019
         $finishTime->save();
+
+        $count = IndividualFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+
+        $finishTime->sequence = $count;
 
         return $finishTime;
     }

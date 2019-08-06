@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="finish in triFinNumCtrl.finishes | limitTo: 30">
-            <td>{{ triFinNumCtrl.finishes.length - $index }}</td>
+            <td>{{ finish.sequence }}</td>
             <td>{{ finish.number }}</td>
             <td>
                 <button type="button"
