@@ -45,7 +45,7 @@ $app->group(['middleware' => 'auth:api'], function ($app) {
     $app->get('10km/statistics', 'Skunenieki\System\Http\Controllers\IdividualController@statistics');
     $app->get('10km/years', 'Skunenieki\System\Http\Controllers\IdividualController@years');
     $app->get('10km/turn', 'Skunenieki\System\Http\Controllers\IdividualFinishController@turn');
-    $app->get('10km/finish', 'Skunenieki\System\Http\Controllers\IdividualFinishController@finish');
+    // $app->get('10km/finish', 'Skunenieki\System\Http\Controllers\IdividualFinishController@finish');
     $app->get('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@index');
     $app->post('10km/turns', 'Skunenieki\System\Http\Controllers\IdividualTurnController@store');
     $app->get('10km/diplomas/{eventYear}', 'Skunenieki\System\Http\Controllers\IndividualDiplomasController@diplomas');
@@ -64,7 +64,7 @@ $app->group(['middleware' => 'auth:api'], function ($app) {
 
     $app->get('mtb', 'Skunenieki\System\Http\Controllers\MtbController@index');
     $app->post('mtb', 'Skunenieki\System\Http\Controllers\MtbController@store');
-    $app->get('mtb/finish', 'Skunenieki\System\Http\Controllers\MtbFinishController@finish');
+    // $app->get('mtb/finish', 'Skunenieki\System\Http\Controllers\MtbFinishController@finish');
     $app->get('mtb/finishnumbers', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@index');
     $app->post('mtb/finishnumbers', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@store');
     $app->delete('mtb/finishnumbers/{id}', 'Skunenieki\System\Http\Controllers\MtbFinishNumberController@destroy');
@@ -79,7 +79,7 @@ $app->group(['middleware' => 'auth:api'], function ($app) {
     $app->get('mtb/diplomas/{eventYear}/print', 'Skunenieki\System\Http\Controllers\MtbDiplomasController@prepare');
 
 
-    $app->get('triathlon/finish', 'Skunenieki\System\Http\Controllers\TriathlonFinishController@finish');
+    // $app->get('triathlon/finish', 'Skunenieki\System\Http\Controllers\TriathlonFinishController@finish');
     $app->get('triathlon/finishnumbers', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@index');
     $app->post('triathlon/finishnumbers', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@store');
     $app->delete('triathlon/finishnumbers/{id}', 'Skunenieki\System\Http\Controllers\TriathlonFinishNumberController@destroy');

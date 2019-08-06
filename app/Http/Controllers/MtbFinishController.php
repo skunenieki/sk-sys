@@ -10,31 +10,31 @@ use Skunenieki\System\Models\Mtb;
 
 class MtbFinishController extends Controller
 {
-    public function finish(Request $request)
-    {
-        $mtb = Mtb::where('eventYear', 2019) // @todo 2019
-                  ->whereNull('finish')
-                  ->orderBy('number')
-                  ->get();
+    // public function finish(Request $request)
+    // {
+    //     $mtb = Mtb::where('eventYear', 2019) // @todo 2019
+    //               ->whereNull('finish')
+    //               ->orderBy('number')
+    //               ->get();
 
-        return $mtb;
+    //     return $mtb;
 
-        // $numbers = [];
-        // foreach ($mtb as $participant) {
-        //     $numbers[] = $participant;
-        // }
+    //     // $numbers = [];
+    //     // foreach ($mtb as $participant) {
+    //     //     $numbers[] = $participant;
+    //     // }
 
-        // // $numbers = array_sort_recursive($numbers);
+    //     // // $numbers = array_sort_recursive($numbers);
 
-        // $expectedFinish = [];
-        // foreach ($numbers as $lapsdone) {
-        //     foreach ($lapsdone as $gender) {
-        //         foreach ($gender as $participant) {
-        //             $expectedFinish[] = $participant;
-        //         }
-        //     }
-        // }
+    //     // $expectedFinish = [];
+    //     // foreach ($numbers as $lapsdone) {
+    //     //     foreach ($lapsdone as $gender) {
+    //     //         foreach ($gender as $participant) {
+    //     //             $expectedFinish[] = $participant;
+    //     //         }
+    //     //     }
+    //     // }
 
-        // return $expectedFinish;
-    }
+    //     // return $expectedFinish;
+    // }
 }

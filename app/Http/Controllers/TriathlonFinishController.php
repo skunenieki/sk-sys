@@ -9,32 +9,32 @@ use Skunenieki\System\Models\TriathlonTeam;
 
 class TriathlonFinishController extends Controller
 {
-    public function finish(Request $request)
-    {
-        $ind = Triathlon::where('eventYear', 2019) // @todo 2019
-                  ->whereNull('finish')
-                  ->get();
+    // public function finish(Request $request)
+    // {
+    //     $ind = Triathlon::where('eventYear', 2019) // @todo 2019
+    //               ->whereNull('finish')
+    //               ->get();
 
-        $team = TriathlonTeam::where('eventYear', 2019) // @todo 2019
-                  ->whereNull('finish')
-                  ->get();
+    //     $team = TriathlonTeam::where('eventYear', 2019) // @todo 2019
+    //               ->whereNull('finish')
+    //               ->get();
 
-        $result = [];
-        foreach ($ind as $participant) {
-            $result[$participant->number] = $participant;
-        }
+    //     $result = [];
+    //     foreach ($ind as $participant) {
+    //         $result[$participant->number] = $participant;
+    //     }
 
-        foreach ($team as $participant) {
-            $result[$participant->number] = $participant;
-        }
+    //     foreach ($team as $participant) {
+    //         $result[$participant->number] = $participant;
+    //     }
 
-        $result = array_sort_recursive($result);
+    //     $result = array_sort_recursive($result);
 
-        $ret = [];
-        foreach ($result as $value) {
-            $ret[] = $value;
-        }
+    //     $ret = [];
+    //     foreach ($result as $value) {
+    //         $ret[] = $value;
+    //     }
 
-        return $ret;
-    }
+    //     return $ret;
+    // }
 }

@@ -23,30 +23,30 @@ class IdividualFinishController extends Controller
         return $individual;
     }
 
-    public function finish(Request $request)
-    {
-        $individual = Individual::where('eventYear', 2019) // @todo 2019
-                                ->whereNotNull('start')
-                                ->whereNotNull('turn')
-                                ->whereNull('finish')
-                                ->get();
+    // public function finish(Request $request)
+    // {
+    //     $individual = Individual::where('eventYear', 2019) // @todo 2019
+    //                             ->whereNotNull('start')
+    //                             ->whereNotNull('turn')
+    //                             ->whereNull('finish')
+    //                             ->get();
 
-        $individual->map(function($item) {
-            $item->tempResultInSeconds = $item->turnInSeconds - $item->startInSeconds;
+    //     $individual->map(function($item) {
+    //         $item->tempResultInSeconds = $item->turnInSeconds - $item->startInSeconds;
 
-            if ($item->tempResultInSeconds < 0) {
-                $item->tempResultInSeconds = 0;
-            }
+    //         if ($item->tempResultInSeconds < 0) {
+    //             $item->tempResultInSeconds = 0;
+    //         }
 
-            $item->tempResult = (new Carbon)->diff((new Carbon)->addSeconds($item->tempResultInSeconds))->format('%H:%I:%S');
-        });
+    //         $item->tempResult = (new Carbon)->diff((new Carbon)->addSeconds($item->tempResultInSeconds))->format('%H:%I:%S');
+    //     });
 
-        $individual = $individual->toArray();
+    //     $individual = $individual->toArray();
 
-        usort($individual, function($a, $b) {
-            return $a['tempResultInSeconds'] - $b['tempResultInSeconds'];
-        });
+    //     usort($individual, function($a, $b) {
+    //         return $a['tempResultInSeconds'] - $b['tempResultInSeconds'];
+    //     });
 
-        return $individual;
-    }
+    //     return $individual;
+    // }
 }
