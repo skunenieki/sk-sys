@@ -42,10 +42,7 @@ class AlgoliaRebuild extends Command
     {
         $index = $this->algolia->initIndex('skunenieki');
 
-        $index->clearIndex();
-
-        // $data = Individual::where('eventYear', 2019) // @todo 2019
-        //                   ->whereNotNull('finish');
+        $index->clearObjects();
 
         $data = Individual::whereNotNull('finish');
 
@@ -65,7 +62,6 @@ class AlgoliaRebuild extends Command
                         $last = end($resultsInSec);
                         foreach ($resultsInSec as $individual) {
                             $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
-                                // 'objectID'      => $individual->id,
                                 'participantId' => $individual->participantId,
                                 'name'          => $individual->name,
                                 'birthYear'     => $individual->birthYear,
@@ -138,7 +134,7 @@ class AlgoliaRebuild extends Command
             ];
         }
 
-        $index->addObjects($grouped);
+        $index->saveObjects($grouped);
 
         $this->info("\nPushed {$data->count()} records to Algolia.\n");
 

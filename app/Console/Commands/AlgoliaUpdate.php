@@ -40,20 +40,25 @@ class AlgoliaUpdate extends Command
      */
     public function handle()
     {
+        $eventYear = 2019; // @todo 2019
+
+        $thisYearsFinished = Individual::where('eventYear', $eventYear)
+              ->whereNotNull('finish')->get();
+
+        if ($thisYearsFinished->count() < 1) {
+            $this->output->write('Found zero finishers this year, exiting!');
+            return 0;
+        }
+
         $index = $this->algolia->initIndex('skunenieki');
 
         while (true) {
-            $data = Individual::where('eventYear', 2019) // @todo 2019
-                              ->whereNotNull('finish');
+            $data = Individual::whereNotNull('finish');
 
             $results  = [];
             $results2 = [];
-            foreach ($data->get() as $participant) {
-                $fromAllYears = Individual::whereNotNull('finish')->where('participantId', $participant->participantId)->get();
-
-                foreach ($fromAllYears as $individual) {
-                    $results[$individual->eventYear][$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
-                }
+            foreach ($data->get() as $individual) {
+                $results[$individual->eventYear][$individual->gender][$individual->group][$individual->resultInSeconds][$individual->id] = $individual;
             }
 
             $this->ksortRecursive($results);
@@ -66,13 +71,12 @@ class AlgoliaUpdate extends Command
                             $last = end($resultsInSec);
                             foreach ($resultsInSec as $individual) {
                                 $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
-                                    // 'objectID'      => $individual->id,
                                     'participantId' => $individual->participantId,
                                     'name'          => $individual->name,
                                     'birthYear'     => $individual->birthYear,
                                     'result'        => $individual->result,
                                     'group'         => $individual->group,
-                                    'rankInGroup'   => $i,
+                                    'rankInGroup'   => (true === $this->option('hide-current-year') && $individual->eventYear === $eventYear) ? '-' : $i,
                                     'eventYear'     => $individual->eventYear,
                                 ];
 
@@ -91,17 +95,15 @@ class AlgoliaUpdate extends Command
 
             $this->ksortRecursive($results2);
 
-            $this->output->progressStart($data->count());
-
             $all = [];
-            foreach ($results2 as $eventYear) {
-                foreach ($eventYear as $groups) {
+            foreach ($results2 as $currentEventYear => $data) {
+                foreach ($data as $groups) {
                     $i = 1;
                     foreach ($groups as $resultsInSec) {
                         $last = end($resultsInSec);
                         foreach ($resultsInSec as $individual) {
                             $last['rankInSummary']       = $i;
-                            $individual['rankInSummary'] = $i;
+                            $individual['rankInSummary'] = (true === $this->option('hide-current-year') && $currentEventYear === $eventYear) ? '-' : $i;
 
                             $all[] = $individual;
 
@@ -112,8 +114,6 @@ class AlgoliaUpdate extends Command
                             if (count($resultsInSec) < 2) {
                                 $i++;
                             }
-
-                            $this->output->progressAdvance();
                         }
                     }
                 }
@@ -134,14 +134,21 @@ class AlgoliaUpdate extends Command
                 $grouped[$each['participantId']]['results'][$each['eventYear']] = [
                     'result'        => $each['result'],
                     'group'         => $each['group'],
-                    'rankInGroup'   => (true === $this->option('hide-current-year') && $each['eventYear'] === 2019) ? '-' : $each['rankInGroup'], // @todo 2019
-                    'rankInSummary' => (true === $this->option('hide-current-year') && $each['eventYear'] === 2019) ? '-' : $each['rankInSummary'], // @todo 2019
+                    'rankInGroup'   => $each['rankInGroup'],
+                    'rankInSummary' => $each['rankInSummary'],
                 ];
             }
 
-            $count = count($grouped);
+            $thisYearsGrouped = [];
+            foreach ($thisYearsFinished as $individual) {
+                if (isset($grouped[$individual->participantId])) {
+                    $thisYearsGrouped[$individual->participantId] = $grouped[$individual->participantId];
+                }
+            }
 
-            $index->saveObjects($grouped);
+            $count = count($thisYearsGrouped);
+
+            $index->saveObjects($thisYearsGrouped);
 
             $this->info("\nPushed {$count} records to Algolia.\n");
 
