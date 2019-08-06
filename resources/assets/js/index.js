@@ -181,8 +181,6 @@ var skApp = angular.module('skApp', [
             .when('/10km/registration', '10km.registration')
             .when('/10km/start', '10km.start')
             .when('/10km/turn', '10km.turn')
-            .when('/10km/turn/grid', '10km.turn.grid')
-            .when('/10km/turn/table', '10km.turn.table')
             .when('/10km/finish', '10km.finish')
             .when('/10km/finish/input', '10km.finish.input')
             .when('/10km/finish/edit', '10km.finish.edit')
@@ -219,14 +217,6 @@ var skApp = angular.module('skApp', [
                 .segment('turn', {
                     templateUrl: 'partials/10km/turn.html'
                 })
-                .within()
-                    .segment('grid', {
-                        templateUrl: 'partials/10km/turnGrid.html'
-                    })
-                    .segment('table', {
-                        templateUrl: 'partials/10km/turnTable.html'
-                    })
-                    .up()
                 .segment('finish', {
                     templateUrl: 'partials/10km/finish.html'
                 })

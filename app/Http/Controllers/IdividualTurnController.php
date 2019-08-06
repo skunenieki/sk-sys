@@ -13,10 +13,18 @@ class IdividualTurnController extends Controller
 {
     public function index()
     {
-        return IndividualTurn::where('eventYear', 2019) // @todo 2019
+        $turns = IndividualTurn::where('eventYear', 2019) // @todo 2019
                              ->orderBy('slot', 'desc')
                              ->take(20)
                              ->get();
+
+        $count = IndividualTurn::where('eventYear', 2019)->count(); // @todo 2019
+
+        foreach ($turns as $turn) {
+            $turn->sequence = $count--;
+        }
+
+        return $turns;
     }
 
     public function store(Request $request)
@@ -40,6 +48,10 @@ class IdividualTurnController extends Controller
             }
             $individual->save();
         }
+
+        $count = IndividualTurn::where('eventYear', 2019)->count(); // @todo 2019
+
+        $turn->sequence = $count;
 
         return $turn;
     }

@@ -1,132 +1,6 @@
 <div class="row" ng-controller="TriathlonFinishNumberController as triFinNumCtrl">
     <div class="col-xs-8">
-        <br>
         <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:0">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 0)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:10">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 1)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:20">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 2)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:30">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 3)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:40">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 4)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:50">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 5)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:60">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 6)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:70">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 7)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:80">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 8)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:90">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 9)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:100">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 10)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="btn-group btn-group-justified">
-                    <div class="btn-group btn-group-lg" ng-repeat="finisher in triFinNumCtrl.potentialFinishers | limitTo: 10:110">
-                        <button type="button" class="btn btn-primary" ng-click="triFinNumCtrl.markFinish($index, 11)" role="button">{{ finisher.number }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <div class="row">
-            <div class="col-xs-6">
-                <br>
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish(false)" role="button">Nezinams</button>
-            </div>
             <div class="col-xs-6">
                 <br>
                 <form>
@@ -135,6 +9,10 @@
                         <button type="submit" class="btn btn-primary btn-block" ng-click="triFinNumCtrl.markFinish(false)">Pievienot</button>
                     </div>
                 </form>
+            </div>
+            <div class="col-xs-6">
+                <br>
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="triFinNumCtrl.markFinish(false)" role="button">Nezināms</button>
             </div>
         </div>
         <div class="row">

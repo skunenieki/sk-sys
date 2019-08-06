@@ -1,68 +1,6 @@
 <div class="row" ng-controller="IndividualFinishNumberController as indFinNumCtrl">
     <div class="col-xs-8">
-        <br>
         <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:0">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 0)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:6">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 1)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:12">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 2)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:18">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 3)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:24">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 4)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:30">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 5)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:36">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 6)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-2" ng-repeat="finisher in indFinNumCtrl.potentialFinishers | limitTo: 6:42">
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish($index, 7)" role="button">{{ finisher.number }}</button>
-                <p class="text-center">{{ finisher.tempResult }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-4">
-        <div class="row">
-            <div class="col-xs-6">
-                <br>
-                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish(false)" role="button">Nezinams</button>
-            </div>
             <div class="col-xs-6">
                 <br>
                 <form>
@@ -71,6 +9,10 @@
                         <button type="submit" class="btn btn-primary btn-block" ng-click="indFinNumCtrl.markFinish(false)">Pievienot</button>
                     </div>
                 </form>
+            </div>
+            <div class="col-xs-6">
+                <br>
+                <button type="button" class="btn btn-primary btn-xlarge btn-block" ng-click="indFinNumCtrl.markFinish(false)" role="button">Nezināms</button>
             </div>
         </div>
         <div class="row">

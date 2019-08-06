@@ -3,9 +3,8 @@ angular.module('skApp.IndividualFinishNumberController', [])
     var self = this;
     var _ = require('underscore');
 
-    self.manualNumber       = null;
-    self.finishes           = [];
-    self.potentialFinishers = [];
+    self.manualNumber = null;
+    self.finishes     = [];
 
     self.deleteFinishNumber = function(idx) {
         IndividualFinishNumberService.delete({id: self.finishes[idx].id}, function() {
@@ -14,72 +13,19 @@ angular.module('skApp.IndividualFinishNumberController', [])
     };
 
     self.markFinish = function(idx, row) {
-        var number = null;
-        var manual = false;
-
-
-        if (false !== idx && false !== row) {
-            number = self.potentialFinishers[(row*6)+idx].number; // 6 is number of buttons per row
-
-        } else if (false === idx && self.manualNumber !== null) {
-            number = self.manualNumber;
-            manual = true;
-        }
-
         var finish = new IndividualFinishNumberService({
-            number: number,
-            manual: manual,
+            number: self.manualNumber,
+            manual: true,
         });
 
         finish.$save()
            .then(function(response) {
-                if (idx !== false) {
-                    self.potentialFinishers.splice(idx, 1);
-                }
-
-                if (self.manualNumber !== null) {
-                    self.manualNumber = null;
-                }
-
+                self.manualNumber = null;
                 self.finishes.unshift(response);
             }, function(response) {
                 // Failure
             });
     };
-
-    self.updatePotentialFinishers = function() {
-        return $http.get('/10km/finish', {})
-            .then(function(response) {
-                for (var i = 0; i < response.data.length; i++) {
-                    var finisherIndex = _.indexOf(
-                        self.potentialFinishers,
-                        _.find(
-                            self.potentialFinishers, function(finisher) {
-                                return finisher.number == response.data[i].number;
-                            }
-                        )
-                    );
-
-                    if (-1 === finisherIndex) {
-                        self.potentialFinishers.push(response.data[i]);
-                    } else {
-                        self.potentialFinishers[finisherIndex].startInSeconds = response.data[i].startInSeconds;
-                    }
-                }
-
-                for (var i = self.potentialFinishers.length - 1; i >= 0; i--) {
-                    if (typeof _.find(response.data, function(finisher) { return finisher.number == self.potentialFinishers[i].number }) === 'undefined') {
-                        self.potentialFinishers.splice(i, 1);
-                    }
-                };
-            });
-    };
-
-    if (false === PersistentStateService.potentialFinishersTimer) {
-        PersistentStateService.potentialFinishersTimer = $interval(self.updatePotentialFinishers, 5000);
-    }
-
-    self.updatePotentialFinishers();
 
     self.updateFinishes = function() {
         self.finishes = IndividualFinishNumberService.query();
