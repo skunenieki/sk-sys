@@ -16,11 +16,20 @@ class IndividualDiplomasController extends Controller
 
     public function prepare(Request $request, $eventYear)
     {
+        $place = $request->input('place', null);
+
+        if ($place === 'summary') {
+            return view('diplomas_summary', [
+                'diplomas' => $this->getSummaryDiplomas($eventYear),
+                'phrases'  => $this->summaryPhrases($eventYear),
+            ]);
+        }
+
         return view('diplomas', [
             'diplomas' => $this->getDiplomas(
                 $eventYear,
                 [
-                    'place' => $request->input('place', null),
+                    'place'  => $place,
                     'number' => $request->input('number', null),
                 ]
             ),
@@ -55,6 +64,64 @@ class IndividualDiplomasController extends Controller
                 $last = end($individual);
                 foreach ($individual as $participant) {
                     if ($i > 3) {
+                        break;
+                    }
+
+                    $participant->nameInDative = $namesInDative[$participant->participantId];
+                    $participant->place        = $i;
+
+                    if (null !== $attrs && null !== $attrs['place']) {
+                        if ($attrs['place'] == $i) {
+                            $diplomas[$group][] = $participant;
+                        }
+                    } elseif (null !== $attrs && null !== $attrs['number']) {
+                        if ($attrs['number'] == $participant->number) {
+                            $diplomas[$group][] = $participant;
+                        }
+                    } else {
+                        $diplomas[$group][] = $participant;
+                    }
+
+                    if (count($individual) > 1 && $participant === $last) {
+                        $i += count($individual);
+                    }
+                    if (count($individual) < 2) {
+                        $i++;
+                    }
+                }
+            }
+        }
+
+        return $diplomas;
+    }
+
+    protected function getSummaryDiplomas($eventYear, $attrs = null)
+    {
+        $individual = Individual::where('eventYear', $eventYear);
+
+        $results = [];
+        foreach ($individual->get() as $individual) {
+            $results[$individual->gender][$individual->resultInSeconds][$individual->id] = $individual;
+        }
+
+        $this->ksortRecursive($results);
+
+        $namesInDative = [];
+        foreach (Participant::all() as $participant) {
+            $namesInDative[$participant->id] = $participant->nameInDative;
+        }
+
+        $diplomas = [];
+        foreach ($results as $group => $resultInSeconds) {
+            if ($group === 'AK') {
+                continue;
+            }
+
+            $i = 1;
+            foreach ($resultInSeconds as $individual) {
+                $last = end($individual);
+                foreach ($individual as $participant) {
+                    if ($i > 1) {
                         break;
                     }
 
@@ -132,6 +199,13 @@ class IndividualDiplomasController extends Controller
                 }
             }
         }
+    }
+
+    protected function summaryPhrases($eventYear)
+    {
+        return [
+
+        ];
     }
 
     protected function phrases($eventYear)
