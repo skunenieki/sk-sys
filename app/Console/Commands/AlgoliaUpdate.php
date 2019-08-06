@@ -2,8 +2,8 @@
 
 namespace Skunenieki\System\Console\Commands;
 
+use Algolia\AlgoliaSearch\SearchClient;
 use Exception;
-use AlgoliaSearch\Client;
 use Illuminate\Console\Command;
 use Skunenieki\System\Models\Individual;
 
@@ -14,7 +14,7 @@ class AlgoliaUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'algolia:update {--sleep=60} {--once}';
+    protected $signature = 'algolia:update {--sleep=60} {--once} {--hide-current-year : Do not push group results of current year.}';
 
     /**
      * The console command description.
@@ -27,7 +27,10 @@ class AlgoliaUpdate extends Command
     {
         parent::__construct();
 
-        $this->algolia = new Client(env('ALGOLIA_APP_ID'), env('ALGOLIA_SECRET'));
+        $this->algolia = SearchClient::create(
+            env('ALGOLIA_APP_ID'),
+            env('ALGOLIA_SECRET'),
+        );
     }
 
     /**
@@ -131,8 +134,8 @@ class AlgoliaUpdate extends Command
                 $grouped[$each['participantId']]['results'][$each['eventYear']] = [
                     'result'        => $each['result'],
                     'group'         => $each['group'],
-                    'rankInGroup'   => $each['rankInGroup'],
-                    'rankInSummary' => $each['rankInSummary'],
+                    'rankInGroup'   => (true === $this->option('hide-current-year') && $each['eventYear'] === 2019) ? '-' : $each['rankInGroup'], // @todo 2019
+                    'rankInSummary' => (true === $this->option('hide-current-year') && $each['eventYear'] === 2019) ? '-' : $each['rankInSummary'], // @todo 2019
                 ];
             }
 

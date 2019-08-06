@@ -3,7 +3,7 @@
 namespace Skunenieki\System\Console\Commands;
 
 use Exception;
-use AlgoliaSearch\Client;
+use Algolia\AlgoliaSearch\SearchClient;
 use Illuminate\Console\Command;
 use Skunenieki\System\Models\Individual;
 
@@ -27,7 +27,10 @@ class AlgoliaRebuild extends Command
     {
         parent::__construct();
 
-        $this->algolia = new Client(env('ALGOLIA_APP_ID'), env('ALGOLIA_SECRET'));
+        $this->algolia = SearchClient::create(
+            env('ALGOLIA_APP_ID'),
+            env('ALGOLIA_SECRET'),
+        );
     }
 
     /**

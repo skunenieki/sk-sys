@@ -3,7 +3,6 @@
 namespace Skunenieki\System\Console\Commands;
 
 use Exception;
-use AlgoliaSearch\Client;
 use Illuminate\Console\Command;
 use Skunenieki\System\Models\Triathlon;
 use Skunenieki\System\Models\TriathlonTeam;
