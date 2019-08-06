@@ -60,23 +60,42 @@
 <body>
     <?php foreach ($diplomas as $group): ?>
         <?php foreach ($group as $diploma): ?>
-            <div class="diploma break">
-                <div class="name">
-                    <h3><?=$diploma->nameInDative?></h3>
+            <?php if ($diploma->group === 'K') { ?>
+                <div class="diploma break">
+                    <div class="name">
+                        <h3><?=$diploma->nameInDative?></h3>
+                    </div>
+                    <div class="place">
+                        <h3>(komanda "<?=$diploma->teamName?>")</h3>
+                    </div>
+                    <div class="group">
+                        <h3>par izcīnīto <?=$diploma->place?>. vietu</h3>
+                    </div>
+                    <div class="result">
+                        <h3>triatlona stafetē (0.2+7+2)</h3>
+                    </div>
+                    <div class="description">
+                    </div>
                 </div>
-                <div class="place">
-                    <h3>par izcīnīto <?=$diploma->place?>. vietu</h3>
+            <?php } else { ?>
+                <div class="diploma break">
+                    <div class="name">
+                        <h3><?=$diploma->nameInDative?></h3>
+                    </div>
+                    <div class="place">
+                        <h3>par izcīnīto <?=$diploma->place?>. vietu</h3>
+                    </div>
+                    <div class="group">
+                        <h3>triatlonā <?=$diploma->group?> grupā</h3>
+                    </div>
+                    <div class="result">
+                        <h3>ar rezultātu <?=$diploma->result?></h3>
+                    </div>
+                    <div class="description">
+                        <?=$diploma->group?> - <?=$phrases[$diploma->group]?>
+                    </div>
                 </div>
-                <div class="group">
-                    <h3>triatlonā <?=$diploma->group?> grupā</h3>
-                </div>
-                <div class="result">
-                    <h3>ar rezultātu <?=$diploma->result?></h3>
-                </div>
-                <div class="description">
-                    <?=$diploma->group?> - <?=$phrases[$diploma->group]?>
-                </div>
-            </div>
+            <?php } ?>
         <?php endforeach; ?>
     <?php endforeach; ?>
 </body>

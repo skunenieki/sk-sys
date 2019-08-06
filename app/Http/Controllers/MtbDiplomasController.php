@@ -133,12 +133,30 @@ class MtbDiplomasController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'S1' => 'jaunietes, kuras dzimušas ' . ($eventYear - 15) . '. gadā un vēlāk',
-            'S2' => 'sievietes, kuras dzimušas no ' . ($eventYear - 44) . '. līdz ' . ($eventYear - 16) . '. gadam',
-            'S3' => 'sievietes, kuras dzimušas līdz ' . ($eventYear - 45) . '. gadam',
-            'V1' => 'jaunieši, kuri dzimuši ' . ($eventYear - 15) . '. gadā un vēlāk',
-            'V2' => 'vīrieši, kuri dzimuši no ' . ($eventYear - 44) . '. līdz ' . ($eventYear - 16) . '. gadam',
-            'V3' => 'vīrieši, kuri dzimuši līdz ' . ($eventYear - 45) . '. gadam',
+            'S1' => [
+                'group'       => '15km velokorsā S1 grupā',
+                'description' => 'jaunietes, kuras dzimušas ' . ($eventYear - 15) . '. gadā un vēlāk',
+            ],
+            'S2' => [
+                'group'       => '20km velokorsā S2 grupā',
+                'description' => 'sievietes, kuras dzimušas no ' . ($eventYear - 44) . '. līdz ' . ($eventYear - 16) . '. gadam',
+            ],
+            'S3' => [
+                'group'       => '15km velokorsā S3 grupā',
+                'description' => 'sievietes, kuras dzimušas līdz ' . ($eventYear - 45) . '. gadam',
+            ],
+            'V1' => [
+                'group'       => '15km velokorsā V1 grupā',
+                'description' => 'jaunieši, kuri dzimuši ' . ($eventYear - 15) . '. gadā un vēlāk',
+            ],
+            'V2' => [
+                'group'       => '20km velokorsā V2 grupā',
+                'description' => 'vīrieši, kuri dzimuši no ' . ($eventYear - 44) . '. līdz ' . ($eventYear - 16) . '. gadam',
+            ],
+            'V3' => [
+                'group'       => '15km velokorsā V3 grupā',
+                'description' => 'vīrieši, kuri dzimuši līdz ' . ($eventYear - 45) . '. gadam',
+            ],
         ];
     }
 }

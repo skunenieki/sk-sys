@@ -31,12 +31,15 @@ class TriathlonDiplomasController extends Controller
 
     protected function getDiplomas($eventYear, $attrs = null)
     {
-        $results = [];
+        return array_merge(
+            $this->getTeamDiplomas($eventYear, $attrs),
+            $this->getIndDiplomas($eventYear, $attrs),
+        );
+    }
 
-        $tri = Triathlon::where('eventYear', $eventYear);
-        foreach ($tri->get() as $tri) {
-            $results[$tri->group][$tri->resultInSeconds][$tri->id] = $tri;
-        }
+    protected function getTeamDiplomas($eventYear, $attrs = null)
+    {
+        $results = [];
 
         $team = TriathlonTeam::where('eventYear', $eventYear);
         foreach ($team->get() as $team) {
@@ -53,17 +56,80 @@ class TriathlonDiplomasController extends Controller
         $diplomas = [];
         foreach ($results as $group => $resultInSeconds) {
             $i = 1;
-            foreach ($resultInSeconds as $individual) {
-                $last = end($individual);
-                foreach ($individual as $participant) {
+            foreach ($resultInSeconds as $tri) {
+                $last = end($tri);
+                foreach ($tri as $participant) {
                     if ($i > 3) {
                         break;
                     }
 
-                    $participant->nameInDative = $namesInDative[$participant->participantId] ??
-                        'Komandai "' . $participant->name . '"';
+                    $participantTypes = ['swimmer', 'biker', 'runner'];
+                    foreach ($participantTypes as $participantType) {
+                        $clonedParticipant = clone $participant;
 
-                    $participant->place = $i;
+                        $nameFieldName = $participantType . 'Name';
+                        $idFieldName   = $participantType . 'ParticipantId';
+
+                        $clonedParticipant->teamName      = $clonedParticipant->name;
+                        $clonedParticipant->name          = $clonedParticipant->name . ' ('. $clonedParticipant->$nameFieldName .')';
+                        $clonedParticipant->participantId = $clonedParticipant->$idFieldName;
+                        $clonedParticipant->nameInDative  = $namesInDative[$clonedParticipant->$idFieldName];
+                        $clonedParticipant->place         = $i;
+
+                        if (null !== $attrs && null !== $attrs['place']) {
+                            if ($attrs['place'] == $i) {
+                                $diplomas[$group][] = $clonedParticipant;
+                            }
+                        } elseif (null !== $attrs && null !== $attrs['number']) {
+                            if ($attrs['number'] == $clonedParticipant->number) {
+                                $diplomas[$group][] = $clonedParticipant;
+                            }
+                        } else {
+                            $diplomas[$group][] = $clonedParticipant;
+                        }
+                    }
+
+                    if (count($tri) > 1 && $clonedParticipant === $last) {
+                        $i += count($tri);
+                    }
+                    if (count($tri) < 2) {
+                        $i++;
+                    }
+                }
+            }
+        }
+
+        return $diplomas;
+    }
+
+    protected function getIndDiplomas($eventYear, $attrs = null)
+    {
+        $results = [];
+
+        $tri = Triathlon::where('eventYear', $eventYear);
+        foreach ($tri->get() as $tri) {
+            $results[$tri->group][$tri->resultInSeconds][$tri->id] = $tri;
+        }
+
+        $this->ksortRecursive($results);
+
+        $namesInDative = [];
+        foreach (Participant::all() as $participant) {
+            $namesInDative[$participant->id] = $participant->nameInDative;
+        }
+
+        $diplomas = [];
+        foreach ($results as $group => $resultInSeconds) {
+            $i = 1;
+            foreach ($resultInSeconds as $tri) {
+                $last = end($tri);
+                foreach ($tri as $participant) {
+                    if ($i > 3) {
+                        break;
+                    }
+
+                    $participant->nameInDative = $namesInDative[$participant->participantId];
+                    $participant->place        = $i;
 
                     if (null !== $attrs && null !== $attrs['place']) {
                         if ($attrs['place'] == $i) {
@@ -77,10 +143,10 @@ class TriathlonDiplomasController extends Controller
                         $diplomas[$group][] = $participant;
                     }
 
-                    if (count($individual) > 1 && $participant === $last) {
-                        $i += count($individual);
+                    if (count($tri) > 1 && $participant === $last) {
+                        $i += count($tri);
                     }
-                    if (count($individual) < 2) {
+                    if (count($tri) < 2) {
                         $i++;
                     }
                 }
@@ -142,10 +208,10 @@ class TriathlonDiplomasController extends Controller
     {
         return [
             'K'  => '',
-            'S1' => '',
-            'S2' => '',
-            'V1' => '',
-            'V2' => '',
+            'S1' => 'jaunietes, kuras dzimušas ' . ($eventYear - 15) . '. gadā un vēlāk',
+            'S2' => 'sievietes, kuras dzimušas līdz ' . ($eventYear - 16) . '. gadam',
+            'V1' => 'jaunieši, kuri dzimuši ' . ($eventYear - 15) . '. gadā un vēlāk',
+            'V2' => 'vīrieši , kuri dzimuši līdz ' . ($eventYear - 16) . '. gadam',
         ];
     }
 }

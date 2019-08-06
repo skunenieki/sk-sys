@@ -68,13 +68,13 @@
                     <h3>par izcīnīto <?=$diploma->place?>. vietu</h3>
                 </div>
                 <div class="group">
-                    <h3>MTB riteņbraukšanā <?=$diploma->group?> grupā</h3>
+                    <h3><?=$phrases[$diploma->group]['group']?></h3>
                 </div>
                 <div class="result">
                     <h3>ar rezultātu <?=$diploma->result?></h3>
                 </div>
                 <div class="description">
-                    <?=$diploma->group?> - <?=$phrases[$diploma->group]?>
+                    <?=$diploma->group?> - <?=$phrases[$diploma->group]['description']?>
                 </div>
             </div>
         <?php endforeach; ?>
