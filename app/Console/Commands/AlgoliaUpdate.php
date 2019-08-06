@@ -71,13 +71,14 @@ class AlgoliaUpdate extends Command
                             $last = end($resultsInSec);
                             foreach ($resultsInSec as $individual) {
                                 $results2[$individual->eventYear][$individual->gender][$individual->resultInSeconds][$individual->id] = [
-                                    'participantId' => $individual->participantId,
-                                    'name'          => $individual->name,
-                                    'birthYear'     => $individual->birthYear,
-                                    'result'        => $individual->result,
-                                    'group'         => $individual->group,
-                                    'rankInGroup'   => (true === $this->option('hide-current-year') && $individual->eventYear === $eventYear) ? '-' : $i,
-                                    'eventYear'     => $individual->eventYear,
+                                    'participantId'   => $individual->participantId,
+                                    'name'            => $individual->name,
+                                    'birthYear'       => $individual->birthYear,
+                                    'result'          => $individual->result,
+                                    'resultInSeconds' => $individual->resultInSeconds,
+                                    'group'           => $individual->group,
+                                    'rankInGroup'     => (true === $this->option('hide-current-year') && $individual->eventYear === $eventYear) ? '-' : $i,
+                                    'eventYear'       => $individual->eventYear,
                                 ];
 
                                 if (count($resultsInSec) > 1 && $individual === $last) {
@@ -132,10 +133,11 @@ class AlgoliaUpdate extends Command
                 }
 
                 $grouped[$each['participantId']]['results'][$each['eventYear']] = [
-                    'result'        => $each['result'],
-                    'group'         => $each['group'],
-                    'rankInGroup'   => $each['rankInGroup'],
-                    'rankInSummary' => $each['rankInSummary'],
+                    'result'          => $each['result'],
+                    'resultInSeconds' => $each['resultInSeconds'],
+                    'group'           => $each['group'],
+                    'rankInGroup'     => $each['rankInGroup'],
+                    'rankInSummary'   => $each['rankInSummary'],
                 ];
             }
 
