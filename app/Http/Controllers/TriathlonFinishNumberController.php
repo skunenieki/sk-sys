@@ -12,12 +12,12 @@ class TriathlonFinishNumberController extends Controller
 {
     public function index()
     {
-        $numbers = TriathlonFinishNumber::where('eventYear', 2019) // @todo 2019
+        $numbers = TriathlonFinishNumber::where('eventYear', 2020) // @todo 2020
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
 
-        $count = TriathlonFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+        $count = TriathlonFinishNumber::where('eventYear', 2020)->count(); // @todo 2020
 
         foreach ($numbers as $number) {
             $number->sequence = $count--;
@@ -31,10 +31,10 @@ class TriathlonFinishNumberController extends Controller
         $finishNumber            = new TriathlonFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
-        $finishNumber->eventYear = 2019; // @todo 2019
+        $finishNumber->eventYear = 2020; // @todo 2020
         $finishNumber->save();
 
-        $count = TriathlonFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+        $count = TriathlonFinishNumber::where('eventYear', 2020)->count(); // @todo 2020
 
         $finishNumber->sequence = $count;
 

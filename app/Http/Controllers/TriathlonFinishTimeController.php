@@ -13,12 +13,12 @@ class TriathlonFinishTimeController extends Controller
 {
     public function index()
     {
-        $finishTimes = TriathlonFinishTime::where('eventYear', 2019) // @todo 2019
+        $finishTimes = TriathlonFinishTime::where('eventYear', 2020) // @todo 2020
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
 
-        $count = TriathlonFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+        $count = TriathlonFinishTime::where('eventYear', 2020)->count(); // @todo 2020
 
         foreach ($finishTimes as $finishTime) {
             $finishTime->sequence = $count--;
@@ -34,10 +34,10 @@ class TriathlonFinishTimeController extends Controller
         $finishTime            = new TriathlonFinishTime;
         $finishTime->finish    = Carbon::now()->diff(new Carbon($activeEvent->settings['triathlonStartDate']))->format('%H:%I:%S');
         $finishTime->disabled  = false;
-        $finishTime->eventYear = 2019; // @todo 2019
+        $finishTime->eventYear = 2020; // @todo 2020
         $finishTime->save();
 
-        $count = TriathlonFinishTime::where('eventYear', 2019)->count(); // @todo 2019
+        $count = TriathlonFinishTime::where('eventYear', 2020)->count(); // @todo 2020
 
         $finishTime->sequence = $count;
 

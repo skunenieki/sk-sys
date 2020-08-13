@@ -12,13 +12,13 @@ class MtbFinishNumberController extends Controller
 {
     public function index()
     {
-        $numbers = MtbFinishNumber::where('eventYear', 2019) // @todo 2019
+        $numbers = MtbFinishNumber::where('eventYear', 2020) // @todo 2020
                                    ->orderBy('id', 'desc')
                                    ->take(30)
                                    ->get();
 
 
-        $count = MtbFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+        $count = MtbFinishNumber::where('eventYear', 2020)->count(); // @todo 2020
 
         foreach ($numbers as $number) {
             $number->sequence = $count--;
@@ -32,10 +32,10 @@ class MtbFinishNumberController extends Controller
         $finishNumber            = new MtbFinishNumber;
         $finishNumber->number    = $request->number;
         $finishNumber->manual    = $request->manual;
-        $finishNumber->eventYear = 2019; // @todo 2019
+        $finishNumber->eventYear = 2020; // @todo 2020
         $finishNumber->save();
 
-        $count = MtbFinishNumber::where('eventYear', 2019)->count(); // @todo 2019
+        $count = MtbFinishNumber::where('eventYear', 2020)->count(); // @todo 2020
 
         $finishNumber->sequence = $count;
 

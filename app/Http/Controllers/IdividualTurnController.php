@@ -13,12 +13,12 @@ class IdividualTurnController extends Controller
 {
     public function index()
     {
-        $turns = IndividualTurn::where('eventYear', 2019) // @todo 2019
+        $turns = IndividualTurn::where('eventYear', 2020) // @todo 2020
                              ->orderBy('slot', 'desc')
                              ->take(20)
                              ->get();
 
-        $count = IndividualTurn::where('eventYear', 2019)->count(); // @todo 2019
+        $count = IndividualTurn::where('eventYear', 2020)->count(); // @todo 2020
 
         foreach ($turns as $turn) {
             $turn->sequence = $count--;
@@ -36,20 +36,20 @@ class IdividualTurnController extends Controller
         $turn = new IndividualTurn;
         $turn->number    = $number;
         $turn->turn      = Carbon::now()->diff(new Carbon($activeEvent->settings['startDate']))->format('%H:%I:%S');
-        $turn->slot      = IndividualTurn::where('eventYear', 2019)->count() + 1; // @todo 2019
+        $turn->slot      = IndividualTurn::where('eventYear', 2020)->count() + 1; // @todo 2020
         $turn->manual    = $request->input('manual', false);
-        $turn->eventYear = 2019; // @todo 2019
+        $turn->eventYear = 2020; // @todo 2020
         $turn->save();
 
         if ($number !== null) {
-            $individual = Individual::where('eventYear', 2019)->where('number', $number)->first(); // @todo 2019
+            $individual = Individual::where('eventYear', 2020)->where('number', $number)->first(); // @todo 2020
             if ($individual->turn === null || ($individual->turn !== null && $turn->manual === true)) {
                 $individual->turn = $turn->turn;
             }
             $individual->save();
         }
 
-        $count = IndividualTurn::where('eventYear', 2019)->count(); // @todo 2019
+        $count = IndividualTurn::where('eventYear', 2020)->count(); // @todo 2020
 
         $turn->sequence = $count;
 

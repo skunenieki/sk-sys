@@ -92,19 +92,19 @@ class MtbResultsController extends Controller
     protected function phrases($eventYear)
     {
         return [
-            'eventDate'                => '2019. gada 10. augusts', // @todo 2019
+            'eventDate'                => '2020. gada 8. augusts', // @todo 202
             'eventDescription'         => 'Velokrosa sacensību protokols',
             'eventDistanceDescription' => '',
             'SParticipant'             => 'Dalībniece',
             'VParticipant'             => 'Dalībnieks',
             'SG'                       => 'Sieviešu rezultāti pa grupām',
             'VG'                       => 'Vīriešu rezultāti pa grupām',
-            'V1'                       => 'jaunieši, kuri dzimuši 2004. gadā un vēlāk', // @todo 2019
-            'V2'                       => 'vīrieši, kuri dzimuši no 1975. līdz 2003. gadam', // @todo 2019
-            'V3'                       => 'vīrieši, kuri dzimuši līdz 1974. gadam', // @todo 2019
-            'S1'                       => 'jaunietes, kuras dzimušas 2004. gadā un vēlāk', // @todo 2019
-            'S2'                       => 'sievietes, kuras dzimušas no 1975. līdz 2003. gadam', // @todo 2019
-            'S3'                       => 'sievietes, kuras dzimušas līdz 1974. gadam', // @todo 2019
+            'V1'                       => 'jaunieši, kuri dzimuši 2005. gadā un vēlāk', // @todo 2020
+            'V2'                       => 'vīrieši, kuri dzimuši no 1976. līdz 2004. gadam', // @todo 2020
+            'V3'                       => 'vīrieši, kuri dzimuši līdz 1975. gadam', // @todo 2020
+            'S1'                       => 'jaunietes, kuras dzimušas 2005. gadā un vēlāk', // @todo 2020
+            'S2'                       => 'sievietes, kuras dzimušas no 1976. līdz 2004. gadam', // @todo 2020
+            'S3'                       => 'sievietes, kuras dzimušas līdz 1975. gadam', // @todo 2020
         ];
     }
 }

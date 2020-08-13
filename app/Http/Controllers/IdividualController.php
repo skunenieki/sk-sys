@@ -187,7 +187,7 @@ class IdividualController extends Controller
             $individualStart            = new IndividualStart;
             $individualStart->number    = $request->number;
             $individualStart->start     = $request->start;
-            $individualStart->eventYear = $request->input('eventYear', 2019); // @todo 2019
+            $individualStart->eventYear = $request->input('eventYear', 2020); // @todo 2020
             $individualStart->save();
         }
 

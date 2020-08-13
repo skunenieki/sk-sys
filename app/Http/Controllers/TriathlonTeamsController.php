@@ -105,7 +105,7 @@ class TriathlonTeamsController extends Controller
 
         $team->finish    = $request->finish;
         $team->penalty   = $request->penalty;
-        $team->eventYear = $request->input('eventYear', 2019); // @todo 2019
+        $team->eventYear = $request->input('eventYear', 2020); // @todo 2020
         $team->comment   = $request->input('comment');
         $team->save();
 
@@ -158,7 +158,7 @@ class TriathlonTeamsController extends Controller
         $team            = new TriathlonTeam;
         $team->number    = $request->input('number');
         $team->name      = $request->input('teamName');
-        $team->eventYear = $request->input('eventYear', 2019); // @todo 2019
+        $team->eventYear = $request->input('eventYear', 2020); // @todo 2020
         $team->comment   = $request->input('comment');
 
         $team->swimmerParticipantId = $swimmer->id;

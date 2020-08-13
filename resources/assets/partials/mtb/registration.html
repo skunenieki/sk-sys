@@ -65,12 +65,12 @@
                      id="inputBirthYear"
                      placeholder="2014"
                      min="1916"
-                     max="2019"
+                     max="2020"
                      ng-maxlength="4"
                      ng-model="mtbRegCtrl.participation.birthYear"
                      ng-blur="mtbRegCtrl.checkExistingParticipant()"
                      tabindex="3"
-                     required> <!-- todo 2019 -->
+                     required> <!-- todo 2020 -->
               <span ng-show="!mtbRegCtrl.participation.acceptExisting" class="glyphicon glyphicon-exclamation-sign form-control-feedback"></span>
               <span ng-show="!mtbRegCtrl.regForm.birthYear.$pristine && mtbRegCtrl.regForm.birthYear.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span>
           </div>
@@ -116,13 +116,13 @@
               <input type="number"
                      class="form-control"
                      id="eventYear"
-                     placeholder="2019"
+                     placeholder="2020"
                      min="1996"
-                     max="2019"
+                     max="2020"
                      ng-maxlength="4"
                      ng-model="mtbRegCtrl.participation.eventYear"
                      ng-blur="mtbRegCtrl.checkExistingParticipant()"
-                     required> <!-- todo 2019 -->
+                     required> <!-- todo 2020 -->
           </div>
         </div>
       </div>

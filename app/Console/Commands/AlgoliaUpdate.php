@@ -40,7 +40,7 @@ class AlgoliaUpdate extends Command
      */
     public function handle()
     {
-        $eventYear = 2019; // @todo 2019
+        $eventYear = 2020; // @todo 2020
 
         $thisYearsFinished = Individual::where('eventYear', $eventYear)
               ->whereNotNull('finish')->get();
