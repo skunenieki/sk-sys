@@ -115,6 +115,17 @@ class IndividualResultsController extends Controller
                                         'max' => $eventYear - $ranges[0],
                                     ],
                                 ];
+                            } else {
+                                return [
+                                    'age' => [
+                                        'min' => 0,
+                                        'max' => 99,
+                                    ],
+                                    'birthYears' => [
+                                        'min' => $eventYear - 0,
+                                        'max' => $eventYear - 99,
+                                    ],
+                                ];
                             }
                         }
                     }
@@ -131,6 +142,7 @@ class IndividualResultsController extends Controller
 
     protected function phrases($eventYear)
     {
+        // var_dump($this->ageRangesForGroup($eventYear, 'BS'));die;
         return [
             'eventDate'                => '2020. gada 8. augusts', // @todo 2020
             'eventDescription'         => 'Riteņbraukšnas sacensību protokols',
@@ -145,7 +157,7 @@ class IndividualResultsController extends Controller
             'AK'                       => 'Ārpus Konkurences',
             'AKG'                      => 'Ārpus Konkurences',
             'AKK'                      => 'Ārpus Konkurences',
-            'BV'                       => 'zēni, kas dzimuši, sākot ar '.$this->ageRangesForGroup($eventYear, 'BS')['birthYears']['min'].'. gadu un jaunāki',
+            'BV'                       => 'zēni, kas dzimuši, sākot ar '.$this->ageRangesForGroup($eventYear, 'BV')['birthYears']['min'].'. gadu un jaunāki',
             'S'                        => '',
             // 'CV'                       => 'vīrieši, kas dzimuši no '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['min'].'. līdz '.$this->ageRangesForGroup($eventYear, 'CV')['birthYears']['max'].'. gadam; ceļa velosipēdi',
             'CV'                       => 'vīrieši, kas dzimuši no 1971. līdz 2007. gadam; ceļa velosipēdi', // @todo 2020
@@ -209,6 +221,7 @@ class IndividualResultsController extends Controller
             'PS'                       => '',
             'PV'                       => '',
             'SS'                       => '',
+            'S'                        => 'Vīrieši',
         ];
     }
 }
